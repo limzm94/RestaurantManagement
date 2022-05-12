@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">RestaurantManagement</string>
+    <string name="name_text">Name:</string>
+    <string name="course_rating">RestaurantManagement</string>
+    <string name="person_name_text">Person Name:</string>
+    <string name="status_text">Status:</string>
+    <string name="position_text">Position:</string>
+    <string name="username_text">Username:</string>
+    <string name="placeholder_text">placeholder</string>
+    <string name="password_text">Password:</string>
+</resources>

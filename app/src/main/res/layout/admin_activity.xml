@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_cyan"
+    tools:context=".admin.AdminUI">
+
+    <LinearLayout
+        android:id="@+id/adminTopMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="30dp">
+
+        <Button
+            android:id="@+id/createAcc"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:text="Create Account"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="5dp"/>
+
+        <Button
+            android:id="@+id/adminLogOut"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:text="Logout"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idRVAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/adminTopMenu"/>
+
+</RelativeLayout>

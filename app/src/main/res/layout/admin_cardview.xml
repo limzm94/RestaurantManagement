@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardBackgroundColor="@color/light_cyan"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    app:cardMaxElevation="10dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
+
+    <!--
+        In the above cardview widget
+        cardelevation property will give elevation to your card view
+        card corner radius will provide radius to your card view
+        card background color will give background color to your card view
+        card max elevation will give the cardview maximum elevation
+        card prevent corner overlap will add padding to CardView on v20 and
+        before to prevent intersections between the Card content and rounded corners.
+        card use compact padding will add padding in API v21+ as well to have the same
+        measurements with previous versions.
+    -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/personName_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/person_name_text"
+            android:textColor="@color/dark_violet"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/personName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/personName_text"
+            android:layout_marginStart="10dp"
+            android:drawablePadding="2dp"
+            android:text="@string/placeholder_text"
+            />
+
+        <TextView
+            android:id="@+id/status_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/personName"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/status_text"
+            android:textColor="@color/dark_violet"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/status_text"
+            android:layout_marginStart="10dp"
+            android:drawablePadding="2dp"
+            android:text="@string/placeholder_text"
+            />
+
+        <TextView
+            android:id="@+id/position_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/status"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/position_text"
+            android:textColor="@color/dark_violet"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/position"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/position_text"
+            android:layout_marginStart="10dp"
+            android:drawablePadding="2dp"
+            android:text="@string/placeholder_text"
+            />
+        <TextView
+            android:id="@+id/username_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/position"
+            android:text="@string/username_text"
+            android:textColor="@color/dark_violet"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/username_text"
+            android:layout_marginStart="10dp"
+            android:drawablePadding="2dp"
+            android:text="@string/placeholder_text"
+            />
+
+        <!--Text VIew to display COurse Rating-->
+        <!--Image used in present in drawable folder-->
+        <TextView
+            android:id="@+id/password_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/username"
+            android:text="@string/password_text"
+            android:textColor="@color/dark_violet"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password_text"
+            android:layout_marginStart="10dp"
+            android:drawablePadding="2dp"
+            android:text="@string/placeholder_text"
+            />
+
+
+        <LinearLayout
+            android:id="@+id/adminTopMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password"
+            android:padding="5dp">
+
+            <Button
+                android:id="@+id/editBtn"
+                android:layout_width="110dp"
+                android:layout_height="50dp"
+                android:text="Edit"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="5dp"/>
+
+            <Button
+                android:id="@+id/suspendBtn"
+                android:layout_width="110dp"
+                android:layout_height="50dp"
+                android:text="Suspend"
+                android:layout_weight="1"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

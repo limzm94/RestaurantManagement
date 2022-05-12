@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="light_cyan">#DDFFF7</color>
+    <color name="mid_cyan">#93E1D8</color>
+    <color name="light_pink">#FFA69E</color>
+    <color name="mid_violet">#AA4465</color>
+    <color name="dark_violet">#462255</color>
+
+</resources>
