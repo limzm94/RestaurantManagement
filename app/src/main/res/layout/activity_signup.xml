@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/Theme.AppCompat"
     tools:context=".SignUpActivity"
     >
 
@@ -22,9 +21,6 @@
             android:hint="Username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/black"
-            android:text="Username"
-            android:textColor="@android:color/black"
             android:textSize="34sp"
             android:inputType="text"
             />
@@ -35,9 +31,6 @@
             android:hint="Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/black"
-            android:text="1234"
-            android:textColor="@android:color/black"
             android:textSize="34sp"
             android:inputType="textPassword"
             />
@@ -47,13 +40,11 @@
     <Button
         android:id="@+id/buttonSignUp"
         android:text="Sign Up"
-        android:textColor="@android:color/white"
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp" />
-
 
 </RelativeLayout>
