@@ -1,12 +1,16 @@
 package com.example.restaurantmanagement.admin;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.restaurantmanagement.MainActivity;
 import com.example.restaurantmanagement.R;
+import com.example.restaurantmanagement.SignUpActivity;
 import com.example.restaurantmanagement.utility.DBHandler;
 
 
@@ -21,7 +25,8 @@ public class AdminUI extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_activity);
+        setContentView(R.layout.activity_admin);
+        Button createAccBtn = findViewById(R.id.createAcc);
         adminRV = findViewById(R.id.idRVAdmin);
         DBHandler DB = new DBHandler(this);
 
@@ -43,10 +48,14 @@ public class AdminUI extends AppCompatActivity {
         // here we are creating vertical list so we will provide orientation as vertical
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
-        // in below two lines we are setting layoutmanager and adapter to our recycler view.
+        // in below two lines we are setting layoutManager and adapter to our recycler view.
         adminRV.setLayoutManager(linearLayoutManager);
         adminRV.setAdapter(courseAdapter);
 
+        createAccBtn.setOnClickListener(v -> {
+            Intent createAcc = new Intent(AdminUI.this, CreateAccount.class);
+            startActivity(createAcc);
+        });
 
     }
 }

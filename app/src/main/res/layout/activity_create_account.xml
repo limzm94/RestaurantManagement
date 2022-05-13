@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".admin.CreateAccount">
+
+
+
+    <LinearLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+
+        <EditText
+            android:id="@+id/username_create"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+            android:imeOptions="flagForceAscii"
+            android:layout_weight="3"
+            android:hint="@string/username_text"
+            android:inputType="textPersonName"
+            android:textColor="@color/secondary_mid"
+            android:textColorHint="#6D7E8D" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout1"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+
+        <EditText
+            android:id="@+id/password_create"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+            android:imeOptions="flagForceAscii"
+            android:layout_weight="3"
+            android:hint="@string/password_text"
+            android:inputType="textPersonName"
+            android:textColor="@color/secondary_mid"
+            android:textColorHint="#6D7E8D"
+            tools:ignore="TextFields" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout2"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+
+        <EditText
+            android:id="@+id/person_name_create"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+            android:imeOptions="flagForceAscii"
+            android:layout_weight="3"
+            android:hint="@string/person_name_text"
+            android:inputType="textPersonName"
+            android:textColor="@color/secondary_mid"
+            android:textColorHint="#6D7E8D" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout3"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+
+        <Spinner
+            android:id="@+id/status_create"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout4"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+
+        <!--<EditText
+            android:id="@+id/status_create"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+            android:imeOptions="flagForceAscii"
+            android:layout_weight="3"
+            android:hint="@string/status_text"
+            android:inputType="textPersonName"
+            android:textColor="@color/mid_violet"
+            android:textColorHint="#6D7E8D" />-->
+
+        <Spinner
+            android:id="@+id/roles_create"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/adminTopMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="30dp">
+
+        <Button
+            android:id="@+id/create_btn"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:text="@string/create_text"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="5dp"/>
+
+        <Button
+            android:id="@+id/cancel_btn"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:text="@string/cancel_text"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+
+
+</RelativeLayout>
