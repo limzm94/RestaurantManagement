@@ -1,6 +1,5 @@
 package com.example.restaurantmanagement.utility;
 
-
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,8 +10,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
-
-//import com.google.firebase.auth.FirebaseAuth;
 
 public class DBHandler extends SQLiteOpenHelper {
 
@@ -49,14 +46,55 @@ public class DBHandler extends SQLiteOpenHelper {
         // an sqlite query and we are
         // setting our column names
         // along with their data types.
-        String query = "CREATE TABLE " + TABLE_NAME + " ("
-                + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + NAME_COL + " TEXT,"
-                + DURATION_COL + " TEXT)";
+        String query = "CREATE TABLE Users (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "username TEXT," +
+                "password TEXT," +
+                "name TEXT," +
+                "status TEXT," +
+                "role TEXT)";
+
+        String categoryQuery = "CREATE TABLE " + "Category" + " ("
+                + "categoryId" + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "image" + " TEXT,"
+                + "name" + " TEXT)";
+
+        String menuQuery = "CREATE TABLE Foods (menuId INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "description TEXT," +
+                "image TEXT," +
+                "discount TEXT," +
+                "name TEXT," +
+                "price TEXT)";
+
+        String orderDetailQuery = "CREATE TABLE OrderDetail (" +
+                "ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "ProductId TEXT," +
+                "ProductName TEXT," +
+                "Quantity TEXT," +
+                "Price TEXT," +
+                "Discount TEXT," +
+                "Image TEXT)";
+
+//        String rolesQuery = "CREATE TABLE " + "roles" + " ("
+//                + "id" + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+//                + "role" + " TEXT)";
+//
+//        String userRolesQuery = "create table users_roles(\n" +
+//                "    user_role_id integer not null primary key,\n" +
+//                "    user_id integer not null,\n" +
+//                "    role_id integer not null,\n" +
+//                "    FOREIGN KEY(user_id) REFERENCES users(id),\n" +
+//                "    FOREIGN KEY(role_id) REFERENCES roles(id),\n" +
+//                "    UNIQUE (user_id, role_id)\n" +
+//                ");  ";
 
         // at last we are calling a exec sql
         // method to execute above sql query
         db.execSQL(query);
+        db.execSQL(menuQuery);
+        db.execSQL(categoryQuery);
+        db.execSQL(orderDetailQuery);
+//        db.execSQL(rolesQuery);
+//        db.execSQL(userRolesQuery);
     }
 
     // example to check if column exist
