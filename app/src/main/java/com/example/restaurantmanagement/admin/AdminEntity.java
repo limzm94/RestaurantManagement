@@ -3,23 +3,23 @@ package com.example.restaurantmanagement.admin;
 
 public class AdminEntity {
 
-    private String person_name;
+    /*private String person_name;
     private String status;
-    private String position;
+    private String position;*/
     private String username;
     private String password;
 
     // Constructor
-    public AdminEntity(String person_name, String status, String position, String username, String password) {
-        this.person_name = person_name;
+    public AdminEntity(/*String person_name, String status, String position,*/ String username, String password) {
+        /*this.person_name = person_name;
         this.status = status;
-        this.position = position;
+        this.position = position;*/
         this.username = username;
         this.password = password;
     }
 
     // Getter and Setter
-
+/*
     public String getPerson_name() {
         return person_name;
     }
@@ -42,7 +42,7 @@ public class AdminEntity {
 
     public void setPosition(String position) {
         this.position = position;
-    }
+    }*/
 
     public String getUsername() {
         return username;

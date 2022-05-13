@@ -36,9 +36,9 @@ public class AdminController extends RecyclerView.Adapter<AdminController.Viewho
     public void onBindViewHolder(@NonNull AdminController.Viewholder holder, int position) {
         // to set data to textview and imageview of each card layout
         AdminEntity model = courseModelArrayList.get(position);
-        holder.personName.setText(model.getPerson_name());
+        /*holder.personName.setText(model.getPerson_name());
         holder.status.setText(model.getStatus());
-        holder.position.setText(model.getPosition());
+        holder.position.setText(model.getPosition());*/
         holder.username.setText(model.getUsername());
         holder.password.setText(model.getPassword());
     }

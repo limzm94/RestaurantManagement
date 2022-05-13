@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.restaurantmanagement.admin.AdminUI;
 import com.example.restaurantmanagement.utility.DBHandler;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,35 +23,29 @@ public class MainActivity extends AppCompatActivity {
         Button signUpBtn = findViewById(R.id.signup_btn);
         DBHandler DB = new DBHandler(this);
 
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btnSignIn.setOnClickListener(v -> {
 
-                String user = edtUsername.getText().toString();
-                String pass = edtPassword.getText().toString();
+            String user = edtUsername.getText().toString();
+            String pass = edtPassword.getText().toString();
 
-                if(user.equals("")||pass.equals(""))
-                    Toast.makeText(MainActivity.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
-                else{
-                    Boolean checkuserpass = DB.checkusernamepassword(user, pass);
-                    if(checkuserpass==true){
-                        Toast.makeText(MainActivity.this, "Sign in successfull", Toast.LENGTH_SHORT).show();
-                      //  Intent intent  = new Intent(getApplicationContext(), Home.class);
-                     //  startActivity(intent);
-                    }else{
-                        Toast.makeText(MainActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
-                    }
+            if(user.equals("")||pass.equals(""))
+                Toast.makeText(MainActivity.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
+            else{
+                Boolean checkUsernamePassword = DB.checkUsernamePassword(user, pass);
+                if(checkUsernamePassword){
+                    Toast.makeText(MainActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
+                    Intent adminUI = new Intent(MainActivity.this, AdminUI.class);
+                    startActivity(adminUI);
+                }else{
+                    Toast.makeText(MainActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
 
-        signUpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent signUp = new Intent(MainActivity.this, SignUpActivity.class);
-                startActivity(signUp);
-            }
+        signUpBtn.setOnClickListener(v -> {
+            Intent signUp = new Intent(MainActivity.this, SignUpActivity.class);
+            startActivity(signUp);
         });
     }
 

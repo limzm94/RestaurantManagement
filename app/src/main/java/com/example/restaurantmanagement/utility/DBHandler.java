@@ -1,11 +1,16 @@
 package com.example.restaurantmanagement.utility;
 
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
 
 //import com.google.firebase.auth.FirebaseAuth;
 
@@ -103,23 +108,54 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public Boolean checkusernamepassword(String username, String password){
+    public Boolean checkUsernamePassword(String username, String password){
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from users where username = ? and password = ?", new String[] {username,password});
-        if(cursor.getCount()>0)
-            return true;
-        else
-            return false;
+        return cursor.getCount() > 0;
     }
 
-    public Boolean checkusername(String username) {
+    public Boolean checkUsername(String username) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from users where username = ?", new String[]{username});
-        if (cursor.getCount() > 0)
-            return true;
-        else
-            return false;
+        return cursor.getCount() > 0;
     }
+
+
+    //to list all the data in the table
+    public ArrayList<String> listUser() {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Log.d("","tableToString called");
+        ArrayList<String> tableString = new ArrayList<>();
+        Cursor allRows  = MyDB.rawQuery("SELECT * FROM " + "users", null);
+        tableString = cursorToString(allRows);
+        return tableString;
+    }
+
+    @SuppressLint("Range")
+    public ArrayList<String> cursorToString(Cursor cursor){
+        String cursorString = "";
+        ArrayList<String> userList = new ArrayList<>();
+        if (cursor.moveToFirst() ){
+            String[] columnNames = cursor.getColumnNames();
+            for (String name: columnNames)
+                cursorString += String.format("%s ][ ", name);
+            cursorString += "\n";
+            do {
+                for (String name: columnNames) {
+                    if (name == "username"){
+                        cursorString += String.format("%s ][ ",
+                                cursor.getString(cursor.getColumnIndex(name)));
+                        userList.add(cursor.getString(cursor.getColumnIndex(name)));
+                    }
+
+                }
+                cursorString += "\n";
+            } while (cursor.moveToNext());
+        }
+        return userList;
+    }
+
+
 
 
     @Override
@@ -135,8 +171,6 @@ public class DBHandler extends SQLiteOpenHelper {
         contentValues.put("username", username);
         contentValues.put("password", password);
         long result = MyDB.insert("users", null, contentValues);
-        if(result==-1) return false;
-        else
-            return true;
+        return result != -1;
     }
 }

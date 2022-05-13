@@ -2,7 +2,6 @@ package com.example.restaurantmanagement;
 
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -26,29 +25,24 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUp = findViewById(R.id.buttonSignUp);
 
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String user = edtUsername.getText().toString();
-                String pass = edtPassword.getText().toString();
-//                String repass = repassword.getText().toString();
+        btnSignUp.setOnClickListener(view -> {
+            String user = edtUsername.getText().toString();
+            String pass = edtPassword.getText().toString();
 
-                if (user.equals("") || pass.equals(""))
-                    Toast.makeText(SignUpActivity.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
-                else {
-//                    if(pass.equals(repass)){
-                    Boolean checkUser = DB.checkusername(user);
-                    if (!checkUser) {
-                        Boolean insert = DB.insertData(user, pass);
-                        if (insert) {
-                            Toast.makeText(SignUpActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
+            if (user.equals("") || pass.equals(""))
+                Toast.makeText(SignUpActivity.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
+            else {
+                Boolean checkUser = DB.checkUsername(user);
+                if (!checkUser) {
+                    Boolean insert = DB.insertData(user, pass);
+                    if (insert) {
+                        Toast.makeText(SignUpActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
 
-                        } else {
-                            Toast.makeText(SignUpActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
-                        }
                     } else {
-                        Toast.makeText(SignUpActivity.this, "User already exists! please sign in", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
                     }
+                } else {
+                    Toast.makeText(SignUpActivity.this, "User already exists! please sign in", Toast.LENGTH_SHORT).show();
                 }
             }
         });

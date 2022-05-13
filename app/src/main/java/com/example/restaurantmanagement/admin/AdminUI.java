@@ -7,8 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
+import com.example.restaurantmanagement.utility.DBHandler;
+
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class AdminUI extends AppCompatActivity {
     private RecyclerView adminRV;
@@ -20,12 +23,19 @@ public class AdminUI extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_activity);
         adminRV = findViewById(R.id.idRVAdmin);
+        DBHandler DB = new DBHandler(this);
 
         // here we have created new array list and added data to it.
+        ArrayList<String> allUser = DB.listUser();
+        System.out.println(allUser);
+        System.out.println(Arrays.toString(allUser.toArray()));
+
+
         userAccList = new ArrayList<>();
-        userAccList.add(new AdminEntity("John","Active", "Manager", "john_manager", "nd91123912"));
+        //userAccList.add(new AdminEntity("John","Active", "Manager", "john_manager", "nd91123912"));
+        /*userAccList.add(new AdminEntity("John","Active", "Manager", "john_manager", "nd91123912"));
         userAccList.add(new AdminEntity("Jane","Active", "Owner", "jane_owner", "23948fcxv"));
-        userAccList.add(new AdminEntity("Table 1","Active", "Customer Table", "customer_table1", "table1"));
+        userAccList.add(new AdminEntity("Table 1","Active", "Customer Table", "customer_table1", "table1"));*/
         // we are initializing our adapter class and passing our arraylist to it.
         AdminController courseAdapter = new AdminController(this, userAccList);
 
@@ -36,5 +46,7 @@ public class AdminUI extends AppCompatActivity {
         // in below two lines we are setting layoutmanager and adapter to our recycler view.
         adminRV.setLayoutManager(linearLayoutManager);
         adminRV.setAdapter(courseAdapter);
+
+
     }
 }
