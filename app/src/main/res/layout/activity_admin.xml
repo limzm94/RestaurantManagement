@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_cyan"
+    android:background="@color/white"
     tools:context=".admin.AdminUI">
 
     <LinearLayout
@@ -15,16 +15,19 @@
         <Button
             android:id="@+id/createAcc"
             android:layout_width="110dp"
-            android:layout_height="50dp"
-            android:text="Create Account"
+            android:layout_height="60dp"
+            android:textSize="12sp"
+            android:text="@string/create_acc_text"
+            android:textColor="@color/white"
             android:layout_weight="1"
             android:layout_marginHorizontal="5dp"/>
 
         <Button
             android:id="@+id/adminLogOut"
             android:layout_width="110dp"
-            android:layout_height="50dp"
-            android:text="Logout"
+            android:layout_height="60dp"
+            android:textColor="@color/white"
+            android:text="@string/logout_text"
             android:layout_weight="1"
             />
     </LinearLayout>
@@ -33,6 +36,6 @@
         android:id="@+id/idRVAdmin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/adminTopMenu"/>
+        android:layout_below="@+id/adminTopMenu" />
 
 </RelativeLayout>

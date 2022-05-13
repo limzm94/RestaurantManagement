@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_violet"
-    tools:context=".LoginActivity"
+    android:background="@color/secondary_dark"
+    tools:context=".MainActivity"
     android:id="@+id/login_grp">
 
     <LinearLayout
         android:id="@+id/white_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/light_cyan"
+        android:background="@color/white"
         android:orientation="horizontal"
-        android:weightSum="3"/>
+        android:weightSum="3" />
 
    <!-- <ProgressBar
         android:id="@+id/login_bar"
@@ -36,14 +36,14 @@
 
         <TextView
             android:id="@+id/text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/mid_violet"
+            android:textColor="@color/secondary_mid"
             android:layout_weight="1"
-            android:text="Username"
+            android:text="@string/username_text"
             android:textSize="15sp"
-            android:layout_marginLeft="24sp"
-            android:layout_marginRight="20sp"/>
+            android:layout_marginStart="24sp"
+            android:layout_marginEnd="20sp"/>
 
     </LinearLayout>
 
@@ -58,15 +58,16 @@
 
         <EditText
             android:id="@+id/login_username_et"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
             android:imeOptions="flagForceAscii"
             android:layout_weight="3"
-            android:hint="Username"
+            android:hint="@string/username_text"
+            android:textColorHighlight="@color/primary_mid"
             android:inputType="textPersonName"
-            android:textColor="@color/mid_violet"
+            android:textColor="@color/secondary_mid"
             android:textColorHint="#6D7E8D" />
 
     </LinearLayout>
@@ -80,14 +81,14 @@
 
         <TextView
             android:id="@+id/text2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/mid_violet"
+            android:textColor="@color/secondary_mid"
             android:textSize="15sp"
-            android:text="Password"
-            android:layout_marginLeft="24sp"
-            android:layout_marginRight="20sp"/>
+            android:text="@string/password_text"
+            android:layout_marginStart="24sp"
+            android:layout_marginEnd="20sp"/>
 
     </LinearLayout>
     <LinearLayout
@@ -101,13 +102,14 @@
 
         <EditText
             android:id="@+id/login_password_et"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:imeOptions="flagForceAscii"
             android:inputType="textPassword"
-            android:textColor="@color/mid_violet"
-            android:hint="Password"
+            android:textColor="@color/secondary_mid"
+            android:textColorHighlight="@color/primary_mid"
+            android:hint="@string/password_text"
             android:textColorHint="#6D7E8D"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
@@ -116,18 +118,15 @@
     </LinearLayout>
 
 
-
-
-
     <LinearLayout
-        android:layout_marginTop="50dp"
         android:id="@+id/layout6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/layout4"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
         android:orientation="vertical"
-        android:weightSum="3"
-        android:gravity="center">
+        android:weightSum="3">
 
 
         <Button
@@ -135,26 +134,26 @@
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginTop="100dp"
+            android:layout_weight="1"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:text="Sign in"
-            android:textColor="@color/mid_violet"
-            android:textSize="20sp"
-            android:layout_weight="1"/>
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
         <Button
             android:id="@+id/signup_btn"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginTop="100dp"
+            android:layout_weight="1"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:text="Sign up"
-            android:textColor="@color/mid_violet"
-            android:textSize="20sp"
-            android:layout_weight="1"
-            />
+            android:textColor="@color/white"
+            android:textSize="20sp" />
     </LinearLayout>
 
 

@@ -2,10 +2,31 @@
     <string name="app_name">RestaurantManagement</string>
     <string name="name_text">Name:</string>
     <string name="course_rating">RestaurantManagement</string>
-    <string name="person_name_text">Person Name:</string>
-    <string name="status_text">Status:</string>
+    <string name="person_name_text">Person Name</string>
+    <string name="roles_text">Roles</string>
+    <string name="status_text">Status</string>
     <string name="position_text">Position:</string>
-    <string name="username_text">Username:</string>
+    <string name="username_text">Username</string>
     <string name="placeholder_text">placeholder</string>
-    <string name="password_text">Password:</string>
+    <string name="password_text">Password</string>
+    <string name="sign_in_text">Sign in</string>
+    <string name="logout_text">Log out</string>
+    <string name="cancel_text">Cancel</string>
+    <string name="create_text">Create</string>
+    <string name="confirm_text">Confirm</string>
+    <string name="create_acc_text">Create account</string>
+        <string name="status_dropdown_list">Status</string>
+        <string-array name="status">
+            <item>Active</item>
+            <item>Suspended</item>
+        </string-array>
+
+        <string name="roles_dropdown_list">Roles</string>
+        <string-array name="roles">
+            <item>Owner</item>
+            <item>Admin</item>
+            <item>Manager</item>
+            <item>Staff</item>
+            <item>Customer</item>
+        </string-array>
 </resources>

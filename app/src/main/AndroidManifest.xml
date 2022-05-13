@@ -19,6 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignUpActivity" />
+        <activity android:name=".admin.AdminUI" />
+        <activity android:name=".admin.CreateAccount" />
 
     </application>
 
