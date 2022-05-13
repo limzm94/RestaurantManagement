@@ -8,14 +8,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.restaurantmanagement.MainActivity;
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.SignUpActivity;
 import com.example.restaurantmanagement.utility.DBHandler;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class AdminUI extends AppCompatActivity {
     private RecyclerView adminRV;
@@ -31,9 +28,10 @@ public class AdminUI extends AppCompatActivity {
         DBHandler DB = new DBHandler(this);
 
         // here we have created new array list and added data to it.
-        ArrayList<String> allUser = DB.listUser();
+        ArrayList<String> allUser = DB.listColumnsData("username");
         System.out.println(allUser);
-        System.out.println(Arrays.toString(allUser.toArray()));
+        ArrayList<String> allPassword = DB.listColumnsData("password");
+        System.out.println(allPassword);
 
 
         userAccList = new ArrayList<>();

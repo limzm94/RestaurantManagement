@@ -159,35 +159,27 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 
-    //to list all the data in the table
-    public ArrayList<String> listUser() {
+    //to list all the data in the table by column
+    public ArrayList<String> listColumnsData(String specifiedColumn) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Log.d("","tableToString called");
         ArrayList<String> tableString = new ArrayList<>();
         Cursor allRows  = MyDB.rawQuery("SELECT * FROM " + "users", null);
-        tableString = cursorToString(allRows);
+        tableString = cursorToString(allRows, specifiedColumn);
         return tableString;
     }
-
+    //to list all the data in the table by column
     @SuppressLint("Range")
-    public ArrayList<String> cursorToString(Cursor cursor){
-        String cursorString = "";
+    public ArrayList<String> cursorToString(Cursor cursor, String specifiedColumn){
         ArrayList<String> userList = new ArrayList<>();
         if (cursor.moveToFirst() ){
             String[] columnNames = cursor.getColumnNames();
-            for (String name: columnNames)
-                cursorString += String.format("%s ][ ", name);
-            cursorString += "\n";
             do {
                 for (String name: columnNames) {
-                    if (name == "username"){
-                        cursorString += String.format("%s ][ ",
-                                cursor.getString(cursor.getColumnIndex(name)));
+                    if (name.equals(specifiedColumn)){
                         userList.add(cursor.getString(cursor.getColumnIndex(name)));
                     }
-
                 }
-                cursorString += "\n";
             } while (cursor.moveToNext());
         }
         return userList;
