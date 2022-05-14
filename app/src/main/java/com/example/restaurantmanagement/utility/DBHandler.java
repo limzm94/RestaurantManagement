@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DBHandler extends SQLiteOpenHelper {
 
-   // private FirebaseAuth mAuth;
+    // private FirebaseAuth mAuth;
 
     // creating a constant variables for our database.
     // below variable is for our database name.
@@ -47,7 +47,6 @@ public class DBHandler extends SQLiteOpenHelper {
         // setting our column names
         // along with their data types.
 
-        //isSuspended 0 = false, 1 = true
         String query = "CREATE TABLE Users (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "username TEXT," +
                 "password TEXT," +
@@ -268,28 +267,22 @@ public class DBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-    public Boolean insertData(String username, String password, String status, String personName, String role){
-=======
->>>>>>> Stashed changes
     public void updateUserInfo(){
         SQLiteDatabase db = getReadableDatabase();
         String query = String.format("UPDATE users SET username = %s , password = %s, name = %s WHERE ID = %d", "","" , "" , "");
         db.execSQL(query);
     }
 
-    public Boolean insertData(String username, String password){
->>>>>>> e8d61cf834e4405d8626b372a4484d230e57c173
-        SQLiteDatabase MyDB = this.getWritableDatabase();
-        ContentValues contentValues= new ContentValues();
-        contentValues.put("username", username);
-        contentValues.put("password", password);
-        contentValues.put("status", status);
-        contentValues.put("name", personName);
-        contentValues.put("role", role);
-        long result = MyDB.insert("users", null, contentValues);
-        return result != -1;
+    public Boolean insertData(String username, String password, String status, String personName, String role){
+
+            SQLiteDatabase MyDB = this.getWritableDatabase();
+            ContentValues contentValues= new ContentValues();
+            contentValues.put("username", username);
+            contentValues.put("password", password);
+            contentValues.put("status", status);
+            contentValues.put("name", personName);
+            contentValues.put("role", role);
+            long result = MyDB.insert("users", null, contentValues);
+            return result != -1;
+        }
     }
-}
