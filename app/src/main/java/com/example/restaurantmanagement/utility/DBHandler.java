@@ -46,11 +46,14 @@ public class DBHandler extends SQLiteOpenHelper {
         // an sqlite query and we are
         // setting our column names
         // along with their data types.
+
+        //isSuspended 0 = false, 1 = true
         String query = "CREATE TABLE Users (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "username TEXT," +
                 "password TEXT," +
                 "name TEXT," +
                 "status TEXT," +
+                "isSuspended INTEGER," +
                 "role TEXT)";
 
         //category
