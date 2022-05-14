@@ -115,6 +115,12 @@ public class DBHandler extends SQLiteOpenHelper {
 
         String foodId = "1";
         SQLiteDatabase db = getReadableDatabase();
+
+        //USER
+
+        //aka updateUserInfo()
+        String updateUser = String.format("UPDATE users SET username = %s , password = %s WHERE ID = %d", "","" , "");
+
         // COUPON
         String createCoupon = "Insert into coupons(couponId, description,expiry,discount) VALUES ('%s','%s', '%s','%s')";
         String deleteCoupon = String.format("DELETE FROM coods WHERE couponId ='%s';",foodId);
@@ -124,6 +130,8 @@ public class DBHandler extends SQLiteOpenHelper {
         String deleteFood = String.format("DELETE FROM foods WHERE FoodId ='%s';",foodId);
         String updateFood = String.format("UPDATE foods SET description = %s WHERE ID = %d", "","");
 
+//        ORDERDETAIL
+        String updateOrderQty = String.format("UPDATE OrderDetail SET Quantity = %s WHERE ID = %d", "","");
     }
 
 
@@ -254,6 +262,12 @@ public class DBHandler extends SQLiteOpenHelper {
         // this method is called to check if the table exists already.
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
+    }
+
+    public void updateUserInfo(){
+        SQLiteDatabase db = getReadableDatabase();
+        String query = String.format("UPDATE users SET username = %s , password = %s WHERE ID = %d", "" ,"" , "");
+        db.execSQL(query);
     }
 
     public Boolean insertData(String username, String password){
