@@ -6,10 +6,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class DBHandler extends SQLiteOpenHelper {
 
@@ -272,6 +274,29 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = String.format("UPDATE users SET username = %s , password = %s, name = %s WHERE ID = %d", "","" , "" , "");
         db.execSQL(query);
     }
+
+    public String getUserRole(String username, String password){
+        String[] params = new String[]{ username, password };
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("Select role from users where username = ? and password = ?", params);
+        String name = "";
+        if (c.moveToFirst()) {
+            name = c.getString(0);
+        }
+        return name;
+    }
+
+    public Boolean getUserStatus(String username, String password){
+        String[] params = new String[]{ username, password };
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("Select status from users where username = ? and password = ?", params);
+        String status = "";
+        if (c.moveToFirst()) {
+            status = c.getString(0);
+        }
+        return status.equals("Active");
+    }
+
 
     public Boolean insertData(String username, String password, String status, String personName, String role){
 
