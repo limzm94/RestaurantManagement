@@ -28,13 +28,16 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(view -> {
             String user = edtUsername.getText().toString();
             String pass = edtPassword.getText().toString();
+            String status = "Active";
+            String personName = "PersonName";
+            String role = "Admin";
 
             if (user.equals("") || pass.equals(""))
                 Toast.makeText(SignUpActivity.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
             else {
                 Boolean checkUser = DB.checkUsername(user);
                 if (!checkUser) {
-                    Boolean insert = DB.insertData(user, pass);
+                    Boolean insert = DB.insertData(user, pass, status, personName, role);
                     if (insert) {
                         Toast.makeText(SignUpActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
 

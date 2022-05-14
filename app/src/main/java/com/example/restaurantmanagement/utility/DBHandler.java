@@ -224,11 +224,11 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
     //to list all the data in the table by column
-    public ArrayList<String> listColumnsData(String specifiedColumn) {
+    public ArrayList<String> listColumnsData(String specifiedTable, String specifiedColumn) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Log.d("","tableToString called");
         ArrayList<String> tableString = new ArrayList<>();
-        Cursor allRows  = MyDB.rawQuery("SELECT * FROM " + "users", null);
+        Cursor allRows  = MyDB.rawQuery("SELECT * FROM " + specifiedTable, null);
         tableString = cursorToString(allRows, specifiedColumn);
         return tableString;
     }
@@ -268,6 +268,12 @@ public class DBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    public Boolean insertData(String username, String password, String status, String personName, String role){
+=======
+>>>>>>> Stashed changes
     public void updateUserInfo(){
         SQLiteDatabase db = getReadableDatabase();
         String query = String.format("UPDATE users SET username = %s , password = %s, name = %s WHERE ID = %d", "","" , "" , "");
@@ -275,10 +281,14 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public Boolean insertData(String username, String password){
+>>>>>>> e8d61cf834e4405d8626b372a4484d230e57c173
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues= new ContentValues();
         contentValues.put("username", username);
         contentValues.put("password", password);
+        contentValues.put("status", status);
+        contentValues.put("name", personName);
+        contentValues.put("role", role);
         long result = MyDB.insert("users", null, contentValues);
         return result != -1;
     }

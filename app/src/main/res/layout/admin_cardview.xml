@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    app:cardBackgroundColor="@color/primary_light"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp"
     app:cardMaxElevation="10dp"
@@ -89,13 +89,14 @@
             android:drawablePadding="2dp"
             android:text="@string/placeholder_text"
             />
+
         <TextView
             android:id="@+id/username_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/position"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:layout_below="@id/position"
             android:text="@string/username_text"
             android:textColor="@color/secondary_dark"
             android:textSize="18sp"

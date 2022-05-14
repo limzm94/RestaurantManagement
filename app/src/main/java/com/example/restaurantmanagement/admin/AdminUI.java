@@ -2,6 +2,7 @@ package com.example.restaurantmanagement.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,20 +26,29 @@ public class AdminUI extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
         Button createAccBtn = findViewById(R.id.createAcc);
         adminRV = findViewById(R.id.idRVAdmin);
+
+        // need to do this in controller
         DBHandler DB = new DBHandler(this);
-
-        // here we have created new array list and added data to it.
-        ArrayList<String> allUser = DB.listColumnsData("username");
-        System.out.println(allUser);
-        ArrayList<String> allPassword = DB.listColumnsData("password");
+        // here we have created new array list and added data to it. System print for debugging purpose
+        ArrayList<String> allUsername = DB.listColumnsData("users", "username");
+        System.out.println(allUsername);
+        ArrayList<String> allPassword = DB.listColumnsData("users", "password");
         System.out.println(allPassword);
+        ArrayList<String> allPersonName = DB.listColumnsData("users", "name");
+        System.out.println(allPersonName);
+        ArrayList<String> allStatus = DB.listColumnsData("users", "status");
+        System.out.println(allStatus);
+        ArrayList<String> allRoles = DB.listColumnsData("users", "role");
+        System.out.println(allRoles);
 
-
+        // need to do this in controller
         userAccList = new ArrayList<>();
-        //userAccList.add(new AdminEntity("John","Active", "Manager", "john_manager", "nd91123912"));
-        /*userAccList.add(new AdminEntity("John","Active", "Manager", "john_manager", "nd91123912"));
-        userAccList.add(new AdminEntity("Jane","Active", "Owner", "jane_owner", "23948fcxv"));
-        userAccList.add(new AdminEntity("Table 1","Active", "Customer Table", "customer_table1", "table1"));*/
+        int count = 0;
+        while (allUsername.size() > count) {
+            userAccList.add(new AdminEntity(allPersonName.get(count), allStatus.get(count), allRoles.get(count), allUsername.get(count), allPassword.get(count)));
+            count++;
+        }
+
         // we are initializing our adapter class and passing our arraylist to it.
         AdminController courseAdapter = new AdminController(this, userAccList);
 
@@ -53,7 +63,10 @@ public class AdminUI extends AppCompatActivity {
         createAccBtn.setOnClickListener(v -> {
             Intent createAcc = new Intent(AdminUI.this, CreateAccount.class);
             startActivity(createAcc);
+            finish();
         });
+
+
 
     }
 }

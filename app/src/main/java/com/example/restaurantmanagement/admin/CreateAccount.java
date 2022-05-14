@@ -48,22 +48,36 @@ public class CreateAccount extends AppCompatActivity {
             String username = usernameText.getText().toString();
             String password = passwordText.getText().toString();
             String personName = personNameText.getText().toString();
-            Boolean status = statusSpinner.getSelectedItem().toString().equals("Active");
-            String roles = rolesSpinner.getSelectedItem().toString();
+            String status = statusSpinner.getSelectedItem().toString();
+            String role = rolesSpinner.getSelectedItem().toString();
 
             System.out.println(String.format("Username: %s%nPassword: %s%nPerson Name: %b%nStatus: %s%nRoles: %s%n",
-                    username, password, personName, status, roles));
+                    username, password, personName, status, role));
 
-            finish();
+            if (username.equals("") || password.equals("") || personName.equals(""))
+                Toast.makeText(CreateAccount.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
+            else {
+                Boolean checkUser = DB.checkUsername(username);
+                if (!checkUser) {
+                    Boolean insert = DB.insertData(username, password, status, personName, role);
+                    if (insert) {
+                        Toast.makeText(CreateAccount.this, "Registered successfully", Toast.LENGTH_LONG).show();
+
+                    } else {
+                        Toast.makeText(CreateAccount.this, "Registration failed", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(CreateAccount.this, "User already exists! please sign in", Toast.LENGTH_LONG).show();
+                }
+
+                Intent createAcc = new Intent(CreateAccount.this, AdminUI.class);
+                startActivity(createAcc);
+                finish();
+            }
         });
 
         cancelBtn.setOnClickListener(v -> {
             finish();
         });
-
-
-
-
-
     }
 }
