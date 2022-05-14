@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -42,7 +43,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
             else {
                 Boolean checkUsernamePassword = DB.checkUsernamePassword(user, pass);
-                if (checkUsernamePassword) {
+                // get userrole
+//                String userRole = DB.getUserRole(user,pass);
+                Boolean isActive = DB.getUserStatus(user,pass);
+
+                if (checkUsernamePassword && isActive) {
                     Toast.makeText(MainActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
                     Intent adminUI = new Intent(MainActivity.this, AdminUI.class);
                     startActivity(adminUI);
