@@ -46,18 +46,23 @@ public class DBHandler extends SQLiteOpenHelper {
         // an sqlite query and we are
         // setting our column names
         // along with their data types.
+
+        //isSuspended 0 = false, 1 = true
         String query = "CREATE TABLE Users (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "username TEXT," +
                 "password TEXT," +
                 "name TEXT," +
                 "status TEXT," +
+                "isSuspended INTEGER," +
                 "role TEXT)";
 
+        //category
         String categoryQuery = "CREATE TABLE " + "Category" + " ("
                 + "categoryId" + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "image" + " TEXT,"
                 + "name" + " TEXT)";
 
+        //food menu
         String menuQuery = "CREATE TABLE Foods (menuId INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "description TEXT," +
                 "image TEXT," +
@@ -65,6 +70,14 @@ public class DBHandler extends SQLiteOpenHelper {
                 "name TEXT," +
                 "price TEXT)";
 
+        //create coupons
+        String codeQuery = "CREATE TABLE coupons (couponId INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "description TEXT," +
+                "expiry TEXT," +
+                "discount TEXT)";
+
+        // used for cart
+        //isFulfilled 0 = false (not fulfilled) , 1= true (is fulfilled)
         String orderDetailQuery = "CREATE TABLE OrderDetail (" +
                 "ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "ProductId TEXT," +
@@ -72,6 +85,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 "Quantity TEXT," +
                 "Price TEXT," +
                 "Discount TEXT," +
+                "isFulfilled INTEGER," +
                 "Image TEXT)";
 
 //        String rolesQuery = "CREATE TABLE " + "roles" + " ("
@@ -93,9 +107,48 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(menuQuery);
         db.execSQL(categoryQuery);
         db.execSQL(orderDetailQuery);
+        db.execSQL(codeQuery);
 //        db.execSQL(rolesQuery);
 //        db.execSQL(userRolesQuery);
     }
+
+    public void miscQueries (){
+
+        String foodId = "1";
+        SQLiteDatabase db = getReadableDatabase();
+        // COUPON
+        String createCoupon = "Insert into coupons(couponId, description,expiry,discount) VALUES ('%s','%s', '%s','%s')";
+        String deleteCoupon = String.format("DELETE FROM coods WHERE couponId ='%s';",foodId);
+
+        // FOOD
+        String ad = "INSERT INTO foods(name,discount,description,price) VALUES('%s','%s', '%s','%s','%s','%s');";
+        String deleteFood = String.format("DELETE FROM foods WHERE FoodId ='%s';",foodId);
+        String updateFood = String.format("UPDATE foods SET description = %s WHERE ID = %d", "","");
+
+    }
+
+
+    // ORDERDETAIL
+    // add menu item to cart
+    public void addToCart (Order order){
+        SQLiteDatabase db = getReadableDatabase();
+        String query = String.format("INSERT INTO OrderDetail(ProductId,ProductName,Quantity,Price,Discount,Image) VALUES('%s','%s', '%s','%s','%s','%s');",
+                order.getProductId(),
+                order.getProductName(),
+                order.getQuantity(),
+                order.getPrice(),
+                order.getDiscount(),
+                order.getImage());
+        db.execSQL(query);
+    }
+
+    public void cleanCart (){
+        SQLiteDatabase db = getReadableDatabase();
+        String query = String.format("DELETE FROM OrderDetail");
+
+        db.execSQL(query);
+    }
+
 
     // example to check if column exist
     public boolean columnExists(String value) {
@@ -186,6 +239,15 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 
+    public Boolean insertUserAdmin(String username, String password, String role){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues= new ContentValues();
+        contentValues.put("username", username);
+        contentValues.put("password", password);
+        contentValues.put("role", role);
+        long result = MyDB.insert("users", null, contentValues);
+        return result != -1;
+    }
 
 
     @Override
