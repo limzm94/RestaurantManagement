@@ -119,7 +119,11 @@ public class DBHandler extends SQLiteOpenHelper {
         //USER
 
         //aka updateUserInfo()
-        String updateUser = String.format("UPDATE users SET username = %s , password = %s WHERE ID = %d", "","" , "");
+        String updateUser = String.format("UPDATE users SET username = %s , password = %s, name = %s WHERE ID = %d", "","" , "" , "");
+
+        // update as admin user
+        String updateUserAdmin = String.format("UPDATE users SET username = %s , password = %s, " +
+                "name = %s, status = %s, role = %s "+" WHERE ID = %d", "","" , "", "", "");
 
         // COUPON
         String createCoupon = "Insert into coupons(couponId, description,expiry,discount) VALUES ('%s','%s', '%s','%s')";
@@ -274,7 +278,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public void updateUserInfo(){
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("UPDATE users SET username = %s , password = %s WHERE ID = %d", "" ,"" , "");
+        String query = String.format("UPDATE users SET username = %s , password = %s, name = %s WHERE ID = %d", "","" , "" , "");
         db.execSQL(query);
     }
 
