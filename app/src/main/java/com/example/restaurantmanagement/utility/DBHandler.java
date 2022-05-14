@@ -53,7 +53,6 @@ public class DBHandler extends SQLiteOpenHelper {
                 "password TEXT," +
                 "name TEXT," +
                 "status TEXT," +
-                "isSuspended INTEGER," +
                 "role TEXT)";
 
         //category
