@@ -17,25 +17,24 @@
         android:weightSum="3" />
 
 
-
     <LinearLayout
         android:id="@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="200dp"
         android:orientation="horizontal"
+        android:paddingTop="200dp"
         android:weightSum="3">
 
         <TextView
             android:id="@+id/text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/secondary_mid"
+            android:layout_marginStart="24sp"
+            android:layout_marginEnd="20sp"
             android:layout_weight="1"
             android:text="@string/username_text"
-            android:textSize="15sp"
-            android:layout_marginStart="24sp"
-            android:layout_marginEnd="20sp"/>
+            android:textColor="@color/secondary_mid"
+            android:textSize="15sp" />
 
     </LinearLayout>
 
@@ -64,6 +63,7 @@
             android:importantForAutofill="no" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/layout3"
         android:layout_width="match_parent"
@@ -76,12 +76,12 @@
             android:id="@+id/text2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/secondary_mid"
-            android:textSize="15sp"
-            android:text="@string/password_text"
             android:layout_marginStart="24sp"
-            android:layout_marginEnd="20sp"/>
+            android:layout_marginEnd="20sp"
+            android:layout_weight="1"
+            android:text="@string/password_text"
+            android:textColor="@color/secondary_mid"
+            android:textSize="15sp" />
 
     </LinearLayout>
     <LinearLayout
