@@ -14,6 +14,12 @@
     <string name="cancel_text">Cancel</string>
     <string name="create_text">Create</string>
     <string name="confirm_text">Confirm</string>
+    <string name="owner_text">Owner Function</string>
+    <string name="admin_text">Admin Function</string>
+    <string name="manager_text">Manager Function</string>
+    <string name="staff_text">Staff Function</string>
+    <string name="customer_text">Customer Function</string>
+
     <string name="create_acc_text">Create account</string>
         <string name="status_dropdown_list">Status</string>
         <string-array name="status">
@@ -22,7 +28,8 @@
         </string-array>
 
         <string name="roles_dropdown_list">Roles</string>
-        <string-array name="roles">
+    <string name="to_go_owner_homepage">To go owner homepage</string>
+    <string-array name="roles">
             <item>Owner</item>
             <item>Admin</item>
             <item>Manager</item>

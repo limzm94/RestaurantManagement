@@ -149,14 +149,6 @@
                 android:text="Edit"
                 android:layout_weight="1"
                 android:layout_marginHorizontal="5dp"/>
-
-            <Button
-                android:id="@+id/suspendBtn"
-                android:layout_width="110dp"
-                android:layout_height="50dp"
-                android:text="Suspend"
-                android:layout_weight="1"
-                />
         </LinearLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

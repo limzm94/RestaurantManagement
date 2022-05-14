@@ -21,6 +21,7 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".admin.AdminUI" />
         <activity android:name=".admin.CreateAccount" />
+        <activity android:name=".owner.OwnerUI" />
 
     </application>
 

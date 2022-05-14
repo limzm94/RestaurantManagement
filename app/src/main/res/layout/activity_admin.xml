@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context=".admin.AdminUI">
 
@@ -16,20 +17,19 @@
             android:id="@+id/createAcc"
             android:layout_width="110dp"
             android:layout_height="60dp"
-            android:textSize="12sp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
             android:text="@string/create_acc_text"
             android:textColor="@color/white"
-            android:layout_weight="1"
-            android:layout_marginHorizontal="5dp"/>
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/adminLogOut"
             android:layout_width="110dp"
             android:layout_height="60dp"
-            android:textColor="@color/white"
-            android:text="@string/logout_text"
             android:layout_weight="1"
-            />
+            android:text="@string/logout_text"
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -37,5 +37,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/adminTopMenu" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/homeFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        app:icon="@drawable/ic_launcher_foreground"
+        android:contentDescription="@string/to_go_owner_homepage" />
+
 
 </RelativeLayout>

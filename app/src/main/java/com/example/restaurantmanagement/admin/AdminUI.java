@@ -2,7 +2,6 @@ package com.example.restaurantmanagement.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
+import com.example.restaurantmanagement.owner.OwnerUI;
 import com.example.restaurantmanagement.utility.DBHandler;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 import java.util.ArrayList;
@@ -26,6 +27,9 @@ public class AdminUI extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
         Button createAccBtn = findViewById(R.id.createAcc);
         adminRV = findViewById(R.id.idRVAdmin);
+        FloatingActionButton homeFab = findViewById(R.id.homeFAB);
+
+
 
         // need to do this in controller
         DBHandler DB = new DBHandler(this);
@@ -66,7 +70,11 @@ public class AdminUI extends AppCompatActivity {
             finish();
         });
 
-
+        homeFab.setOnClickListener(v -> {
+            Intent createAcc = new Intent(AdminUI.this, OwnerUI.class);
+            startActivity(createAcc);
+            finish();
+        });
 
     }
 }

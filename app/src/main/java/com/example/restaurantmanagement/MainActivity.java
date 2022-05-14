@@ -25,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
         DBHandler DB = new DBHandler(this);
 
         // create admin account on first login
-        Boolean checkAdminExist = DB.checkUsernamePassword("admin", "password");
+        Boolean checkAdminExist = DB.checkUsernamePassword("masterAdmin", "password");
         if (!checkAdminExist) {
-            Boolean insert = DB.insertData("admin", "password", "Active", "UwU", "Admin");
+            Boolean insert = DB.insertData("masterAdmin", "password", "Active", "UwU", "Owner");
             if (insert) {
                 System.out.println("Admin created");
             }
