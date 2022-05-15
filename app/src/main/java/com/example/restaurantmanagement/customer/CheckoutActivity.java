@@ -22,8 +22,11 @@ public class CheckoutActivity extends AppCompatActivity {
 
 
 
+
+
+
         //set onClick for checkout Cart to submit the order
         //need to get the latest order number and then append it
-        
+
     }
 }

@@ -22,6 +22,7 @@ public class OwnerUI extends AppCompatActivity {
         Button managerBtn = findViewById(R.id.manager_btn);
         Button staffBtn = findViewById(R.id.staff_btn);
         Button customerBtn = findViewById(R.id.customer_btn);
+        Button logoutBtn = findViewById(R.id.logout_btn);
 
         /*ownerBtn.setOnClickListener(v -> {
             Intent createAcc = new Intent(OwnerUI.this, CreateAccount.class);
@@ -30,16 +31,18 @@ public class OwnerUI extends AppCompatActivity {
         });*/
 
         adminBtn.setOnClickListener(v -> {
-            Intent createAcc = new Intent(OwnerUI.this, AdminUI.class);
-            startActivity(createAcc);
+            Intent admin = new Intent(OwnerUI.this, AdminUI.class);
+            startActivity(admin);
             finish();
         });
 
         customerBtn.setOnClickListener(v -> {
-            Intent createAcc = new Intent(OwnerUI.this, CustomerUI.class);
-            startActivity(createAcc);
+            Intent customer = new Intent(OwnerUI.this, CustomerUI.class);
+            startActivity(customer);
             finish();
         });
+
+        logoutBtn.setOnClickListener(v -> finish());
 
 
     }

@@ -26,6 +26,7 @@ public class AdminUI extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
         Button createAccBtn = findViewById(R.id.createAcc);
+        Button logoutBtn = findViewById(R.id.adminLogOut);
         adminRV = findViewById(R.id.idRVAdmin);
         FloatingActionButton homeFab = findViewById(R.id.homeFAB);
 
@@ -75,6 +76,10 @@ public class AdminUI extends AppCompatActivity {
         homeFab.setOnClickListener(v -> {
             Intent createAcc = new Intent(AdminUI.this, OwnerUI.class);
             startActivity(createAcc);
+            finish();
+        });
+
+        logoutBtn.setOnClickListener(v -> {
             finish();
         });
 

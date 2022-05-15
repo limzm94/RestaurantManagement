@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.restaurantmanagement.admin.AdminUI;
+import com.example.restaurantmanagement.customer.CustomerUI;
+import com.example.restaurantmanagement.owner.OwnerUI;
 import com.example.restaurantmanagement.utility.DBHandler;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,13 +45,40 @@ public class MainActivity extends AppCompatActivity {
             else {
                 Boolean checkUsernamePassword = DB.checkUsernamePassword(user, pass);
                 // get userrole
-//                String userRole = DB.getUserRole(user,pass);
+                String userRole = DB.getUserRole(user,pass);
                 Boolean isActive = DB.getUserStatus(user,pass);
 
                 if (checkUsernamePassword && isActive) {
                     Toast.makeText(MainActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
-                    Intent adminUI = new Intent(MainActivity.this, AdminUI.class);
-                    startActivity(adminUI);
+
+                    switch (userRole) {
+                        case "Owner": {
+                            Intent adminUI = new Intent(MainActivity.this, OwnerUI.class);
+                            startActivity(adminUI);
+                            break;
+                        }
+                        case "Admin": {
+                            Intent adminUI = new Intent(MainActivity.this, AdminUI.class);
+                            startActivity(adminUI);
+                            break;
+                        }
+                        case "Manager": {
+                            Intent adminUI = new Intent(MainActivity.this, AdminUI.class);
+                            startActivity(adminUI);
+                            break;
+                        }
+                        case "Staff": {
+                            Intent adminUI = new Intent(MainActivity.this, AdminUI.class);
+                            startActivity(adminUI);
+                            break;
+                        }
+                        default: {
+                            Intent adminUI = new Intent(MainActivity.this, CustomerUI.class);
+                            startActivity(adminUI);
+                            break;
+                        }
+                    }
+
                 } else {
                     Toast.makeText(MainActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                 }

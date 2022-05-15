@@ -48,6 +48,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/change_customer"
+            android:layout_marginHorizontal="10dp"
+            android:textSize="11sp" />
+        <Button
+            android:id="@+id/logout_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/logout_text"
             android:textSize="11sp" />
     </LinearLayout>
 
