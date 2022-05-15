@@ -68,9 +68,10 @@ public class DBHandler extends SQLiteOpenHelper {
                 "price FLOAT)";
 
         //create coupons
+        // 0 - not valid coupon , 1- is valid
         String codeQuery = "CREATE TABLE coupons (couponId INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "description TEXT," +
-                "expiry TEXT," +
+                "isActive INTEGER," +
                 "discount TEXT)";
 
         // used for cart
