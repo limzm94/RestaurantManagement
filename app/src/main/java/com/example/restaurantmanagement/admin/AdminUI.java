@@ -70,6 +70,8 @@ public class AdminUI extends AppCompatActivity {
             finish();
         });
 
+
+        // need to check if owner log in to show the button
         homeFab.setOnClickListener(v -> {
             Intent createAcc = new Intent(AdminUI.this, OwnerUI.class);
             startActivity(createAcc);

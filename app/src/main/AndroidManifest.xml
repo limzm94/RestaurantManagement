@@ -22,6 +22,8 @@
         <activity android:name=".admin.AdminUI" />
         <activity android:name=".admin.CreateAccount" />
         <activity android:name=".owner.OwnerUI" />
+        <activity android:name=".customer.CustomerUI" />
+        <activity android:name=".customer.CheckoutActivity" />
 
     </application>
 

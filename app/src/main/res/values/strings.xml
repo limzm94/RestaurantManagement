@@ -20,6 +20,15 @@
     <string name="staff_text">Staff Function</string>
     <string name="customer_text">Customer Function</string>
 
+    <string name="foodTitle">Curry</string>
+    <string name="foodPrice">$10</string>
+    <string name="foodDesc">A curry is a dish with a sauce seasoned with spices, mainly associated with South Asian cuisine.</string>
+    <string name="checkOut">Checkout Cart</string>
+    <string name="coupon">Enter Coupon Code</string>
+    <string name="up">↑</string>
+    <string name="down">↓</string>
+    <string name="summaryTitle">↓</string>
+
     <string name="create_acc_text">Create account</string>
         <string name="status_dropdown_list">Status</string>
         <string-array name="status">

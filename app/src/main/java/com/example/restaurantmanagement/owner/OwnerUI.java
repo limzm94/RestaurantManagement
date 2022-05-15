@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.admin.AdminUI;
 import com.example.restaurantmanagement.admin.CreateAccount;
+import com.example.restaurantmanagement.customer.CustomerUI;
 
 public class OwnerUI extends AppCompatActivity {
     @Override
@@ -30,6 +31,12 @@ public class OwnerUI extends AppCompatActivity {
 
         adminBtn.setOnClickListener(v -> {
             Intent createAcc = new Intent(OwnerUI.this, AdminUI.class);
+            startActivity(createAcc);
+            finish();
+        });
+
+        customerBtn.setOnClickListener(v -> {
+            Intent createAcc = new Intent(OwnerUI.this, CustomerUI.class);
             startActivity(createAcc);
             finish();
         });

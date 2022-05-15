@@ -8,9 +8,12 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">#FCFFF7</item>
         <item name="colorSecondaryVariant">#21A0A0</item>
-        <item name="colorOnSecondary">#046865</item>
+        <item name="colorOnSecondary">#FCFFF7</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="floatingActionButtonPrimaryStyle">@color/white</item>
+        <item name="colorAccent">@color/white</item>
     </style>
+
 </resources>

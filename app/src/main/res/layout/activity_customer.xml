@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".customer.CustomerUI">
+
+    <LinearLayout
+        android:id="@+id/customerTopMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="30dp">
+
+        <Button
+            android:id="@+id/checkOutBtn"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:textSize="11sp"
+            android:text="@string/checkOut"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="5dp"/>
+        <Button
+            android:id="@+id/couponBtn"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:text="@string/coupon"
+            android:textSize="11sp"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idRVCustomer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/customerTopMenu"
+        android:layout_marginTop="0dp" />
+
+</RelativeLayout>
