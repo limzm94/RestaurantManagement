@@ -1,25 +1,17 @@
 package com.example.restaurantmanagement.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.restaurantmanagement.MainActivity;
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.SignUpActivity;
 import com.example.restaurantmanagement.utility.DBHandler;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class CreateAccount extends AppCompatActivity {
     @Override
@@ -59,7 +51,7 @@ public class CreateAccount extends AppCompatActivity {
             else {
                 Boolean checkUser = DB.checkUsername(username);
                 if (!checkUser) {
-                    Boolean insert = DB.insertData(username, password, status, personName, role);
+                    Boolean insert = DB.insertUserData(username, password, status, personName, role);
                     if (insert) {
                         Toast.makeText(CreateAccount.this, "Registered successfully", Toast.LENGTH_LONG).show();
 

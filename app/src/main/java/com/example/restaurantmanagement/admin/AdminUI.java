@@ -34,15 +34,15 @@ public class AdminUI extends AppCompatActivity {
         // need to do this in controller
         DBHandler DB = new DBHandler(this);
         // here we have created new array list and added data to it. System print for debugging purpose
-        ArrayList<String> allUsername = DB.listColumnsData("users", "username");
+        ArrayList<String> allUsername = DB.listColumnsDataStr("users", "username");
         System.out.println(allUsername);
-        ArrayList<String> allPassword = DB.listColumnsData("users", "password");
+        ArrayList<String> allPassword = DB.listColumnsDataStr("users", "password");
         System.out.println(allPassword);
-        ArrayList<String> allPersonName = DB.listColumnsData("users", "name");
+        ArrayList<String> allPersonName = DB.listColumnsDataStr("users", "name");
         System.out.println(allPersonName);
-        ArrayList<String> allStatus = DB.listColumnsData("users", "status");
+        ArrayList<String> allStatus = DB.listColumnsDataStr("users", "status");
         System.out.println(allStatus);
-        ArrayList<String> allRoles = DB.listColumnsData("users", "role");
+        ArrayList<String> allRoles = DB.listColumnsDataStr("users", "role");
         System.out.println(allRoles);
 
         // need to do this in controller

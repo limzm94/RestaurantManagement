@@ -16,10 +16,10 @@ import java.util.ArrayList;
 
 public class CustomerController extends RecyclerView.Adapter<CustomerController.ViewHolder> {
 
-    private final ArrayList<CustomerEntity> courseModelArrayList;
+    private final ArrayList<OrderEntity> courseModelArrayList;
 
     // Constructor
-    public CustomerController(ArrayList<CustomerEntity> courseModelArrayList) {
+    public CustomerController(ArrayList<OrderEntity> courseModelArrayList) {
         this.courseModelArrayList = courseModelArrayList;
     }
 
@@ -36,7 +36,7 @@ public class CustomerController extends RecyclerView.Adapter<CustomerController.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // to set data to textview and imageview of each card layout
         String priceText;
-        CustomerEntity model = courseModelArrayList.get(position);
+        OrderEntity model = courseModelArrayList.get(position);
         holder.foodName.setText(model.getFoodName());
         holder.foodDesc.setText(model.getFoodDesc());
         priceText = "$" + String.format("%.2f", model.getPrice());
@@ -87,5 +87,7 @@ public class CustomerController extends RecyclerView.Adapter<CustomerController.
 
         }
     }
+
+
 
 }

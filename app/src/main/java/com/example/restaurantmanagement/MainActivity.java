@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         // create admin account on first login
         Boolean checkAdminExist = DB.checkUsernamePassword("masterAdmin", "password");
         if (!checkAdminExist) {
-            Boolean insert = DB.insertData("masterAdmin", "password", "Active", "UwU", "Owner");
+            Boolean insert = DB.insertUserData("masterAdmin", "password", "Active", "UwU", "Owner");
             if (insert) {
                 System.out.println("Admin created");
             }

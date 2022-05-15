@@ -38,6 +38,7 @@
 
         <string name="roles_dropdown_list">Roles</string>
     <string name="to_go_owner_homepage">To go owner homepage</string>
+    <string name="change_customer">Change Customer</string>
     <string-array name="roles">
             <item>Owner</item>
             <item>Admin</item>

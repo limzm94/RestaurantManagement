@@ -59,16 +59,13 @@ public class DBHandler extends SQLiteOpenHelper {
         //category
         String categoryQuery = "CREATE TABLE " + "Category" + " ("
                 + "categoryId" + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + "image" + " TEXT,"
                 + "name" + " TEXT)";
 
         //food menu
         String menuQuery = "CREATE TABLE Foods (menuId INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "description TEXT," +
-                "image TEXT," +
-                "discount TEXT," +
                 "name TEXT," +
-                "price TEXT)";
+                "price FLOAT)";
 
         //create coupons
         String codeQuery = "CREATE TABLE coupons (couponId INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -112,7 +109,7 @@ public class DBHandler extends SQLiteOpenHelper {
 //        db.execSQL(userRolesQuery);
     }
 
-    public void miscQueries (){
+    public void miscQueries() {
 
         String foodId = "1";
         SQLiteDatabase db = getReadableDatabase();
@@ -120,29 +117,29 @@ public class DBHandler extends SQLiteOpenHelper {
         //USER
 
         //aka updateUserInfo()
-        String updateUser = String.format("UPDATE users SET username = %s , password = %s, name = %s WHERE ID = %d", "","" , "" , "");
+        String updateUser = String.format("UPDATE users SET username = %s , password = %s, name = %s WHERE ID = %d", "", "", "", "");
 
         // update as admin user
         String updateUserAdmin = String.format("UPDATE users SET username = %s , password = %s, " +
-                "name = %s, status = %s, role = %s "+" WHERE ID = %d", "","" , "", "", "");
+                "name = %s, status = %s, role = %s " + " WHERE ID = %d", "", "", "", "", "");
 
         // COUPON
         String createCoupon = "Insert into coupons(couponId, description,expiry,discount) VALUES ('%s','%s', '%s','%s')";
-        String deleteCoupon = String.format("DELETE FROM coods WHERE couponId ='%s';",foodId);
+        String deleteCoupon = String.format("DELETE FROM coods WHERE couponId ='%s';", foodId);
 
         // FOOD
         String ad = "INSERT INTO foods(name,discount,description,price) VALUES('%s','%s', '%s','%s','%s','%s');";
-        String deleteFood = String.format("DELETE FROM foods WHERE FoodId ='%s';",foodId);
-        String updateFood = String.format("UPDATE foods SET description = %s WHERE ID = %d", "","");
+        String deleteFood = String.format("DELETE FROM foods WHERE FoodId ='%s';", foodId);
+        String updateFood = String.format("UPDATE foods SET description = %s WHERE ID = %d", "", "");
 
 //        ORDERDETAIL
-        String updateOrderQty = String.format("UPDATE OrderDetail SET Quantity = %s WHERE ID = %d", "","");
+        String updateOrderQty = String.format("UPDATE OrderDetail SET Quantity = %s WHERE ID = %d", "", "");
     }
 
 
     // ORDERDETAIL
     // add menu item to cart
-    public void addToCart (Order order){
+    public void addToCart(Order order) {
         SQLiteDatabase db = getReadableDatabase();
         String query = String.format("INSERT INTO OrderDetail(ProductId,ProductName,Quantity,Price,Discount,Image) VALUES('%s','%s', '%s','%s','%s','%s');",
                 order.getProductId(),
@@ -154,7 +151,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
-    public void cleanCart (){
+    public void cleanCart() {
         SQLiteDatabase db = getReadableDatabase();
         String query = String.format("DELETE FROM OrderDetail");
 
@@ -170,7 +167,7 @@ public class DBHandler extends SQLiteOpenHelper {
         // as we are writing data in our database.
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String sql = "SELECT EXISTS (SELECT * FROM users WHERE username='"+value+"' LIMIT 1)";
+        String sql = "SELECT EXISTS (SELECT * FROM users WHERE username='" + value + "' LIMIT 1)";
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToFirst();
 
@@ -211,9 +208,9 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public Boolean checkUsernamePassword(String username, String password){
+    public Boolean checkUsernamePassword(String username, String password) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
-        Cursor cursor = MyDB.rawQuery("Select * from users where username = ? and password = ?", new String[] {username,password});
+        Cursor cursor = MyDB.rawQuery("Select * from users where username = ? and password = ?", new String[]{username, password});
         return cursor.getCount() > 0;
     }
 
@@ -223,25 +220,32 @@ public class DBHandler extends SQLiteOpenHelper {
         return cursor.getCount() > 0;
     }
 
+    public Boolean checkFoodName(String foodName) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select * from foods where name = ?", new String[]{foodName});
+        return cursor.getCount() > 0;
+    }
+
 
     //to list all the data in the table by column
-    public ArrayList<String> listColumnsData(String specifiedTable, String specifiedColumn) {
+    public ArrayList<String> listColumnsDataStr(String specifiedTable, String specifiedColumn) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
-        Log.d("","tableToString called");
+        Log.d("", "tableToString called");
         ArrayList<String> tableString = new ArrayList<>();
-        Cursor allRows  = MyDB.rawQuery("SELECT * FROM " + specifiedTable, null);
+        Cursor allRows = MyDB.rawQuery("SELECT * FROM " + specifiedTable, null);
         tableString = cursorToString(allRows, specifiedColumn);
         return tableString;
     }
+
     //to list all the data in the table by column
     @SuppressLint("Range")
-    public ArrayList<String> cursorToString(Cursor cursor, String specifiedColumn){
+    public ArrayList<String> cursorToString(Cursor cursor, String specifiedColumn) {
         ArrayList<String> userList = new ArrayList<>();
-        if (cursor.moveToFirst() ){
+        if (cursor.moveToFirst()) {
             String[] columnNames = cursor.getColumnNames();
             do {
-                for (String name: columnNames) {
-                    if (name.equals(specifiedColumn)){
+                for (String name : columnNames) {
+                    if (name.equals(specifiedColumn)) {
                         userList.add(cursor.getString(cursor.getColumnIndex(name)));
                     }
                 }
@@ -250,10 +254,36 @@ public class DBHandler extends SQLiteOpenHelper {
         return userList;
     }
 
-
-    public Boolean insertUserAdmin(String username, String password, String role){
+    public ArrayList<Double> listColumnsDataDbl(String specifiedTable, String specifiedColumn) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
-        ContentValues contentValues= new ContentValues();
+        Log.d("", "tableToString called");
+        ArrayList<Double> tableString = new ArrayList<>();
+        Cursor allRows = MyDB.rawQuery("SELECT * FROM " + specifiedTable, null);
+        tableString = cursorToDouble(allRows, specifiedColumn);
+        return tableString;
+    }
+
+    //to list all the data in the table by column
+    @SuppressLint("Range")
+    public ArrayList<Double> cursorToDouble(Cursor cursor, String specifiedColumn) {
+        ArrayList<Double> userList = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            String[] columnNames = cursor.getColumnNames();
+            do {
+                for (String name : columnNames) {
+                    if (name.equals(specifiedColumn)) {
+                        userList.add(cursor.getDouble(cursor.getColumnIndex(name)));
+                    }
+                }
+            } while (cursor.moveToNext());
+        }
+        return userList;
+    }
+
+
+    public Boolean insertUserAdmin(String username, String password, String role) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
         contentValues.put("username", username);
         contentValues.put("password", password);
         contentValues.put("role", role);
@@ -269,14 +299,14 @@ public class DBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void updateUserInfo(){
+    public void updateUserInfo() {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("UPDATE users SET username = %s , password = %s, name = %s WHERE ID = %d", "","" , "" , "");
+        String query = String.format("UPDATE users SET username = %s , password = %s, name = %s WHERE ID = %d", "", "", "", "");
         db.execSQL(query);
     }
 
-    public String getUserRole(String username, String password){
-        String[] params = new String[]{ username, password };
+    public String getUserRole(String username, String password) {
+        String[] params = new String[]{username, password};
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery("Select role from users where username = ? and password = ?", params);
         String name = "";
@@ -286,8 +316,8 @@ public class DBHandler extends SQLiteOpenHelper {
         return name;
     }
 
-    public Boolean getUserStatus(String username, String password){
-        String[] params = new String[]{ username, password };
+    public Boolean getUserStatus(String username, String password) {
+        String[] params = new String[]{username, password};
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery("Select status from users where username = ? and password = ?", params);
         String status = "";
@@ -298,16 +328,27 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 
-    public Boolean insertData(String username, String password, String status, String personName, String role){
-
-            SQLiteDatabase MyDB = this.getWritableDatabase();
-            ContentValues contentValues= new ContentValues();
-            contentValues.put("username", username);
-            contentValues.put("password", password);
-            contentValues.put("status", status);
-            contentValues.put("name", personName);
-            contentValues.put("role", role);
-            long result = MyDB.insert("users", null, contentValues);
-            return result != -1;
-        }
+    public Boolean insertUserData(String username, String password, String status, String personName, String role) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("username", username);
+        contentValues.put("password", password);
+        contentValues.put("status", status);
+        contentValues.put("name", personName);
+        contentValues.put("role", role);
+        long result = MyDB.insert("users", null, contentValues);
+        return result != -1;
     }
+
+    public Boolean insertFoodData(String foodName, String foodDesc, double price) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("name", foodName);
+        contentValues.put("description", foodDesc);
+        contentValues.put("price", price);
+
+        long result = MyDB.insert("foods", null, contentValues);
+        return result != -1;
+    }
+
+}
