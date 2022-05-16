@@ -328,8 +328,13 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public void updateUserInfo(String username, String password, String personName, String status, String role, int userKey) {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("UPDATE users SET username = %s , password = %s, name = %s, status = %s, role = %s WHERE ID = %d", username, password, personName, status, role, userKey);
-        db.execSQL(query);
+        ContentValues args = new ContentValues();
+        args.put("username", username);
+        args.put("password", password);
+        args.put("name", personName);
+        args.put("status", status);
+        args.put("role", role);
+        db.update("Users", args, "id" + "=" + userKey, null);
     }
 
     public String getUserRole(String username, String password) {
