@@ -232,7 +232,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public ArrayList<String> listColumnsDataStr(String specifiedTable, String specifiedColumn) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Log.d("", "tableToString called");
-        ArrayList<String> tableString = new ArrayList<>();
+        ArrayList<String> tableString;
         Cursor allRows = MyDB.rawQuery("SELECT * FROM " + specifiedTable, null);
         tableString = cursorToString(allRows, specifiedColumn);
         return tableString;
@@ -258,10 +258,10 @@ public class DBHandler extends SQLiteOpenHelper {
     public ArrayList<Double> listColumnsDataDbl(String specifiedTable, String specifiedColumn) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Log.d("", "tableToString called");
-        ArrayList<Double> tableString = new ArrayList<>();
+        ArrayList<Double> tableDouble;
         Cursor allRows = MyDB.rawQuery("SELECT * FROM " + specifiedTable, null);
-        tableString = cursorToDouble(allRows, specifiedColumn);
-        return tableString;
+        tableDouble = cursorToDouble(allRows, specifiedColumn);
+        return tableDouble;
     }
 
     //to list all the data in the table by column
@@ -274,6 +274,32 @@ public class DBHandler extends SQLiteOpenHelper {
                 for (String name : columnNames) {
                     if (name.equals(specifiedColumn)) {
                         userList.add(cursor.getDouble(cursor.getColumnIndex(name)));
+                    }
+                }
+            } while (cursor.moveToNext());
+        }
+        return userList;
+    }
+
+    public ArrayList<Integer> listColumnsDataInt(String specifiedTable, String specifiedColumn) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Log.d("", "tableToString called");
+        ArrayList<Integer> tableInteger;
+        Cursor allRows = MyDB.rawQuery("SELECT * FROM " + specifiedTable, null);
+        tableInteger = cursorToInt(allRows, specifiedColumn);
+        return tableInteger;
+    }
+
+    //to list all the data in the table by column
+    @SuppressLint("Range")
+    public ArrayList<Integer> cursorToInt(Cursor cursor, String specifiedColumn) {
+        ArrayList<Integer> userList = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            String[] columnNames = cursor.getColumnNames();
+            do {
+                for (String name : columnNames) {
+                    if (name.equals(specifiedColumn)) {
+                        userList.add(cursor.getInt(cursor.getColumnIndex(name)));
                     }
                 }
             } while (cursor.moveToNext());
@@ -300,9 +326,9 @@ public class DBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void updateUserInfo() {
+    public void updateUserInfo(String username, String password, String personName, String status, String role, int userKey) {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("UPDATE users SET username = %s , password = %s, name = %s WHERE ID = %d", "", "", "", "");
+        String query = String.format("UPDATE users SET username = %s , password = %s, name = %s, status = %s, role = %s WHERE ID = %d", username, password, personName, status, role, userKey);
         db.execSQL(query);
     }
 

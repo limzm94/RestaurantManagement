@@ -35,6 +35,8 @@ public class AdminUI extends AppCompatActivity {
         // need to do this in controller
         DBHandler DB = new DBHandler(this);
         // here we have created new array list and added data to it. System print for debugging purpose
+        ArrayList<Integer> allUserKey = DB.listColumnsDataInt("users", "id");
+        System.out.println(allUserKey);
         ArrayList<String> allUsername = DB.listColumnsDataStr("users", "username");
         System.out.println(allUsername);
         ArrayList<String> allPassword = DB.listColumnsDataStr("users", "password");
@@ -50,7 +52,7 @@ public class AdminUI extends AppCompatActivity {
         userAccList = new ArrayList<>();
         int count = 0;
         while (allUsername.size() > count) {
-            userAccList.add(new AdminEntity(allPersonName.get(count), allStatus.get(count), allRoles.get(count), allUsername.get(count), allPassword.get(count)));
+            userAccList.add(new AdminEntity(allUserKey.get(count) ,allPersonName.get(count), allStatus.get(count), allRoles.get(count), allUsername.get(count), allPassword.get(count)));
             count++;
         }
 

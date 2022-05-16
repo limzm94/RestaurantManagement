@@ -3,6 +3,9 @@ package com.example.restaurantmanagement.admin;
 
 public class AdminEntity {
 
+
+
+    private int id;
     private String person_name;
     private String status;
     private String position;
@@ -10,7 +13,8 @@ public class AdminEntity {
     private String password;
 
     // Constructor
-    public AdminEntity(String person_name, String status, String position, String username, String password) {
+    public AdminEntity(int id, String person_name, String status, String position, String username, String password) {
+        this.id = id;
         this.person_name = person_name;
         this.status = status;
         this.position = position;
@@ -19,6 +23,15 @@ public class AdminEntity {
     }
 
     // Getter and Setter
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getPerson_name() {
         return person_name;
     }
@@ -35,7 +48,7 @@ public class AdminEntity {
         this.status = status;
     }
 
-    public String getPosition() {
+    public String getRole() {
         return position;
     }
 

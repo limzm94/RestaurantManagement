@@ -84,10 +84,6 @@ public class CustomerController extends RecyclerView.Adapter<CustomerController.
             quantity = itemView.findViewById(R.id.foodQuantity);
             increaseBtn = itemView.findViewById(R.id.increaseBtn);
             decreaseBtn = itemView.findViewById(R.id.decreaseBtn);
-
         }
     }
-
-
-
 }

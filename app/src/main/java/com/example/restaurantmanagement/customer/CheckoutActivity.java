@@ -19,14 +19,7 @@ public class CheckoutActivity extends AppCompatActivity {
         TextView summaryText = findViewById(R.id.orderSummary);
         summaryText.setTypeface(Typeface.MONOSPACE);
         summaryText.setText(checkOutSummary);
-
-
-
-
-
-
         //set onClick for checkout Cart to submit the order
         //need to get the latest order number and then append it
-
     }
 }

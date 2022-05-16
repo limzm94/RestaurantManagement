@@ -2,9 +2,11 @@ package com.example.restaurantmanagement.admin;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,14 +35,26 @@ public class AdminController extends RecyclerView.Adapter<AdminController.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int cardPosition) {
         // to set data to textview and imageview of each card layout
-        AdminEntity model = adminModelArrayList.get(position);
+        AdminEntity model = adminModelArrayList.get(cardPosition);
         holder.personName.setText(model.getPerson_name());
         holder.status.setText(model.getStatus());
-        holder.position.setText(model.getPosition());
+        holder.position.setText(model.getRole());
         holder.username.setText(model.getUsername());
         holder.password.setText(model.getPassword());
+
+        holder.editBtn.setOnClickListener(v -> {
+            // send the account info to edit account activity
+            Intent intent = new Intent(context, EditAccount.class);
+            intent.putExtra("userKey", model.getId());
+            intent.putExtra("personName", model.getPerson_name());
+            intent.putExtra("status", model.getStatus());
+            intent.putExtra("position", model.getRole());
+            intent.putExtra("username", model.getUsername());
+            intent.putExtra("password", model.getPassword());
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -54,6 +68,7 @@ public class AdminController extends RecyclerView.Adapter<AdminController.ViewHo
     // your views such as TextView and Imageview.
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView personName, status, position, username, password;
+        private Button editBtn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,6 +77,9 @@ public class AdminController extends RecyclerView.Adapter<AdminController.ViewHo
             position = itemView.findViewById(R.id.position);
             username = itemView.findViewById(R.id.username);
             password = itemView.findViewById(R.id.password);
+            editBtn = itemView.findViewById(R.id.editBtn);
+
+
         }
     }
 }
