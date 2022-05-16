@@ -35,15 +35,6 @@ public class CustomerUI extends AppCompatActivity {
         AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
 
 
-        //Preload all the menu
-        ManagerController managerController = new ManagerController();
-        managerController.insertFood(CustomerUI.this,"Curry","Curry is a dish with a sauce seasoned with spices.", 7.50);
-        managerController.insertFood(CustomerUI.this,"Chicken Rice","Hainan's chicken rice is a dish of poached chicken and seasoned rice.", 4.50);
-        managerController.insertFood(CustomerUI.this,"Ramen","Ramen is a Japanese noodle dish.", 10.90);
-        managerController.insertFood(CustomerUI.this,"Bingsu","Bingsu is a Korean shaved ice dessert with sweet toppings.", 8.00);
-        managerController.insertFood(CustomerUI.this,"Carrot Cake","Carrot cake is cake that contains carrots mixed into the batter.", 6.50);
-
-
         // need to do this in controller
         DBHandler DB = new DBHandler(this);
         // here we have created new array list and added data to it. System print for debugging purpose
@@ -60,15 +51,12 @@ public class CustomerUI extends AppCompatActivity {
         ArrayList<OrderEntity> foodList = new ArrayList<>();
         int count = 0;
         while (allFoodName.size() > count) {
-            foodList.add(new OrderEntity(allFoodName.get(count), allFoodDesc.get(count), allPrice.get(count), 0, "Customer Name"));
+            foodList.add(new OrderEntity(allFoodName.get(count), allFoodDesc.get(count), allPrice.get(count),
+                    0, "Customer Name", "Unfulfilled", 0));
             count++;
         }
 
-        // here we have created new array list and added data to it.
-        // Arraylist for storing data
 
-        //userAccList.add(new OrderEntity("Curry","A curry is a dish with a sauce seasoned with spices, mainly associated with South Asian cuisine.", 4.50, 0, "Table 1"));
-        //userAccList.add(new OrderEntity("Chicken Rice","Hainan's chicken rice is a dish of poached chicken and seasoned rice, served with chilli sauce and usually with cucumber garnishes.", 3.50, 0, "Table 1"));
         // we are initializing our adapter class and passing our arraylist to it.
         CustomerController foodAdapter = new CustomerController(foodList);
 
@@ -122,27 +110,7 @@ public class CustomerUI extends AppCompatActivity {
 
 
         customerName.setText("No Customer Selected");
-        couponBtn.setOnClickListener(v -> {
 
-            // need to query the database for account name that roles that is customer
-
-            final EditText couponInput = new EditText(this);
-            couponInput.setInputType(InputType.TYPE_CLASS_TEXT);
-            /// button click event
-            //Setting message manually and performing action on button click
-            builder.setView(couponInput)
-                    .setPositiveButton("Confirm", (dialog, id) ->
-                                    System.out.println("Send Coupon")
-                            //if coupon return true, implement discount
-                    )
-                    .setNegativeButton("Cancel", (dialog, id) -> dialog.cancel()
-                    );
-            //Creating dialog box
-            AlertDialog alert = builder.create();
-            //Setting the title manually
-            alert.setTitle("Enter Coupon Code");
-            alert.show();
-        });
 
 
     }

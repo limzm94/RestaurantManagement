@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.restaurantmanagement.admin.AdminUI;
 import com.example.restaurantmanagement.customer.CustomerUI;
+import com.example.restaurantmanagement.manager.ManagerController;
 import com.example.restaurantmanagement.owner.OwnerUI;
 import com.example.restaurantmanagement.utility.DBHandler;
 
@@ -33,6 +34,14 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("Admin created");
             }
         }
+
+        //Preloaded menu
+        ManagerController managerController = new ManagerController();
+        managerController.insertFood(MainActivity.this,"Curry","Curry is a dish with a sauce seasoned with spices.", 7.50);
+        managerController.insertFood(MainActivity.this,"Chicken Rice","Hainan's chicken rice is a dish of poached chicken and seasoned rice.", 4.50);
+        managerController.insertFood(MainActivity.this,"Ramen","Ramen is a Japanese noodle dish.", 10.90);
+        managerController.insertFood(MainActivity.this,"Bingsu","Bingsu is a Korean shaved ice dessert with sweet toppings.", 8.00);
+        managerController.insertFood(MainActivity.this,"Carrot Cake","Carrot cake is cake that contains carrots mixed into the batter.", 6.50);
 
 
         btnSignIn.setOnClickListener(v -> {

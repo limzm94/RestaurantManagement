@@ -39,6 +39,13 @@
         <string name="roles_dropdown_list">Roles</string>
     <string name="to_go_owner_homepage">To go owner homepage</string>
     <string name="change_customer">Change Customer</string>
+    <string name="manage_food_menu">Manage Food Menu</string>
+    <string name="manage_coupon">Manage Coupon</string>
+    <string name="edit">Edit</string>
+    <string name="create_food_item">Create Food Item</string>
+    <string name="price">Price</string>
+    <string name="food_name">Food Name</string>
+    <string name="food_description">Food Description</string>
     <string-array name="roles">
             <item>Owner</item>
             <item>Admin</item>

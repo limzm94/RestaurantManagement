@@ -18,13 +18,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".admin.AdminUI" />
-        <activity android:name=".admin.CreateAccount" />
-        <activity android:name=".admin.EditAccount" />
-        <activity android:name=".owner.OwnerUI" />
-        <activity android:name=".customer.CustomerUI" />
-        <activity android:name=".customer.CheckoutActivity" />
+        <activity android:name=".SignUpActivity"
+            />
+        <activity android:name=".admin.AdminUI"
+            android:label="Admin Function"/>
+        <activity android:name=".admin.CreateAccount"
+            android:label="Create Account"/>
+        <activity android:name=".admin.EditAccount"
+            android:label="Edit Account"/>
+        <activity android:name=".owner.OwnerUI"
+            android:label="Owner Homepage"/>
+        <activity android:name=".customer.CustomerUI"
+            android:label="Food Menu" />
+        <activity android:name=".customer.CheckoutActivity"
+            android:label="Cart Checkout"/>
     </application>
 
 </manifest>

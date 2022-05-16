@@ -78,13 +78,13 @@ public class DBHandler extends SQLiteOpenHelper {
         //isFulfilled 0 = false (not fulfilled) , 1= true (is fulfilled)
         String orderDetailQuery = "CREATE TABLE OrderDetail (" +
                 "ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "ProductId TEXT," +
                 "ProductName TEXT," +
                 "Quantity TEXT," +
                 "Price TEXT," +
                 "Discount TEXT," +
-                "isFulfilled INTEGER," +
-                "Image TEXT)";
+                "CustomerName TEXT," +
+                "OrderId INTEGER," +
+                "isFulfilled TEXT)";
 
 //        String rolesQuery = "CREATE TABLE " + "roles" + " ("
 //                + "id" + " INTEGER PRIMARY KEY AUTOINCREMENT, "

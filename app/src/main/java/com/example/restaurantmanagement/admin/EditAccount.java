@@ -25,8 +25,10 @@ public class EditAccount extends AppCompatActivity {
         EditText usernameText = findViewById(R.id.username_create);
         EditText passwordText = findViewById(R.id.password_create);
         EditText personNameText = findViewById(R.id.person_name_create);
-        Button createBtn = findViewById(R.id.create_btn);
+        Button editBtn = findViewById(R.id.create_btn);
         Button cancelBtn = findViewById(R.id.cancel_btn);
+
+        editBtn.setText("Edit");
 
         // get the data from the cardview
         int userKey = getIntent().getIntExtra("userKey",0);
@@ -50,7 +52,7 @@ public class EditAccount extends AppCompatActivity {
         rolesSpinner.setAdapter(rolesAdapter);
         rolesSpinner.setSelection(rolesAdapter.getPosition(role));
 
-        createBtn.setOnClickListener(v -> {
+        editBtn.setOnClickListener(v -> {
             String editedUsername = usernameText.getText().toString();
             String editedPassword = passwordText.getText().toString();
             String editedPersonName = personNameText.getText().toString();
