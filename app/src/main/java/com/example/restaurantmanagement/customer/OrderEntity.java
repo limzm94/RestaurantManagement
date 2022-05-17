@@ -5,8 +5,8 @@ public class OrderEntity extends FoodEntity {
     private String customerName, isFulfilled;
     private int quantity, orderId;
 
-    public OrderEntity(String foodName, String foodDesc, double price, int quantity, String customerName, String isFulfilled, int orderId) {
-        super(foodName, foodDesc, price);
+    public OrderEntity(String foodName, String foodDesc, double price, int quantity, String customerName, String isFulfilled, int orderId, int foodKey) {
+        super(foodName, foodDesc, price, foodKey);
         this.quantity = quantity;
         this.customerName = customerName;
         this.isFulfilled = isFulfilled;

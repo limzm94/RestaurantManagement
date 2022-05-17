@@ -2,19 +2,26 @@ package com.example.restaurantmanagement.customer;
 
 public class FoodEntity {
 
-    private String foodName;
-
-    private String foodDesc;
+    private int foodKey ;
+    private String foodName, foodDesc;
     private double price;
 
     // Constructor
-    public FoodEntity(String foodName, String foodDesc, double price) {
+    public FoodEntity(String foodName, String foodDesc, double price, int foodKey) {
+        this.foodKey = foodKey;
         this.foodName = foodName;
         this.foodDesc = foodDesc;
         this.price = price;
     }
 
     // Getter and Setter
+    public int getFoodKey() {
+        return foodKey;
+    }
+
+    public void setFoodKey(int foodKey) {
+        this.foodKey = foodKey;
+    }
 
     public String getFoodName() {
         return foodName;

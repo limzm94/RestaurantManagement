@@ -337,6 +337,15 @@ public class DBHandler extends SQLiteOpenHelper {
         db.update("Users", args, "id" + "=" + userKey, null);
     }
 
+    public void updateFoodInfo(String foodName, String foodDesc, double price, int foodKey) {
+        SQLiteDatabase db = getReadableDatabase();
+        ContentValues args = new ContentValues();
+        args.put("name", foodName);
+        args.put("description", foodDesc);
+        args.put("price", price);
+        db.update("Foods", args, "menuId" + "=" + foodKey, null);
+    }
+
     public String getUserRole(String username, String password) {
         String[] params = new String[]{username, password};
         SQLiteDatabase db = this.getWritableDatabase();

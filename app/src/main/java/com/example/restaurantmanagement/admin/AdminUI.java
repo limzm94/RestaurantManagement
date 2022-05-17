@@ -70,6 +70,7 @@ public class AdminUI extends AppCompatActivity {
         createAccBtn.setOnClickListener(v -> {
             Intent createAcc = new Intent(AdminUI.this, CreateAccount.class);
             startActivity(createAcc);
+            finish();
         });
 
 

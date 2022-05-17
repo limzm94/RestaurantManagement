@@ -32,6 +32,15 @@
             android:label="Food Menu" />
         <activity android:name=".customer.CheckoutActivity"
             android:label="Cart Checkout"/>
+        <activity android:name=".manager.FoodMenu"
+            android:label="Manage Menu"/>
+        <activity android:name=".manager.CreateFoodItem"
+            android:label="Create new item"/>
+        <activity android:name=".manager.ManagerUI"
+            android:label="Manager Homepage"/>
+        <activity android:name=".manager.EditFoodItem"
+            android:label="Edit Food Item"/>
+
     </application>
 
 </manifest>

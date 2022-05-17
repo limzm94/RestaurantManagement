@@ -11,6 +11,7 @@ import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.admin.AdminUI;
 import com.example.restaurantmanagement.admin.CreateAccount;
 import com.example.restaurantmanagement.customer.CustomerUI;
+import com.example.restaurantmanagement.manager.ManagerUI;
 
 public class OwnerUI extends AppCompatActivity {
     @Override
@@ -39,6 +40,12 @@ public class OwnerUI extends AppCompatActivity {
         customerBtn.setOnClickListener(v -> {
             Intent customer = new Intent(OwnerUI.this, CustomerUI.class);
             startActivity(customer);
+            finish();
+        });
+
+        managerBtn.setOnClickListener(v -> {
+            Intent manager = new Intent(OwnerUI.this, ManagerUI.class);
+            startActivity(manager);
             finish();
         });
 

@@ -38,6 +38,8 @@ public class CustomerUI extends AppCompatActivity {
         // need to do this in controller
         DBHandler DB = new DBHandler(this);
         // here we have created new array list and added data to it. System print for debugging purpose
+        ArrayList<Integer> allFoodKey = DB.listColumnsDataInt("foods", "menuId");
+        System.out.println(allFoodKey);
         ArrayList<String> allFoodName = DB.listColumnsDataStr("foods", "name");
         System.out.println(allFoodName);
         ArrayList<String> allFoodDesc = DB.listColumnsDataStr("foods", "description");
@@ -52,7 +54,7 @@ public class CustomerUI extends AppCompatActivity {
         int count = 0;
         while (allFoodName.size() > count) {
             foodList.add(new OrderEntity(allFoodName.get(count), allFoodDesc.get(count), allPrice.get(count),
-                    0, "Customer Name", "Unfulfilled", 0));
+                    0, "Customer Name", "Unfulfilled", 0, allFoodKey.get(count)));
             count++;
         }
 
