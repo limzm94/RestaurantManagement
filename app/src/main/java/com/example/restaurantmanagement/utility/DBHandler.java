@@ -421,6 +421,15 @@ public class DBHandler extends SQLiteOpenHelper {
         return result != -1;
     }
 
-
+    public int getDiscount(String code) {
+        String[] params = new String[]{code};
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("Select discount from coupons where code = ?", params);
+        int discountCode = 0;
+        if (c.moveToFirst()) {
+            discountCode = c.getInt(0);
+        }
+        return discountCode;
+    }
 
 }
