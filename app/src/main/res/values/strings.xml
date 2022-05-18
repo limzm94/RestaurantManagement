@@ -50,6 +50,7 @@
     <string name="coupon_code">Coupon Code</string>
     <string name="description">Description</string>
     <string name="discount_percentage">Discount Percentage</string>
+    <string name="search">Search</string>
     <string-array name="roles">
             <item>Owner</item>
             <item>Admin</item>

@@ -1,8 +1,10 @@
 package com.example.restaurantmanagement.admin;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,17 +22,19 @@ public class AdminUI extends AppCompatActivity {
     private RecyclerView adminRV;
     // Arraylist for storing data
     private ArrayList<AdminEntity> userAccList;
+    String searchRequirement = "";
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+        EditText searchText = findViewById(R.id.search_text);
         Button createAccBtn = findViewById(R.id.createAcc);
         Button logoutBtn = findViewById(R.id.adminLogOut);
+        Button searchBtn = findViewById(R.id.searchBtn);
         adminRV = findViewById(R.id.idRVAdmin);
         FloatingActionButton homeFab = findViewById(R.id.homeFAB);
-
-
 
         // need to do this in controller
         DBHandler DB = new DBHandler(this);
@@ -51,8 +55,10 @@ public class AdminUI extends AppCompatActivity {
         // need to do this in controller
         userAccList = new ArrayList<>();
         int count = 0;
+
         while (allUsername.size() > count) {
-            userAccList.add(new AdminEntity(allUserKey.get(count) ,allPersonName.get(count), allStatus.get(count), allRoles.get(count), allUsername.get(count), allPassword.get(count)));
+            userAccList.add(new AdminEntity(allUserKey.get(count), allPersonName.get(count), allStatus.get(count),
+                    allRoles.get(count), allUsername.get(count), allPassword.get(count)));
             count++;
         }
 
@@ -67,6 +73,7 @@ public class AdminUI extends AppCompatActivity {
         adminRV.setLayoutManager(linearLayoutManager);
         adminRV.setAdapter(courseAdapter);
 
+
         createAccBtn.setOnClickListener(v -> {
             Intent createAcc = new Intent(AdminUI.this, CreateAccount.class);
             startActivity(createAcc);
@@ -79,6 +86,34 @@ public class AdminUI extends AppCompatActivity {
             Intent createAcc = new Intent(AdminUI.this, OwnerUI.class);
             startActivity(createAcc);
             finish();
+        });
+
+        searchBtn.setOnClickListener(v -> {
+            searchRequirement = searchText.getText().toString();
+            int count1 = 0;
+            userAccList.clear();
+            if (searchRequirement.equals("")) {
+                while (allUsername.size() > count1) {
+                    userAccList.add(new AdminEntity(allUserKey.get(count1), allPersonName.get(count1), allStatus.get(count1),
+                            allRoles.get(count1), allUsername.get(count1), allPassword.get(count1)));
+                    count1++;
+                }
+            } else {
+                while (allUsername.size() > count1) {
+                    if (allUsername.get(count1).equals(searchRequirement) ||
+                            allPersonName.get(count1).equals(searchRequirement) ||
+                            allStatus.get(count1).equals(searchRequirement)) {
+                        userAccList.add(new AdminEntity(allUserKey.get(count1), allPersonName.get(count1), allStatus.get(count1),
+                                allRoles.get(count1), allUsername.get(count1), allPassword.get(count1)));
+                    }
+                    count1++;
+                }
+            }
+            // in below two lines we are setting layoutManager and adapter to our recycler view.
+
+
+            courseAdapter.notifyDataSetChanged();
+            System.out.println("Search button clicked");
         });
 
         logoutBtn.setOnClickListener(v -> {
