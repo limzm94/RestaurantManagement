@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        //Preloaded menu
+        //Preloaded menu NEED TO BE REMOVED
         ManagerController managerController = new ManagerController();
         managerController.insertFood(MainActivity.this,"Curry","Curry is a dish with a sauce seasoned with spices.", 7.50);
         managerController.insertFood(MainActivity.this,"Chicken Rice","Hainan's chicken rice is a dish of poached chicken and seasoned rice.", 4.50);

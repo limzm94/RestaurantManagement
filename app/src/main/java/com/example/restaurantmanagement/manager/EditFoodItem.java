@@ -1,17 +1,15 @@
 package com.example.restaurantmanagement.manager;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.admin.AdminUI;
 import com.example.restaurantmanagement.utility.DBHandler;
 
 public class EditFoodItem extends AppCompatActivity {

@@ -40,6 +40,12 @@
             android:label="Manager Homepage"/>
         <activity android:name=".manager.EditFoodItem"
             android:label="Edit Food Item"/>
+        <activity android:name=".manager.Coupon"
+            android:label="Manage Coupon"/>
+        <activity android:name=".manager.CreateCoupon"
+            android:label="Create Coupon"/>
+        <activity android:name=".manager.EditCoupon"
+            android:label="Edit Coupon"/>
 
     </application>
 

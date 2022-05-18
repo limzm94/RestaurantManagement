@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.admin.EditAccount;
 import com.example.restaurantmanagement.customer.FoodEntity;
 
 import java.util.ArrayList;

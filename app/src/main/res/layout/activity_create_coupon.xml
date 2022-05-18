@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".manager.CreateCoupon">
+
+    <LinearLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+
+        <EditText
+            android:id="@+id/couponCode_create"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+            android:imeOptions="flagForceAscii"
+            android:layout_weight="3"
+            android:hint="@string/coupon_code"
+            android:inputType="textPersonName"
+            android:textColor="@color/secondary_mid"
+            android:textColorHint="#6D7E8D" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout1"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+
+        <EditText
+            android:id="@+id/couponDesc_create"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+            android:imeOptions="flagForceAscii"
+            android:layout_weight="3"
+            android:hint="@string/description"
+            android:inputType="textPersonName"
+            android:textColor="@color/secondary_mid"
+            android:textColorHint="#6D7E8D"
+            tools:ignore="TextFields" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout2"
+        android:orientation="vertical"
+        android:weightSum="3">
+
+
+        <EditText
+            android:id="@+id/discount_create"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+            android:layout_weight="3"
+            android:hint="@string/discount_percentage"
+            android:imeOptions="flagForceAscii"
+            android:inputType="number"
+            android:textColor="@color/secondary_mid"
+            android:textColorHint="#6D7E8D" />
+
+        <TextView
+            android:layout_marginStart="20dp"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status_text" />
+        <Spinner
+            android:id="@+id/couponStatus_create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:scrollbarSize="20dp"
+            android:spinnerMode="dropdown"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/adminTopMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="30dp">
+
+        <Button
+            android:id="@+id/create_btn"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:text="@string/create_text"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="5dp"/>
+
+        <Button
+            android:id="@+id/cancel_btn"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:text="@string/cancel_text"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+</RelativeLayout>

@@ -70,9 +70,10 @@ public class DBHandler extends SQLiteOpenHelper {
         //create coupons
         // 0 - not valid coupon , 1- is valid
         String codeQuery = "CREATE TABLE coupons (couponId INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "code TEXT," +
                 "description TEXT," +
-                "isActive INTEGER," +
-                "discount TEXT)";
+                "isActive TEXT," +
+                "discount INTEGER)";
 
         // used for cart
         //isFulfilled 0 = false (not fulfilled) , 1= true (is fulfilled)
@@ -227,6 +228,12 @@ public class DBHandler extends SQLiteOpenHelper {
         return cursor.getCount() > 0;
     }
 
+    public Boolean checkCouponCode(String couponCode) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select * from coupons where code = ?", new String[]{couponCode});
+        return cursor.getCount() > 0;
+    }
+
 
     //to list all the data in the table by column
     public ArrayList<String> listColumnsDataStr(String specifiedTable, String specifiedColumn) {
@@ -346,6 +353,16 @@ public class DBHandler extends SQLiteOpenHelper {
         db.update("Foods", args, "menuId" + "=" + foodKey, null);
     }
 
+    public void updateCouponInfo(String couponCode, String couponDesc, int discount, String status, int couponId) {
+        SQLiteDatabase db = getReadableDatabase();
+        ContentValues args = new ContentValues();
+        args.put("code", couponCode);
+        args.put("description", couponDesc);
+        args.put("isActive", status);
+        args.put("discount", discount);
+        db.update("coupons", args, "couponId" + "=" + couponId, null);
+    }
+
     public String getUserRole(String username, String password) {
         String[] params = new String[]{username, password};
         SQLiteDatabase db = this.getWritableDatabase();
@@ -391,5 +408,19 @@ public class DBHandler extends SQLiteOpenHelper {
         long result = MyDB.insert("foods", null, contentValues);
         return result != -1;
     }
+
+    public Boolean insertCouponData(String couponCode, String couponDesc, int discount, String status) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("code", couponCode);
+        contentValues.put("description", couponDesc);
+        contentValues.put("isActive", status);
+        contentValues.put("discount", discount);
+
+        long result = MyDB.insert("coupons", null, contentValues);
+        return result != -1;
+    }
+
+
 
 }
