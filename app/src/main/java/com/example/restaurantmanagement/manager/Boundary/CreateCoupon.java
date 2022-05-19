@@ -1,4 +1,4 @@
-package com.example.restaurantmanagement.manager;
+package com.example.restaurantmanagement.manager.Boundary;
 
 import android.content.Intent;
 import android.os.Bundle;

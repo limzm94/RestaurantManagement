@@ -1,4 +1,4 @@
-package com.example.restaurantmanagement.manager;
+package com.example.restaurantmanagement.manager.Entity;
 
 
 import android.annotation.SuppressLint;
@@ -14,7 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.customer.FoodEntity;
+import com.example.restaurantmanagement.customer.Entity.FoodEntity;
+import com.example.restaurantmanagement.manager.Boundary.EditFoodItem;
 
 import java.util.ArrayList;
 

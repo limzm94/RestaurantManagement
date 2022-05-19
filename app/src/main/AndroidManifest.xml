@@ -26,23 +26,23 @@
             android:label="Edit Account"/>
         <activity android:name=".owner.OwnerUI"
             android:label="Owner Homepage"/>
-        <activity android:name=".customer.CustomerUI"
+        <activity android:name=".customer.Boundary.CustomerUI"
             android:label="Food Menu" />
-        <activity android:name=".customer.CheckoutActivity"
+        <activity android:name=".customer.Boundary.CheckoutActivity"
             android:label="Cart Checkout"/>
-        <activity android:name=".manager.FoodMenu"
+        <activity android:name=".manager.Boundary.FoodMenu"
             android:label="Manage Menu"/>
-        <activity android:name=".manager.CreateFoodItem"
+        <activity android:name=".manager.Boundary.CreateFoodItem"
             android:label="Create new item"/>
-        <activity android:name=".manager.ManagerUI"
+        <activity android:name=".manager.Boundary.ManagerUI"
             android:label="Manager Homepage"/>
-        <activity android:name=".manager.EditFoodItem"
+        <activity android:name=".manager.Boundary.EditFoodItem"
             android:label="Edit Food Item"/>
-        <activity android:name=".manager.Coupon"
+        <activity android:name=".manager.Boundary.Coupon"
             android:label="Manage Coupon"/>
-        <activity android:name=".manager.CreateCoupon"
+        <activity android:name=".manager.Boundary.CreateCoupon"
             android:label="Create Coupon"/>
-        <activity android:name=".manager.EditCoupon"
+        <activity android:name=".manager.Boundary.EditCoupon"
             android:label="Edit Coupon"/>
 
     </application>

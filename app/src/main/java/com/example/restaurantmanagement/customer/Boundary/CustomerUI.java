@@ -1,8 +1,9 @@
-package com.example.restaurantmanagement.customer;
+package com.example.restaurantmanagement.customer.Boundary;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.InputType;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.manager.ManagerController;
+import com.example.restaurantmanagement.customer.Entity.OrderEntity;
 import com.example.restaurantmanagement.utility.DBHandler;
 
 import java.util.ArrayList;
@@ -86,8 +87,10 @@ public class CustomerUI extends AppCompatActivity {
             }
             cartSummary.append(String.format("Total: $%.2f", totalCharge));
 
+            Bundle bundle = new Bundle();
             Intent cartCheckOut = new Intent(CustomerUI.this, CheckoutActivity.class);
             cartCheckOut.putExtra("foodList", foodList);
+            cartCheckOut.putExtras(bundle);
             //cartCheckOut.putExtra("key", cartSummary.toString());
             startActivity(cartCheckOut);
         });

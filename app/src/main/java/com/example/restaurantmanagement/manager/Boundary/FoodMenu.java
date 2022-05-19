@@ -1,4 +1,4 @@
-package com.example.restaurantmanagement.manager;
+package com.example.restaurantmanagement.manager.Boundary;
 
 
 import android.annotation.SuppressLint;
@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.customer.FoodEntity;
+import com.example.restaurantmanagement.customer.Entity.FoodEntity;
+import com.example.restaurantmanagement.manager.Entity.FoodMenuController;
 import com.example.restaurantmanagement.utility.DBHandler;
 
 import java.util.ArrayList;

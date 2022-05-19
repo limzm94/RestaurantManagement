@@ -1,8 +1,7 @@
-package com.example.restaurantmanagement.manager;
+package com.example.restaurantmanagement.manager.Boundary;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.icu.number.IntegerWidth;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;

@@ -1,4 +1,4 @@
-package com.example.restaurantmanagement.manager;
+package com.example.restaurantmanagement.manager.Entity;
 
 import android.content.Context;
 import android.widget.Toast;
