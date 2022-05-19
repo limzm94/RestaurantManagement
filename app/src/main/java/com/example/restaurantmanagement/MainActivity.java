@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.restaurantmanagement.admin.AdminUI;
+import com.example.restaurantmanagement.admin.Boundary.AdminPage;
 import com.example.restaurantmanagement.customer.CustomerUI;
 import com.example.restaurantmanagement.manager.ManagerController;
 import com.example.restaurantmanagement.owner.OwnerUI;
@@ -67,17 +67,17 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         }
                         case "Admin": {
-                            Intent adminUI = new Intent(MainActivity.this, AdminUI.class);
+                            Intent adminUI = new Intent(MainActivity.this, AdminPage.class);
                             startActivity(adminUI);
                             break;
                         }
                         case "Manager": {
-                            Intent adminUI = new Intent(MainActivity.this, AdminUI.class);
+                            Intent adminUI = new Intent(MainActivity.this, AdminPage.class);
                             startActivity(adminUI);
                             break;
                         }
                         case "Staff": {
-                            Intent adminUI = new Intent(MainActivity.this, AdminUI.class);
+                            Intent adminUI = new Intent(MainActivity.this, AdminPage.class);
                             startActivity(adminUI);
                             break;
                         }

@@ -1,4 +1,4 @@
-package com.example.restaurantmanagement.admin;
+package com.example.restaurantmanagement.admin.Boundary;
 
 
 import android.content.Context;
@@ -12,16 +12,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
+import com.example.restaurantmanagement.admin.Entity.UserObject;
 
 import java.util.ArrayList;
 
-public class AdminController extends RecyclerView.Adapter<AdminController.ViewHolder> {
+public class AdminViewHolder extends RecyclerView.Adapter<AdminViewHolder.ViewHolder> {
 
     private Context context;
-    private ArrayList<AdminEntity> adminModelArrayList;
+    private ArrayList<UserObject> adminModelArrayList;
 
     // Constructor
-    public AdminController(Context context, ArrayList<AdminEntity> adminModelArrayList) {
+    public AdminViewHolder(Context context, ArrayList<UserObject> adminModelArrayList) {
         this.context = context;
         this.adminModelArrayList = adminModelArrayList;
     }
@@ -37,7 +38,7 @@ public class AdminController extends RecyclerView.Adapter<AdminController.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int cardPosition) {
         // to set data to textview and imageview of each card layout
-        AdminEntity model = adminModelArrayList.get(cardPosition);
+        UserObject model = adminModelArrayList.get(cardPosition);
         holder.personName.setText(model.getPerson_name());
         holder.status.setText(model.getStatus());
         holder.position.setText(model.getRole());
@@ -78,8 +79,6 @@ public class AdminController extends RecyclerView.Adapter<AdminController.ViewHo
             username = itemView.findViewById(R.id.username);
             password = itemView.findViewById(R.id.password);
             editBtn = itemView.findViewById(R.id.editBtn);
-
-
         }
     }
 }

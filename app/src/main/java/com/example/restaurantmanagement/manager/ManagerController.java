@@ -3,7 +3,6 @@ package com.example.restaurantmanagement.manager;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.example.restaurantmanagement.admin.CreateAccount;
 import com.example.restaurantmanagement.utility.DBHandler;
 
 public class ManagerController {

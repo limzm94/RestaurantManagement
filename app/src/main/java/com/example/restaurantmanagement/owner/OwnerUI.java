@@ -8,8 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.admin.AdminUI;
-import com.example.restaurantmanagement.admin.CreateAccount;
+import com.example.restaurantmanagement.admin.Boundary.AdminPage;
 import com.example.restaurantmanagement.customer.CustomerUI;
 import com.example.restaurantmanagement.manager.ManagerUI;
 
@@ -32,7 +31,7 @@ public class OwnerUI extends AppCompatActivity {
         });*/
 
         adminBtn.setOnClickListener(v -> {
-            Intent admin = new Intent(OwnerUI.this, AdminUI.class);
+            Intent admin = new Intent(OwnerUI.this, AdminPage.class);
             startActivity(admin);
             finish();
         });

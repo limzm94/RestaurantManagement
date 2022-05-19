@@ -71,6 +71,8 @@ public class CustomerUI extends AppCompatActivity {
         adminRV.setAdapter(foodAdapter);
 
         checkOutBtn.setOnClickListener(v -> {
+
+
             double totalCharge = 0.00;
             StringBuilder cartSummary = new StringBuilder((String.format("%-13s %-3s %-5s %-8s %n", "Item", "Qty", "Price", "Subtotal")));
             for(OrderEntity customerEntity : foodList) {
@@ -85,7 +87,8 @@ public class CustomerUI extends AppCompatActivity {
             cartSummary.append(String.format("Total: $%.2f", totalCharge));
 
             Intent cartCheckOut = new Intent(CustomerUI.this, CheckoutActivity.class);
-            cartCheckOut.putExtra("key", cartSummary.toString());
+            cartCheckOut.putExtra("foodList", foodList);
+            //cartCheckOut.putExtra("key", cartSummary.toString());
             startActivity(cartCheckOut);
         });
         // set editText

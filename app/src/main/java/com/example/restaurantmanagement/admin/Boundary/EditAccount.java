@@ -1,4 +1,4 @@
-package com.example.restaurantmanagement.admin;
+package com.example.restaurantmanagement.admin.Boundary;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.restaurantmanagement.R;
+import com.example.restaurantmanagement.admin.Controller.EditUser;
+import com.example.restaurantmanagement.admin.Entity.UserEntity;
 import com.example.restaurantmanagement.utility.DBHandler;
 
 public class EditAccount extends AppCompatActivity {
@@ -19,7 +21,8 @@ public class EditAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
-        DBHandler DB = new DBHandler(this);
+        EditUser editUser = new EditUser(EditAccount.this);
+
         Spinner statusSpinner = findViewById(R.id.status_create);
         Spinner rolesSpinner = findViewById(R.id.roles_create);
         EditText usernameText = findViewById(R.id.username_create);
@@ -27,7 +30,6 @@ public class EditAccount extends AppCompatActivity {
         EditText personNameText = findViewById(R.id.person_name_create);
         Button editBtn = findViewById(R.id.create_btn);
         Button cancelBtn = findViewById(R.id.cancel_btn);
-
         editBtn.setText("Edit");
 
         // get the data from the cardview
@@ -59,16 +61,12 @@ public class EditAccount extends AppCompatActivity {
             String editedStatus = statusSpinner.getSelectedItem().toString();
             String editedRole = rolesSpinner.getSelectedItem().toString();
 
-            System.out.println(String.format("Username: %s%nPassword: %s%nPerson Name: %b%nStatus: %s%nRoles: %s%n",
-                    editedUsername, editedPassword, editedPersonName, editedStatus, editedRole));
-
             if (editedUsername.equals("") || editedPassword.equals("") || editedPersonName.equals(""))
                 Toast.makeText(EditAccount.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
             else {
-                    DB.updateUserInfo(editedUsername, editedPassword, editedPersonName, editedStatus, editedRole, userKey);
-
-                Intent createAcc = new Intent(EditAccount.this, AdminUI.class);
-                startActivity(createAcc);
+                editUser.updateAcc(editedUsername, editedPassword, editedPersonName, editedStatus, editedRole, userKey);
+                Intent editAcc = new Intent(EditAccount.this, AdminPage.class);
+                startActivity(editAcc);
                 finish();
             }
         });

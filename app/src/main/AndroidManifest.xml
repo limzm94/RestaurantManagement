@@ -18,13 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity"
-            />
-        <activity android:name=".admin.AdminUI"
+        <activity android:name=".admin.Boundary.AdminPage"
             android:label="Admin Function"/>
-        <activity android:name=".admin.CreateAccount"
+        <activity android:name=".admin.Boundary.CreateAccount"
             android:label="Create Account"/>
-        <activity android:name=".admin.EditAccount"
+        <activity android:name=".admin.Boundary.EditAccount"
             android:label="Edit Account"/>
         <activity android:name=".owner.OwnerUI"
             android:label="Owner Homepage"/>

@@ -1,9 +1,7 @@
-package com.example.restaurantmanagement.admin;
+package com.example.restaurantmanagement.admin.Entity;
 
 
-public class AdminEntity {
-
-
+public class UserObject {
 
     private int id;
     private String person_name;
@@ -13,7 +11,7 @@ public class AdminEntity {
     private String password;
 
     // Constructor
-    public AdminEntity(int id, String person_name, String status, String position, String username, String password) {
+    public UserObject(int id, String person_name, String status, String position, String username, String password) {
         this.id = id;
         this.person_name = person_name;
         this.status = status;
@@ -71,6 +69,5 @@ public class AdminEntity {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
 }
