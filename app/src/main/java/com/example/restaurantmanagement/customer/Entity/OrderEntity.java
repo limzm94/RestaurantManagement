@@ -1,6 +1,10 @@
-package com.example.restaurantmanagement.customer;
+package com.example.restaurantmanagement.customer.Entity;
 
-public class OrderEntity extends FoodEntity {
+import android.os.Parcel;
+
+import java.io.Serializable;
+
+public class OrderEntity extends FoodEntity implements Serializable {
 
     private String customerName, isFulfilled;
     private int quantity, orderId;
@@ -44,5 +48,4 @@ public class OrderEntity extends FoodEntity {
     public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
-
 }

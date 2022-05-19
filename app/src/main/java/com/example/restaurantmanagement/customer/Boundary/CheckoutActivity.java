@@ -1,15 +1,15 @@
-package com.example.restaurantmanagement.customer;
+package com.example.restaurantmanagement.customer.Boundary;
 
 
 import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
+import com.example.restaurantmanagement.customer.Entity.OrderEntity;
 
 import java.util.ArrayList;
 
@@ -19,11 +19,12 @@ public class CheckoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
-        String checkOutSummary = getIntent().getStringExtra("key");
+        //String checkOutSummary = getIntent().getStringExtra("key");
         TextView summaryText = findViewById(R.id.orderSummary);
+        Bundle bundle =  getIntent().getExtras();
+        ArrayList<OrderEntity> foodList;
 
-
-        ArrayList<OrderEntity> foodList = getIntent().getParcelableExtra("foodList");
+        foodList = (ArrayList<OrderEntity>)getIntent().getSerializableExtra("foodList");
         double totalCharge = 0.00;
         StringBuilder cartSummary = new StringBuilder((String.format("%-13s %-3s %-5s %-8s %n", "Item", "Qty", "Price", "Subtotal")));
         for(OrderEntity customerEntity : foodList) {
@@ -37,7 +38,7 @@ public class CheckoutActivity extends AppCompatActivity {
         }
         cartSummary.append(String.format("Total: $%.2f", totalCharge));
         summaryText.setTypeface(Typeface.MONOSPACE);
-        summaryText.setText(checkOutSummary);
+        summaryText.setText(cartSummary);
         //set onClick for checkout Cart to submit the order
         //need to get the latest order number and then append it
     }

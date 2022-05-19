@@ -13,7 +13,7 @@ public class UserEntity {
         this.context = context;
     }
 
-    public ArrayList<UserObject> userList(String searchRequirement){
+    public ArrayList<UserObject> listUsers(String searchRequirement){
         DBHandler DB = new DBHandler(context);
         ArrayList<UserObject> userAccList = new ArrayList<>();
         ArrayList<Integer> allUserKey = DB.listColumnsDataInt("users", "id");

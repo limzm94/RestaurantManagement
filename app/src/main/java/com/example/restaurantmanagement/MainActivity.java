@@ -9,8 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.restaurantmanagement.admin.Boundary.AdminPage;
-import com.example.restaurantmanagement.customer.CustomerUI;
-import com.example.restaurantmanagement.manager.ManagerController;
+import com.example.restaurantmanagement.customer.Boundary.CustomerUI;
+import com.example.restaurantmanagement.manager.Entity.ManagerController;
 import com.example.restaurantmanagement.owner.OwnerUI;
 import com.example.restaurantmanagement.utility.DBHandler;
 

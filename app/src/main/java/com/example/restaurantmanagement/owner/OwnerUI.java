@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.admin.Boundary.AdminPage;
-import com.example.restaurantmanagement.customer.CustomerUI;
-import com.example.restaurantmanagement.manager.ManagerUI;
+import com.example.restaurantmanagement.customer.Boundary.CustomerUI;
+import com.example.restaurantmanagement.manager.Boundary.ManagerUI;
 
 public class OwnerUI extends AppCompatActivity {
     @Override

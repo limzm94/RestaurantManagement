@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
+import com.example.restaurantmanagement.admin.Controller.ViewUser;
 import com.example.restaurantmanagement.admin.Entity.UserEntity;
 import com.example.restaurantmanagement.admin.Entity.UserObject;
 import com.example.restaurantmanagement.owner.OwnerUI;
@@ -29,6 +30,7 @@ public class AdminPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+        ViewUser viewUser = new ViewUser(AdminPage.this);
         EditText searchText = findViewById(R.id.search_text);
         Button createAccBtn = findViewById(R.id.createAcc);
         Button logoutBtn = findViewById(R.id.adminLogOut);
@@ -36,8 +38,7 @@ public class AdminPage extends AppCompatActivity {
         adminRV = findViewById(R.id.idRVAdmin);
         FloatingActionButton homeFab = findViewById(R.id.homeFAB);
 
-        UserEntity adminDBController = new UserEntity(AdminPage.this);
-        userAccList.addAll(adminDBController.userList(""));
+        userAccList.addAll(viewUser.showUser(""));
         // we are initializing our adapter class and passing our arraylist to it.
         AdminViewHolder adminAdapter = new AdminViewHolder(this, userAccList);
 
@@ -68,7 +69,7 @@ public class AdminPage extends AppCompatActivity {
 
             searchRequirement = searchText.getText().toString();
             userAccList.clear();
-            userAccList.addAll(adminDBController.userList(searchRequirement));
+            userAccList.addAll(viewUser.showUser(searchRequirement));
             // in below two lines we are setting layoutManager and adapter to our recycler view.
             System.out.println(userAccList);
             adminAdapter.notifyDataSetChanged();

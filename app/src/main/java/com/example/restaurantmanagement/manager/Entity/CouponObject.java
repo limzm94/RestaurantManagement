@@ -1,6 +1,6 @@
-package com.example.restaurantmanagement.manager;
+package com.example.restaurantmanagement.manager.Entity;
 
-public class CouponEntity {
+public class CouponObject {
 
     private int couponKey, couponDisc ;
 
@@ -8,7 +8,7 @@ public class CouponEntity {
 
     private String couponCode, couponDesc, couponStatus;
 
-    public CouponEntity(String couponCode, String couponDesc, String couponStatus, int couponKey, int couponDisc) {
+    public CouponObject(String couponCode, String couponDesc, String couponStatus, int couponKey, int couponDisc) {
         this.couponCode = couponCode;
         this.couponDesc = couponDesc;
         this.couponStatus = couponStatus;

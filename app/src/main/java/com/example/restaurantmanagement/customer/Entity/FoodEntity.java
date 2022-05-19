@@ -1,6 +1,8 @@
-package com.example.restaurantmanagement.customer;
+package com.example.restaurantmanagement.customer.Entity;
 
-public class FoodEntity {
+import java.io.Serializable;
+
+public class FoodEntity implements Serializable {
 
     private int foodKey ;
     private String foodName, foodDesc;

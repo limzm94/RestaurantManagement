@@ -1,4 +1,4 @@
-package com.example.restaurantmanagement.manager;
+package com.example.restaurantmanagement.manager.Boundary;
 
 
 import android.annotation.SuppressLint;
@@ -14,15 +14,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
+import com.example.restaurantmanagement.manager.Entity.CouponObject;
 
 import java.util.ArrayList;
 
-public class CouponController extends RecyclerView.Adapter<CouponController.ViewHolder> {
+public class CouponViewHolder extends RecyclerView.Adapter<CouponViewHolder.ViewHolder> {
     private final Context context;
-    private final ArrayList<CouponEntity> couponModelArrayList;
+    private final ArrayList<CouponObject> couponModelArrayList;
 
     // Constructor
-    public CouponController(Context context, ArrayList<CouponEntity> couponModelArrayList) {
+    public CouponViewHolder(Context context, ArrayList<CouponObject> couponModelArrayList) {
         this.context = context;
         this.couponModelArrayList = couponModelArrayList;
     }
@@ -40,7 +41,7 @@ public class CouponController extends RecyclerView.Adapter<CouponController.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // to set data to textview and imageview of each card layout
         String discText;
-        CouponEntity model = couponModelArrayList.get(position);
+        CouponObject model = couponModelArrayList.get(position);
         holder.couponCode.setText(model.getCouponCode());
         holder.couponDesc.setText(model.getCouponDesc());
         holder.couponStatus.setText(model.getCouponStatus());
