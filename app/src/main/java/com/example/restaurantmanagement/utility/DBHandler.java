@@ -84,6 +84,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 "ProductName TEXT," +
                 "Quantity TEXT," +
                 "Price TEXT," +
+                "Discount TEXT," +
                 "CustomerName TEXT," +
                 "UserID INTEGER," +
                 "OrderDate TEXT,"+
@@ -462,14 +463,13 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     //view monthly spending
-    // not working
-    public int getMonthlyEarning(String date) {
+    public int getMonthlyEarning(String date1, String date2) {
         String[] params = new String[]{"20/10/2013", "25/10/2013"};
         SQLiteDatabase db = this.getWritableDatabase();
 //        ArrayList<String> tableString;
         List<Number> earnings;
         List<String> list=new ArrayList<>();
-        Cursor c = db.rawQuery("Select COUNT(ProductId), SUM(Price), AVG(Price) from OrderDetail where OrderDate BETWEEN ? AND ?", params);
+        Cursor c = db.rawQuery("Select Price from OrderDetail where OrderDate BETWEEN ? AND ?", params);
         int total = 0;
         if (c.moveToFirst()) {
             total = c.getInt(0);
@@ -478,6 +478,26 @@ public class DBHandler extends SQLiteOpenHelper {
         return total;
     }
 
+
+    //view weekly spending
+    public ArrayList<Order> getOrderHistory(String userid) {
+        String[] params = new String[]{userid};
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<Order> orders = new ArrayList<Order>();
+        List<Number> earnings;
+        List<String> list=new ArrayList<>();
+        Cursor c = db.rawQuery("Select * from OrderDetail where UserID = ?", params);
+        int total = 0;
+        String date;
+        if (c != null && c.moveToFirst()) {
+            int id = c.getInt(c.getColumnIndexOrThrow("ID"));
+            String productId = c.getString(c.getColumnIndexOrThrow("ProductId"));
+
+
+        }
+
+        return orders;
+    }
 
 
 }
