@@ -9,7 +9,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Properties;
 
@@ -84,6 +86,9 @@ public class DBHandler extends SQLiteOpenHelper {
                 "Price TEXT," +
                 "Discount TEXT," +
                 "CustomerName TEXT," +
+                "UserID INTEGER," +
+                "OrderDate TEXT,"+
+                "MenuId TEXT,"+
                 "OrderId INTEGER," +
                 "isFulfilled TEXT)";
 
@@ -431,5 +436,68 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         return discountCode;
     }
+
+    // Date string split
+    // not working
+    public List<String> getOrdersByDate(String date) {
+        String[] params = new String[]{"20/10/2013"};
+        SQLiteDatabase db = this.getWritableDatabase();
+//        ArrayList<String> tableString;
+        List<String> list=new ArrayList<>();
+        Cursor c = db.rawQuery("Select * from OrderDetail where DateOrdered = ?", params);
+        if (c.moveToFirst()) {
+            list.add(c.getString(c.getColumnIndexOrThrow("ProductName")));
+            list.add(c.getString(c.getColumnIndexOrThrow("Price")));
+        }
+        // day
+        int day = Integer.parseInt(date.substring(0, 1));
+        int month =  Integer.parseInt(date.substring(3, 4));
+        int year =  Integer.parseInt(date.substring(6, 9));
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+        int weekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
+
+        System.out.print(list);
+        return list;
+    }
+
+    //view monthly spending
+    public int getMonthlyEarning(String date1, String date2) {
+        String[] params = new String[]{"20/10/2013", "25/10/2013"};
+        SQLiteDatabase db = this.getWritableDatabase();
+//        ArrayList<String> tableString;
+        List<Number> earnings;
+        List<String> list=new ArrayList<>();
+        Cursor c = db.rawQuery("Select Price from OrderDetail where OrderDate BETWEEN ? AND ?", params);
+        int total = 0;
+        if (c.moveToFirst()) {
+            total = c.getInt(0);
+        }
+
+        return total;
+    }
+
+
+    //view weekly spending
+    public ArrayList<Order> getOrderHistory(String userid) {
+        String[] params = new String[]{userid};
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<Order> orders = new ArrayList<Order>();
+        List<Number> earnings;
+        List<String> list=new ArrayList<>();
+        Cursor c = db.rawQuery("Select * from OrderDetail where UserID = ?", params);
+        int total = 0;
+        String date;
+        if (c != null && c.moveToFirst()) {
+            int id = c.getInt(c.getColumnIndexOrThrow("ID"));
+            String productId = c.getString(c.getColumnIndexOrThrow("ProductId"));
+
+
+        }
+
+        return orders;
+    }
+
 
 }
