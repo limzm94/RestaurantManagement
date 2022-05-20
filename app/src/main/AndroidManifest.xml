@@ -40,9 +40,9 @@
             android:label="Edit Food Item"/>
         <activity android:name=".manager.Boundary.Coupon"
             android:label="Manage Coupon"/>
-        <activity android:name=".manager.Boundary.CreateCoupon"
+        <activity android:name=".manager.Boundary.CreateCouponView"
             android:label="Create Coupon"/>
-        <activity android:name=".manager.Boundary.EditCoupon"
+        <activity android:name=".manager.Boundary.EditCouponView"
             android:label="Edit Coupon"/>
 
     </application>

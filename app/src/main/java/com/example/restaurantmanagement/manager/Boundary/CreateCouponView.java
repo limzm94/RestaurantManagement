@@ -11,14 +11,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.utility.DBHandler;
+import com.example.restaurantmanagement.manager.Controller.CheckCoupon;
+import com.example.restaurantmanagement.manager.Controller.CreateCoupon;
 
-public class CreateCoupon extends AppCompatActivity {
+public class CreateCouponView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_coupon);
-        DBHandler DB = new DBHandler(this);
+        CheckCoupon checkCoupon = new CheckCoupon(CreateCouponView.this);
+        CreateCoupon createCoupon = new CreateCoupon(CreateCouponView.this);
         Spinner statusSpinner = findViewById(R.id.couponStatus_create);
         EditText couponCodeText = findViewById(R.id.couponCode_create);
         EditText couponDescText = findViewById(R.id.couponDesc_create);
@@ -40,23 +42,22 @@ public class CreateCoupon extends AppCompatActivity {
 
 
             if (couponCode.equals("") || couponDesc.equals("") || discount == 0)
-                Toast.makeText(CreateCoupon.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateCouponView.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
             else {
-                Boolean checkUser = DB.checkCouponCode(couponCode);
-                if (!checkUser) {
-                    Boolean insert = DB.insertCouponData(couponCode, couponDesc, discount, status);
+                if (!checkCoupon.couponCheck(couponCode)) {
+                    boolean insert = createCoupon.insertCoupon(couponCode, couponDesc, discount, status);
                     if (insert) {
-                        Toast.makeText(CreateCoupon.this, "Coupon created successfully", Toast.LENGTH_LONG).show();
+                        Toast.makeText(CreateCouponView.this, "Coupon created successfully", Toast.LENGTH_LONG).show();
 
                     } else {
-                        Toast.makeText(CreateCoupon.this, "Coupon creation failed", Toast.LENGTH_LONG).show();
+                        Toast.makeText(CreateCouponView.this, "Coupon creation failed", Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    Toast.makeText(CreateCoupon.this, "Coupon code already exists!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CreateCouponView.this, "Coupon code already exists!", Toast.LENGTH_LONG).show();
                 }
 
-                Intent createCoupon = new Intent(CreateCoupon.this, Coupon.class);
-                startActivity(createCoupon);
+                Intent couponIntent = new Intent(CreateCouponView.this, Coupon.class);
+                startActivity(couponIntent);
                 finish();
             }
         });

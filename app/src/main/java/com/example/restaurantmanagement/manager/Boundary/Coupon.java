@@ -40,7 +40,7 @@ public class Coupon extends AppCompatActivity {
 
 
         createCouponBtn.setOnClickListener(v -> {
-            Intent createFood = new Intent(Coupon.this, CreateCoupon.class);
+            Intent createFood = new Intent(Coupon.this, CreateCouponView.class);
             startActivity(createFood);
             finish();
         });
