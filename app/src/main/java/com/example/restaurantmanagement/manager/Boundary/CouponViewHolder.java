@@ -50,7 +50,7 @@ public class CouponViewHolder extends RecyclerView.Adapter<CouponViewHolder.View
 
         holder.editBtn.setOnClickListener(v -> {
             // send the account info to edit account activity
-            Intent intent = new Intent(context, EditCoupon.class);
+            Intent intent = new Intent(context, EditCouponView.class);
             intent.putExtra("couponKey", model.getCouponKey());
             intent.putExtra("couponCode", model.getCouponCode());
             intent.putExtra("couponDesc", model.getCouponDesc());

@@ -33,23 +33,18 @@ public class CouponEntity {
         return  couponList;
     }
 
-    public Boolean checkUser(String username) {
+    public Boolean checkCoupon(String couponCode) {
         DBHandler DB = new DBHandler(context);
-        boolean checkUser;
-        checkUser = DB.checkUsername(username);
-        return checkUser;
+        return DB.checkCouponCode(couponCode);
     }
 
-    public Boolean insertUser(String username,String password,String status,String personName, String role) {
+    public Boolean insertCoupon(String couponCode,String couponDesc,int discount,String status) {
         DBHandler DB = new DBHandler(context);
-        boolean insertUser;
-        insertUser = DB.insertUserData(username, password, status, personName, role);
-        return insertUser;
+        return DB.insertCouponData(couponCode, couponDesc, discount, status);
     }
 
-    public void updateUser(String editedUsername,String editedPassword,String editedPersonName,String editedStatus, String editedRole, int userKey) {
+    public void updateCoupon(String couponCode, String couponDesc, int discount, String status, int couponId) {
         DBHandler DB = new DBHandler(context);
-        boolean updateUser;
-        DB.updateUserInfo(editedUsername, editedPassword, editedPersonName, editedStatus, editedRole, userKey);
+        DB.updateCouponInfo(couponCode, couponDesc, discount, status, couponId);
     }
 }

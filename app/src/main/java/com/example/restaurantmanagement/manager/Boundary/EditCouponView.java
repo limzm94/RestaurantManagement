@@ -12,15 +12,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
+import com.example.restaurantmanagement.manager.Controller.EditCoupon;
 import com.example.restaurantmanagement.utility.DBHandler;
 
-public class EditCoupon extends AppCompatActivity {
+public class EditCouponView extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_coupon);
-        DBHandler DB = new DBHandler(this);
+        EditCoupon editCoupon = new EditCoupon(EditCouponView.this);
         Spinner statusSpinner = findViewById(R.id.couponStatus_create);
         EditText couponCodeText = findViewById(R.id.couponCode_create);
         EditText couponDescText = findViewById(R.id.couponDesc_create);
@@ -52,18 +53,15 @@ public class EditCoupon extends AppCompatActivity {
             String editedStatus = statusSpinner.getSelectedItem().toString();
 
             if (editedCouponCode.equals("") || editedCouponDesc.equals("") || editedDiscount == 0)
-                Toast.makeText(EditCoupon.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditCouponView.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
             else {
-                DB.updateCouponInfo(editedCouponCode, editedCouponDesc, editedDiscount, editedStatus, couponKey);
-
-                Intent editCoupon = new Intent(EditCoupon.this, Coupon.class);
-                startActivity(editCoupon);
+                editCoupon.updateCoupon(editedCouponCode, editedCouponDesc, editedDiscount, editedStatus, couponKey);
+                Intent editCouponIntent = new Intent(EditCouponView.this, Coupon.class);
+                startActivity(editCouponIntent);
                 finish();
             }
         });
 
-        cancelBtn.setOnClickListener(v -> {
-            finish();
-        });
+        cancelBtn.setOnClickListener(v -> finish());
     }
 }

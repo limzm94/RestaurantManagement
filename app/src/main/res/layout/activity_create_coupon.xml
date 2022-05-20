@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".manager.Boundary.CreateCoupon">
+    tools:context=".manager.Boundary.CreateCouponView">
 
     <LinearLayout
         android:id="@+id/layout1"
