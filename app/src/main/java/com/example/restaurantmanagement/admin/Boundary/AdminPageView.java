@@ -18,7 +18,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class AdminPage extends AppCompatActivity {
+public class AdminPageView extends AppCompatActivity {
     private RecyclerView adminRV;
     // Arraylist for storing data
     private ArrayList<UserObject> userAccList = new ArrayList<>();
@@ -29,7 +29,7 @@ public class AdminPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        ViewUser viewUser = new ViewUser(AdminPage.this);
+        ViewUser viewUser = new ViewUser(AdminPageView.this);
         EditText searchText = findViewById(R.id.search_text);
         Button createAccBtn = findViewById(R.id.createAcc);
         Button logoutBtn = findViewById(R.id.adminLogOut);
@@ -51,7 +51,7 @@ public class AdminPage extends AppCompatActivity {
 
 
         createAccBtn.setOnClickListener(v -> {
-            Intent createAcc = new Intent(AdminPage.this, CreateAccount.class);
+            Intent createAcc = new Intent(AdminPageView.this, CreateAccountView.class);
             startActivity(createAcc);
             finish();
         });
@@ -59,7 +59,7 @@ public class AdminPage extends AppCompatActivity {
 
         // need to check if owner log in to show the button
         homeFab.setOnClickListener(v -> {
-            Intent createAcc = new Intent(AdminPage.this, OwnerUI.class);
+            Intent createAcc = new Intent(AdminPageView.this, OwnerUI.class);
             startActivity(createAcc);
             finish();
         });

@@ -13,12 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.admin.Controller.CreateUser;
 
-public class CreateAccount extends AppCompatActivity {
+public class CreateAccountView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
-        CreateUser createUser = new CreateUser(CreateAccount.this);
+        CreateUser createUser = new CreateUser(CreateAccountView.this);
         Spinner statusSpinner = findViewById(R.id.status_create);
         Spinner rolesSpinner = findViewById(R.id.roles_create);
         EditText usernameText = findViewById(R.id.username_create);
@@ -44,10 +44,10 @@ public class CreateAccount extends AppCompatActivity {
             String role = rolesSpinner.getSelectedItem().toString();
 
             if (username.equals("") || password.equals("") || personName.equals(""))
-                Toast.makeText(CreateAccount.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateAccountView.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
             else {
                 createUser.createAcc(username, password, status, personName, role);
-                Intent createAcc = new Intent(CreateAccount.this, AdminPage.class);
+                Intent createAcc = new Intent(CreateAccountView.this, AdminPageView.class);
                 startActivity(createAcc);
                 finish();
             }

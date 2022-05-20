@@ -69,4 +69,19 @@ public class UserEntity {
         DBHandler DB = new DBHandler(context);
         DB.updateUserInfo(editedUsername, editedPassword, editedPersonName, editedStatus, editedRole, userKey);
     }
+
+    public boolean checkUsernameAndPassword(String username, String password) {
+        DBHandler DB = new DBHandler(context);
+        return DB.checkUsernamePassword(username, password);
+    }
+
+    public String checkRole(String username, String password) {
+        DBHandler DB = new DBHandler(context);
+        return DB.getUserRole(username,password);
+    }
+
+    public Boolean checkIsActive(String username, String password) {
+        DBHandler DB = new DBHandler(context);
+        return DB.getUserStatus(username, password);
+    }
 }

@@ -15,13 +15,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.admin.Controller.EditUser;
 
-public class EditAccount extends AppCompatActivity {
+public class EditAccountView extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
-        EditUser editUser = new EditUser(EditAccount.this);
+        EditUser editUser = new EditUser(EditAccountView.this);
 
         Spinner statusSpinner = findViewById(R.id.status_create);
         Spinner rolesSpinner = findViewById(R.id.roles_create);
@@ -62,10 +62,10 @@ public class EditAccount extends AppCompatActivity {
             String editedRole = rolesSpinner.getSelectedItem().toString();
 
             if (editedUsername.equals("") || editedPassword.equals("") || editedPersonName.equals(""))
-                Toast.makeText(EditAccount.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditAccountView.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
             else {
                 editUser.updateAcc(editedUsername, editedPassword, editedPersonName, editedStatus, editedRole, userKey);
-                Intent editAcc = new Intent(EditAccount.this, AdminPage.class);
+                Intent editAcc = new Intent(EditAccountView.this, AdminPageView.class);
                 startActivity(editAcc);
                 finish();
             }

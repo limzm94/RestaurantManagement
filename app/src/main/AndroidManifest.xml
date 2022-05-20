@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RestaurantManagement">
         <activity
-            android:name=".MainActivity"
+            android:name=".login.Boundary.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,11 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".admin.Boundary.AdminPage"
+        <activity android:name=".admin.Boundary.AdminPageView"
             android:label="Admin Function"/>
-        <activity android:name=".admin.Boundary.CreateAccount"
+        <activity android:name=".admin.Boundary.CreateAccountView"
             android:label="Create Account"/>
-        <activity android:name=".admin.Boundary.EditAccount"
+        <activity android:name=".admin.Boundary.EditAccountView"
             android:label="Edit Account"/>
         <activity android:name=".owner.OwnerUI"
             android:label="Owner Homepage"/>

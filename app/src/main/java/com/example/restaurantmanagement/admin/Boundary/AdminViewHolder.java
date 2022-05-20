@@ -48,7 +48,7 @@ public class AdminViewHolder extends RecyclerView.Adapter<AdminViewHolder.ViewHo
 
         holder.editBtn.setOnClickListener(v -> {
             // send the account info to edit account activity
-            Intent intent = new Intent(context, EditAccount.class);
+            Intent intent = new Intent(context, EditAccountView.class);
             intent.putExtra("userKey", model.getId());
             intent.putExtra("personName", model.getPerson_name());
             intent.putExtra("status", model.getStatus());
