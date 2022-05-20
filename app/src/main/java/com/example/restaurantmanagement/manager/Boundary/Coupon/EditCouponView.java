@@ -1,4 +1,4 @@
-package com.example.restaurantmanagement.manager.Boundary;
+package com.example.restaurantmanagement.manager.Boundary.Coupon;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -12,8 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.manager.Controller.EditCoupon;
-import com.example.restaurantmanagement.utility.DBHandler;
+import com.example.restaurantmanagement.manager.Controller.Coupon.EditCoupon;
 
 public class EditCouponView extends AppCompatActivity {
     @SuppressLint("SetTextI18n")

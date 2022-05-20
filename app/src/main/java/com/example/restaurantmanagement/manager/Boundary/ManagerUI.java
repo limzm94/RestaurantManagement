@@ -8,6 +8,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
+import com.example.restaurantmanagement.manager.Boundary.Coupon.Coupon;
+import com.example.restaurantmanagement.manager.Boundary.FoodMenu.FoodMenuView;
 
 public class ManagerUI extends AppCompatActivity {
     @Override
@@ -21,7 +23,7 @@ public class ManagerUI extends AppCompatActivity {
 
 
         foodMenuBtn.setOnClickListener(v -> {
-            Intent admin = new Intent(ManagerUI.this, FoodMenu.class);
+            Intent admin = new Intent(ManagerUI.this, FoodMenuView.class);
             startActivity(admin);
             finish();
         });

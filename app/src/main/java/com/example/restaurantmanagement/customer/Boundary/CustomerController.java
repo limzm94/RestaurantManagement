@@ -11,16 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.customer.Entity.OrderEntity;
+import com.example.restaurantmanagement.customer.Entity.OrderObject;
 
 import java.util.ArrayList;
 
 public class CustomerController extends RecyclerView.Adapter<CustomerController.ViewHolder> {
 
-    private final ArrayList<OrderEntity> courseModelArrayList;
+    private final ArrayList<OrderObject> courseModelArrayList;
 
     // Constructor
-    public CustomerController(ArrayList<OrderEntity> courseModelArrayList) {
+    public CustomerController(ArrayList<OrderObject> courseModelArrayList) {
         this.courseModelArrayList = courseModelArrayList;
     }
 
@@ -37,7 +37,7 @@ public class CustomerController extends RecyclerView.Adapter<CustomerController.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // to set data to textview and imageview of each card layout
         String priceText;
-        OrderEntity model = courseModelArrayList.get(position);
+        OrderObject model = courseModelArrayList.get(position);
         holder.foodName.setText(model.getFoodName());
         holder.foodDesc.setText(model.getFoodDesc());
         priceText = "$" + String.format("%.2f", model.getPrice());

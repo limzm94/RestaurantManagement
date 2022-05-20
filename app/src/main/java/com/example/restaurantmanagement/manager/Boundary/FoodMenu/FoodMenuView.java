@@ -1,5 +1,4 @@
-package com.example.restaurantmanagement.manager.Boundary;
-
+package com.example.restaurantmanagement.manager.Boundary.FoodMenu;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -11,39 +10,31 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.manager.Controller.ViewCoupon;
+import com.example.restaurantmanagement.manager.Controller.FoodMenu.ViewFoodMenu;
 
-public class Coupon extends AppCompatActivity {
+public class FoodMenuView extends AppCompatActivity {
 
     @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_coupon);
-        Button createCouponBtn = findViewById(R.id.createCouponBtn);
-        RecyclerView couponRV = findViewById(R.id.idRVCouponManager);
-        ViewCoupon viewCoupon = new ViewCoupon(Coupon.this);
-
-
-        // need to do this in controller
-
-// need to do this in controller
-
+        setContentView(R.layout.activity_food);
+        ViewFoodMenu viewFoodMenu = new ViewFoodMenu(FoodMenuView.this);
+        Button createFoodItemBtn = findViewById(R.id.createFoodItemBtn);
+        RecyclerView adminRV = findViewById(R.id.idRVFoodManager);
         // we are initializing our adapter class and passing our arraylist to it.
-        CouponViewHolder couponAdapter = new CouponViewHolder(Coupon.this, viewCoupon.showCoupon());
+        FoodMenuViewHolder foodAdapter = new FoodMenuViewHolder(FoodMenuView.this, viewFoodMenu.showFoodMenu());
         // below line is for setting a layout manager for our recycler view.
         // here we are creating vertical list so we will provide orientation as vertical
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         // in below two lines we are setting layoutManager and adapter to our recycler view.
-        couponRV.setLayoutManager(linearLayoutManager);
-        couponRV.setAdapter(couponAdapter);
+        adminRV.setLayoutManager(linearLayoutManager);
+        adminRV.setAdapter(foodAdapter);
 
-
-        createCouponBtn.setOnClickListener(v -> {
-            Intent createFood = new Intent(Coupon.this, CreateCouponView.class);
+        createFoodItemBtn.setOnClickListener(v -> {
+            Intent createFood = new Intent(FoodMenuView.this, CreateFoodItem.class);
             startActivity(createFood);
             finish();
         });
-
     }
 }

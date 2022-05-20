@@ -3,7 +3,6 @@ package com.example.restaurantmanagement.customer.Boundary;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.InputType;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.customer.Entity.OrderEntity;
+import com.example.restaurantmanagement.customer.Entity.OrderObject;
 import com.example.restaurantmanagement.utility.DBHandler;
 
 import java.util.ArrayList;
@@ -51,10 +50,10 @@ public class CustomerUI extends AppCompatActivity {
 
 
 // need to do this in controller
-        ArrayList<OrderEntity> foodList = new ArrayList<>();
+        ArrayList<OrderObject> foodList = new ArrayList<>();
         int count = 0;
         while (allFoodName.size() > count) {
-            foodList.add(new OrderEntity(allFoodName.get(count), allFoodDesc.get(count), allPrice.get(count),
+            foodList.add(new OrderObject(allFoodName.get(count), allFoodDesc.get(count), allPrice.get(count),
                     0, "Customer Name", "Unfulfilled", 0, allFoodKey.get(count)));
             count++;
         }
@@ -76,7 +75,7 @@ public class CustomerUI extends AppCompatActivity {
 
             double totalCharge = 0.00;
             StringBuilder cartSummary = new StringBuilder((String.format("%-13s %-3s %-5s %-8s %n", "Item", "Qty", "Price", "Subtotal")));
-            for(OrderEntity customerEntity : foodList) {
+            for(OrderObject customerEntity : foodList) {
                 System.out.println("Food name: "+ customerEntity.getFoodName());
                 System.out.println("Food quantity: "+ customerEntity.getQuantity());  // Will invoke override `toString()` method
                 totalCharge += (customerEntity.getPrice() * customerEntity.getQuantity());

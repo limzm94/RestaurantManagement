@@ -2,14 +2,14 @@ package com.example.restaurantmanagement.customer.Entity;
 
 import java.io.Serializable;
 
-public class FoodEntity implements Serializable {
+public class FoodObject implements Serializable {
 
     private int foodKey ;
     private String foodName, foodDesc;
     private double price;
 
     // Constructor
-    public FoodEntity(String foodName, String foodDesc, double price, int foodKey) {
+    public FoodObject(String foodName, String foodDesc, double price, int foodKey) {
         this.foodKey = foodKey;
         this.foodName = foodName;
         this.foodDesc = foodDesc;

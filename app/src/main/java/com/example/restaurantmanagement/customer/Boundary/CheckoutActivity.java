@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.customer.Entity.OrderEntity;
+import com.example.restaurantmanagement.customer.Entity.OrderObject;
 
 import java.util.ArrayList;
 
@@ -22,12 +22,12 @@ public class CheckoutActivity extends AppCompatActivity {
         //String checkOutSummary = getIntent().getStringExtra("key");
         TextView summaryText = findViewById(R.id.orderSummary);
         Bundle bundle =  getIntent().getExtras();
-        ArrayList<OrderEntity> foodList;
+        ArrayList<OrderObject> foodList;
 
-        foodList = (ArrayList<OrderEntity>)getIntent().getSerializableExtra("foodList");
+        foodList = (ArrayList<OrderObject>)getIntent().getSerializableExtra("foodList");
         double totalCharge = 0.00;
         StringBuilder cartSummary = new StringBuilder((String.format("%-13s %-3s %-5s %-8s %n", "Item", "Qty", "Price", "Subtotal")));
-        for(OrderEntity customerEntity : foodList) {
+        for(OrderObject customerEntity : foodList) {
             System.out.println("Food name: "+ customerEntity.getFoodName());
             System.out.println("Food quantity: "+ customerEntity.getQuantity());  // Will invoke override `toString()` method
             totalCharge += (customerEntity.getPrice() * customerEntity.getQuantity());

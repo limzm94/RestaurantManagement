@@ -1,4 +1,4 @@
-package com.example.restaurantmanagement.manager.Controller;
+package com.example.restaurantmanagement.manager.Controller.Coupon;
 
 import android.content.Context;
 

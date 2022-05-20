@@ -1,4 +1,4 @@
-package com.example.restaurantmanagement.manager.Boundary;
+package com.example.restaurantmanagement.manager.Boundary.FoodMenu;
 
 
 import android.content.Intent;
@@ -10,14 +10,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.utility.DBHandler;
+import com.example.restaurantmanagement.manager.Controller.FoodMenu.CheckMenuItem;
+import com.example.restaurantmanagement.manager.Controller.FoodMenu.CreateFoodMenu;
 
 public class CreateFoodItem extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_food);
-        DBHandler DB = new DBHandler(this);
+        CreateFoodMenu createFoodMenu = new CreateFoodMenu(CreateFoodItem.this);
+        CheckMenuItem checkMenuItem = new CheckMenuItem(CreateFoodItem.this);
         EditText foodNameText = findViewById(R.id.foodName_create);
         EditText foodDescText = findViewById(R.id.foodDesc_create);
         EditText priceText = findViewById(R.id.price_create);
@@ -32,20 +34,8 @@ public class CreateFoodItem extends AppCompatActivity {
             if (foodName.equals("") || foodDesc.equals("") || price == 0)
                 Toast.makeText(CreateFoodItem.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
             else {
-                Boolean checkUser = DB.checkFoodName(foodName);
-                if (!checkUser) {
-                    Boolean insert = DB.insertFoodData(foodName, foodDesc, price);
-                    if (insert) {
-                        Toast.makeText(CreateFoodItem.this, "Registered successfully", Toast.LENGTH_LONG).show();
-
-                    } else {
-                        Toast.makeText(CreateFoodItem.this, "Registration failed", Toast.LENGTH_LONG).show();
-                    }
-                } else {
-                    Toast.makeText(CreateFoodItem.this, "User already exists! please sign in", Toast.LENGTH_LONG).show();
-                }
-
-                Intent createAcc = new Intent(CreateFoodItem.this, FoodMenu.class);
+                createFoodMenu.insertFoodMenu(foodName, foodDesc, price);
+                Intent createAcc = new Intent(CreateFoodItem.this, FoodMenuView.class);
                 startActivity(createAcc);
                 finish();
             }

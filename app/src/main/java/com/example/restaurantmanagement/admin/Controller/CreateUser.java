@@ -1,7 +1,9 @@
 package com.example.restaurantmanagement.admin.Controller;
 
 import android.content.Context;
+import android.widget.Toast;
 
+import com.example.restaurantmanagement.admin.Boundary.CreateAccount;
 import com.example.restaurantmanagement.admin.Entity.UserEntity;
 
 public class CreateUser {
@@ -11,8 +13,21 @@ public class CreateUser {
         this.context = context;
     }
 
-    public boolean createAcc(String username, String password, String status, String personName, String role){
+    public void createAcc(String username, String password, String status, String personName, String role){
+        CheckUser checkUser = new CheckUser(context);
         UserEntity userEntity = new UserEntity(context);
-        return userEntity.insertUser(username, password, status, personName, role);
+
+        if (!checkUser.checkAcc(username)) {
+            if (userEntity.insertUser(username, password, status, personName, role)) {
+                Toast.makeText(context, "Registered successfully", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(context, "Registration failed", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(context, "User already exists!", Toast.LENGTH_LONG).show();
+        }
+
+
+
     }
 }

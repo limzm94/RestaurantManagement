@@ -12,11 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.admin.Controller.ViewUser;
-import com.example.restaurantmanagement.admin.Entity.UserEntity;
 import com.example.restaurantmanagement.admin.Entity.UserObject;
 import com.example.restaurantmanagement.owner.OwnerUI;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 
 import java.util.ArrayList;
 
@@ -25,6 +23,7 @@ public class AdminPage extends AppCompatActivity {
     // Arraylist for storing data
     private ArrayList<UserObject> userAccList = new ArrayList<>();
     String searchRequirement = "";
+
     @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +65,6 @@ public class AdminPage extends AppCompatActivity {
         });
 
         searchBtn.setOnClickListener(v -> {
-
             searchRequirement = searchText.getText().toString();
             userAccList.clear();
             userAccList.addAll(viewUser.showUser(searchRequirement));
@@ -76,9 +74,6 @@ public class AdminPage extends AppCompatActivity {
             System.out.println("Search button clicked");
         });
 
-        logoutBtn.setOnClickListener(v -> {
-            finish();
-        });
-
+        logoutBtn.setOnClickListener(v -> finish());
     }
 }

@@ -1,4 +1,4 @@
-package com.example.restaurantmanagement.manager.Boundary;
+package com.example.restaurantmanagement.manager.Boundary.FoodMenu;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.utility.DBHandler;
+import com.example.restaurantmanagement.manager.Controller.FoodMenu.EditFoodMenu;
 
 public class EditFoodItem extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
@@ -18,7 +18,7 @@ public class EditFoodItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_food);
-        DBHandler DB = new DBHandler(this);
+        EditFoodMenu editFoodMenu = new EditFoodMenu(EditFoodItem.this);
         EditText foodNameText = findViewById(R.id.foodName_create);
         EditText foodDescText = findViewById(R.id.foodDesc_create);
         EditText priceText = findViewById(R.id.price_create);
@@ -27,7 +27,7 @@ public class EditFoodItem extends AppCompatActivity {
 
         editBtn.setText("Edit");
 
-        // get the data from the cardview
+        // get the data from the cardView
         int foodKey = getIntent().getIntExtra("foodKey",0);
         String foodName = getIntent().getStringExtra("foodName");
         String foodDesc = getIntent().getStringExtra("foodDesc");
@@ -45,9 +45,8 @@ public class EditFoodItem extends AppCompatActivity {
             if (editedFoodName.equals("") || editedFoodDesc.equals("") || editedPrice == 0)
                 Toast.makeText(EditFoodItem.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
             else {
-                DB.updateFoodInfo(editedFoodName, editedFoodDesc, editedPrice, foodKey);
-
-                Intent createAcc = new Intent(EditFoodItem.this, FoodMenu.class);
+                editFoodMenu.updateFoodItem(editedFoodName, editedFoodDesc, editedPrice, foodKey);
+                Intent createAcc = new Intent(EditFoodItem.this, FoodMenuView.class);
                 startActivity(createAcc);
                 finish();
             }

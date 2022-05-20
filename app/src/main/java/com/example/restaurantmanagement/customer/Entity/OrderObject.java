@@ -1,15 +1,13 @@
 package com.example.restaurantmanagement.customer.Entity;
 
-import android.os.Parcel;
-
 import java.io.Serializable;
 
-public class OrderEntity extends FoodEntity implements Serializable {
+public class OrderObject extends FoodObject implements Serializable {
 
     private String customerName, isFulfilled;
     private int quantity, orderId;
 
-    public OrderEntity(String foodName, String foodDesc, double price, int quantity, String customerName, String isFulfilled, int orderId, int foodKey) {
+    public OrderObject(String foodName, String foodDesc, double price, int quantity, String customerName, String isFulfilled, int orderId, int foodKey) {
         super(foodName, foodDesc, price, foodKey);
         this.quantity = quantity;
         this.customerName = customerName;

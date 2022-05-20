@@ -1,4 +1,4 @@
-package com.example.restaurantmanagement.manager.Entity;
+package com.example.restaurantmanagement.manager.Boundary.FoodMenu;
 
 
 import android.annotation.SuppressLint;
@@ -14,17 +14,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.customer.Entity.FoodEntity;
-import com.example.restaurantmanagement.manager.Boundary.EditFoodItem;
+import com.example.restaurantmanagement.customer.Entity.FoodObject;
 
 import java.util.ArrayList;
 
-public class FoodMenuController extends RecyclerView.Adapter<FoodMenuController.ViewHolder> {
+public class FoodMenuViewHolder extends RecyclerView.Adapter<FoodMenuViewHolder.ViewHolder> {
     private final Context context;
-    private final ArrayList<FoodEntity> foodModelArrayList;
+    private final ArrayList<FoodObject> foodModelArrayList;
 
     // Constructor
-    public FoodMenuController(Context context, ArrayList<FoodEntity> foodModelArrayList) {
+    public FoodMenuViewHolder(Context context, ArrayList<FoodObject> foodModelArrayList) {
         this.context = context;
         this.foodModelArrayList = foodModelArrayList;
     }
@@ -42,7 +41,7 @@ public class FoodMenuController extends RecyclerView.Adapter<FoodMenuController.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // to set data to textview and imageview of each card layout
         String priceText;
-        FoodEntity model = foodModelArrayList.get(position);
+        FoodObject model = foodModelArrayList.get(position);
         holder.foodName.setText(model.getFoodName());
         holder.foodDesc.setText(model.getFoodDesc());
         priceText = "$" + String.format("%.2f", model.getPrice());

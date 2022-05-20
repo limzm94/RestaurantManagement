@@ -7,7 +7,7 @@ import com.example.restaurantmanagement.utility.DBHandler;
 import java.util.ArrayList;
 
 public class UserEntity {
-    private Context context;
+    private final Context context;
 
     public UserEntity(Context context) {
         this.context = context;
@@ -48,7 +48,6 @@ public class UserEntity {
                 count++;
             }
         }
-
         return  userAccList;
     }
 
@@ -68,7 +67,6 @@ public class UserEntity {
 
     public void updateUser(String editedUsername,String editedPassword,String editedPersonName,String editedStatus, String editedRole, int userKey) {
         DBHandler DB = new DBHandler(context);
-        boolean updateUser;
         DB.updateUserInfo(editedUsername, editedPassword, editedPersonName, editedStatus, editedRole, userKey);
     }
 }

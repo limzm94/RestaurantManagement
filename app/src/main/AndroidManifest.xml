@@ -30,19 +30,19 @@
             android:label="Food Menu" />
         <activity android:name=".customer.Boundary.CheckoutActivity"
             android:label="Cart Checkout"/>
-        <activity android:name=".manager.Boundary.FoodMenu"
+        <activity android:name=".manager.Boundary.FoodMenu.FoodMenuView"
             android:label="Manage Menu"/>
-        <activity android:name=".manager.Boundary.CreateFoodItem"
+        <activity android:name=".manager.Boundary.FoodMenu.CreateFoodItem"
             android:label="Create new item"/>
         <activity android:name=".manager.Boundary.ManagerUI"
             android:label="Manager Homepage"/>
-        <activity android:name=".manager.Boundary.EditFoodItem"
+        <activity android:name=".manager.Boundary.FoodMenu.EditFoodItem"
             android:label="Edit Food Item"/>
-        <activity android:name=".manager.Boundary.Coupon"
+        <activity android:name=".manager.Boundary.Coupon.Coupon"
             android:label="Manage Coupon"/>
-        <activity android:name=".manager.Boundary.CreateCouponView"
+        <activity android:name=".manager.Boundary.Coupon.CreateCouponView"
             android:label="Create Coupon"/>
-        <activity android:name=".manager.Boundary.EditCouponView"
+        <activity android:name=".manager.Boundary.Coupon.EditCouponView"
             android:label="Edit Coupon"/>
 
     </application>

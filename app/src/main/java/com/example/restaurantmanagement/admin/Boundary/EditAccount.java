@@ -1,8 +1,7 @@
 package com.example.restaurantmanagement.admin.Boundary;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -11,12 +10,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.admin.Controller.EditUser;
-import com.example.restaurantmanagement.admin.Entity.UserEntity;
-import com.example.restaurantmanagement.utility.DBHandler;
 
 public class EditAccount extends AppCompatActivity {
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +32,8 @@ public class EditAccount extends AppCompatActivity {
         Button cancelBtn = findViewById(R.id.cancel_btn);
         editBtn.setText("Edit");
 
-        // get the data from the cardview
-        int userKey = getIntent().getIntExtra("userKey",0);
+        // get the data from the cardView
+        int userKey = getIntent().getIntExtra("userKey", 0);
         String personName = getIntent().getStringExtra("personName");
         String status = getIntent().getStringExtra("status");
         String role = getIntent().getStringExtra("position");

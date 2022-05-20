@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.admin.Controller.CheckUser;
 import com.example.restaurantmanagement.admin.Controller.CreateUser;
 
 public class CreateAccount extends AppCompatActivity {
@@ -20,7 +19,6 @@ public class CreateAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
         CreateUser createUser = new CreateUser(CreateAccount.this);
-        CheckUser checkUser = new CheckUser(CreateAccount.this);
         Spinner statusSpinner = findViewById(R.id.status_create);
         Spinner rolesSpinner = findViewById(R.id.roles_create);
         EditText usernameText = findViewById(R.id.username_create);
@@ -48,16 +46,7 @@ public class CreateAccount extends AppCompatActivity {
             if (username.equals("") || password.equals("") || personName.equals(""))
                 Toast.makeText(CreateAccount.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
             else {
-                if (!checkUser.checkAcc(username)) {
-                    if (createUser.createAcc(username, password, status, personName, role)) {
-                        Toast.makeText(CreateAccount.this, "Registered successfully", Toast.LENGTH_LONG).show();
-
-                    } else {
-                        Toast.makeText(CreateAccount.this, "Registration failed", Toast.LENGTH_LONG).show();
-                    }
-                } else {
-                    Toast.makeText(CreateAccount.this, "User already exists!", Toast.LENGTH_LONG).show();
-                }
+                createUser.createAcc(username, password, status, personName, role);
                 Intent createAcc = new Intent(CreateAccount.this, AdminPage.class);
                 startActivity(createAcc);
                 finish();

@@ -1,4 +1,4 @@
-package com.example.restaurantmanagement.manager.Boundary;
+package com.example.restaurantmanagement.manager.Boundary.Coupon;
 
 
 import android.annotation.SuppressLint;
