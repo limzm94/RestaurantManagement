@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 
+import com.example.restaurantmanagement.admin.Entity.UserEntity;
+import com.example.restaurantmanagement.admin.Entity.UserObject;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -379,6 +382,48 @@ public class DBHandler extends SQLiteOpenHelper {
         return name;
     }
 
+    public UserObject getUserByID(Integer userid) {
+        String[] arguments = new String[]{String.valueOf(userid)};
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<UserObject> users = new ArrayList<UserObject>();
+        UserObject user = null;
+        Cursor c = db.rawQuery("Select * from users where id = ?", arguments);
+        if (c != null && c.moveToFirst()) {
+            Integer id = c.getInt(c.getColumnIndexOrThrow("id"));
+            String name = c.getString(c.getColumnIndexOrThrow("name"));
+            String username = c.getString(c.getColumnIndexOrThrow("username"));
+            String password = c.getString(c.getColumnIndexOrThrow("password"));
+            String status = c.getString(c.getColumnIndexOrThrow("status"));
+            String position = c.getString(c.getColumnIndexOrThrow("role"));
+            user = new UserObject(id,name,status,position,username,password);
+
+        }
+
+        return user;
+    }
+
+    // get user by username
+    public ArrayList<UserObject> getUserByUsername(String inputUsername) {
+        String[] arguments = new String[]{inputUsername};
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<UserObject> users = new ArrayList<UserObject>();
+        Cursor c = db.rawQuery("Select * from users where username = ?", arguments);
+        if (c != null && c.moveToFirst()) {
+            Integer id = c.getInt(c.getColumnIndexOrThrow("id"));
+            String name = c.getString(c.getColumnIndexOrThrow("name"));
+            String username = c.getString(c.getColumnIndexOrThrow("username"));
+            String password = c.getString(c.getColumnIndexOrThrow("password"));
+            String status = c.getString(c.getColumnIndexOrThrow("status"));
+            String position = c.getString(c.getColumnIndexOrThrow("role"));
+            UserObject user = new UserObject(id,name,status,position,username,password);
+            users.add(user);
+
+        }
+
+        return users;
+    }
+
+
     public Boolean getUserStatus(String username, String password) {
         String[] params = new String[]{username, password};
         SQLiteDatabase db = this.getWritableDatabase();
@@ -497,6 +542,17 @@ public class DBHandler extends SQLiteOpenHelper {
         }
 
         return orders;
+    }
+
+    public String getOrderID() {
+        String[] params = new String[]{};
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("Select OrderId from OrderDetail ORDER BY OrderId DESC LIMIT 1",params);
+        String name = "";
+        if (c.moveToFirst()) {
+            name = c.getString(0);
+        }
+        return name;
     }
 
 
