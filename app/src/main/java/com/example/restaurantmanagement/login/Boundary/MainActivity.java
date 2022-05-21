@@ -20,7 +20,7 @@ import com.example.restaurantmanagement.owner.OwnerUI;
 import com.example.restaurantmanagement.utility.DBHandler;
 
 public class MainActivity extends AppCompatActivity {
-
+    //ZM test push
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
