@@ -544,5 +544,16 @@ public class DBHandler extends SQLiteOpenHelper {
         return orders;
     }
 
+    public String getOrderID() {
+        String[] params = new String[]{};
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("Select OrderId from OrderDetail ORDER BY OrderId DESC LIMIT 1",params);
+        String name = "";
+        if (c.moveToFirst()) {
+            name = c.getString(0);
+        }
+        return name;
+    }
+
 
 }
