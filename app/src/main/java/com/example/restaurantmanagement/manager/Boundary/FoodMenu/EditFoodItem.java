@@ -25,7 +25,7 @@ public class EditFoodItem extends AppCompatActivity {
         Button editBtn = findViewById(R.id.create_btn);
         Button cancelBtn = findViewById(R.id.cancel_btn);
 
-        editBtn.setText("Edit");
+        editBtn.setText("Confirm Edit");
 
         // get the data from the cardView
         int foodKey = getIntent().getIntExtra("foodKey",0);

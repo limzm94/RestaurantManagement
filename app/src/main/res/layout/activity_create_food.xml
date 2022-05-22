@@ -76,29 +76,6 @@
 
 
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/layout4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/layout3"
-        android:orientation="vertical"
-        android:weightSum="3">
-
-        <TextView
-            android:layout_marginStart="20dp"
-            android:textSize="15sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/status_text" />
-        <Spinner
-            android:id="@+id/couponStatus_create"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:scrollbarSize="20dp"
-            android:spinnerMode="dropdown"/>
-
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/adminTopMenu"
