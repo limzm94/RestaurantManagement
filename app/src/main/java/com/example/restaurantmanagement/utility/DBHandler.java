@@ -168,6 +168,13 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
+    public void deleteMenuItem(Integer menuId) {
+        SQLiteDatabase db = getReadableDatabase();
+        String delete = String.format("DELETE FROM Foods WHERE menuId = %d", menuId);
+
+        db.execSQL(delete);
+    }
+
 
     // example to check if column exist
     public boolean columnExists(String value) {
