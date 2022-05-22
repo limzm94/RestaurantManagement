@@ -68,8 +68,6 @@ public class AdminPageView extends AppCompatActivity {
             searchRequirement = searchText.getText().toString();
             userAccList.clear();
             userAccList.addAll(viewUser.showUser(searchRequirement));
-            // in below two lines we are setting layoutManager and adapter to our recycler view.
-            System.out.println(userAccList);
             adminAdapter.notifyDataSetChanged();
             System.out.println("Search button clicked");
         });

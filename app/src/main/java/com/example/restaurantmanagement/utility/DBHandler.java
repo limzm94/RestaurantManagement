@@ -86,8 +86,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 "ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "ProductName TEXT," +
                 "Quantity TEXT," +
-                "Price TEXT," +
-                "Discount TEXT," +
+                "Price FLOAT," +
+                "Discount INTEGER," +
                 "CustomerName TEXT," +
                 "UserID INTEGER," +
                 "OrderDate TEXT,"+
@@ -230,6 +230,12 @@ public class DBHandler extends SQLiteOpenHelper {
         return cursor.getCount() > 0;
     }
 
+    public Boolean checkCustomer(String username) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select * from users where username = ? and role = ?", new String[]{username, "Customer"});
+        return cursor.getCount() > 0;
+    }
+
     public Boolean checkFoodName(String foodName) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from foods where name = ?", new String[]{foodName});
@@ -241,6 +247,14 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = MyDB.rawQuery("Select * from coupons where code = ?", new String[]{couponCode});
         return cursor.getCount() > 0;
     }
+
+    public Boolean checkCouponValid(String couponCode) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select * from coupons where code = ? and isActive = ?", new String[]{couponCode, "Active"});
+        return cursor.getCount() > 0;
+    }
+
+
 
 
     //to list all the data in the table by column
@@ -381,6 +395,7 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         return name;
     }
+
 
     public UserObject getUserByID(Integer userid) {
         String[] arguments = new String[]{String.valueOf(userid)};
@@ -544,13 +559,13 @@ public class DBHandler extends SQLiteOpenHelper {
         return orders;
     }
 
-    public String getOrderID() {
+    public int getOrderID() {
         String[] params = new String[]{};
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery("Select OrderId from OrderDetail ORDER BY OrderId DESC LIMIT 1",params);
-        String name = "";
+        int name = 0;
         if (c.moveToFirst()) {
-            name = c.getString(0);
+            name = c.getInt(0);
         }
         return name;
     }

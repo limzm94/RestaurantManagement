@@ -5,14 +5,28 @@ import java.io.Serializable;
 public class OrderObject extends FoodObject implements Serializable {
 
     private String customerName, isFulfilled;
-    private int quantity, orderId;
+    private int quantity;
+    private int orderId;
 
-    public OrderObject(String foodName, String foodDesc, double price, int quantity, String customerName, String isFulfilled, int orderId, int foodKey) {
+
+    private int discount;
+
+    public OrderObject(String foodName, String foodDesc, double price, int quantity, String customerName, String isFulfilled, int orderId, int foodKey, int discount) {
         super(foodName, foodDesc, price, foodKey);
         this.quantity = quantity;
         this.customerName = customerName;
         this.isFulfilled = isFulfilled;
         this.orderId = orderId;
+        this.discount = discount;
+    }
+
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
     }
 
     public int getQuantity() {

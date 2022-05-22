@@ -15,8 +15,10 @@ import com.example.restaurantmanagement.customer.Boundary.CustomerUI;
 import com.example.restaurantmanagement.login.Controller.CheckIsActive;
 import com.example.restaurantmanagement.login.Controller.CheckLogin;
 import com.example.restaurantmanagement.login.Controller.CheckRole;
+import com.example.restaurantmanagement.manager.Boundary.ManagerUI;
 import com.example.restaurantmanagement.manager.Controller.FoodMenu.CreateFoodMenu;
 import com.example.restaurantmanagement.owner.OwnerUI;
+import com.example.restaurantmanagement.staffs.StaffUI;
 import com.example.restaurantmanagement.utility.DBHandler;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,28 +56,28 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
                     switch (checkRole.checkRoles(user, pass)) {
                         case "Owner": {
-                            Intent adminUI = new Intent(MainActivity.this, OwnerUI.class);
-                            startActivity(adminUI);
+                            Intent intent = new Intent(MainActivity.this, OwnerUI.class);
+                            startActivity(intent);
                             break;
                         }
                         case "Admin": {
-                            Intent adminUI = new Intent(MainActivity.this, AdminPageView.class);
-                            startActivity(adminUI);
+                            Intent intent = new Intent(MainActivity.this, AdminPageView.class);
+                            startActivity(intent);
                             break;
                         }
                         case "Manager": {
-                            Intent adminUI = new Intent(MainActivity.this, AdminPageView.class);
-                            startActivity(adminUI);
+                            Intent intent = new Intent(MainActivity.this, ManagerUI.class);
+                            startActivity(intent);
                             break;
                         }
                         case "Staff": {
-                            Intent adminUI = new Intent(MainActivity.this, AdminPageView.class);
-                            startActivity(adminUI);
+                            Intent intent = new Intent(MainActivity.this, StaffUI.class);
+                            startActivity(intent);
                             break;
                         }
                         default: {
-                            Intent adminUI = new Intent(MainActivity.this, CustomerUI.class);
-                            startActivity(adminUI);
+                            Intent intent = new Intent(MainActivity.this, CustomerUI.class);
+                            startActivity(intent);
                             break;
                         }
                     }
