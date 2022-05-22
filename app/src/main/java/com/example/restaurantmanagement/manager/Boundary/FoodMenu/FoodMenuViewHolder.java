@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.customer.Entity.FoodObject;
+import com.example.restaurantmanagement.manager.Controller.FoodMenu.DeleteFoodMenu;
 
 import java.util.ArrayList;
 
@@ -42,6 +43,7 @@ public class FoodMenuViewHolder extends RecyclerView.Adapter<FoodMenuViewHolder.
         // to set data to textview and imageview of each card layout
         String priceText;
         FoodObject model = foodModelArrayList.get(position);
+        DeleteFoodMenu deleteFoodMenu = new DeleteFoodMenu(context);
         holder.foodName.setText(model.getFoodName());
         holder.foodDesc.setText(model.getFoodDesc());
         priceText = "$" + String.format("%.2f", model.getPrice());
@@ -55,6 +57,13 @@ public class FoodMenuViewHolder extends RecyclerView.Adapter<FoodMenuViewHolder.
             intent.putExtra("foodDesc", model.getFoodDesc());
             intent.putExtra("price", model.getPrice());
             context.startActivity(intent);
+        });
+
+        holder.deleteBtn.setOnClickListener(v -> {
+            deleteFoodMenu.insertFoodMenu(model.getFoodKey());
+            foodModelArrayList.remove(holder.getAdapterPosition());
+            notifyItemRemoved(holder.getAdapterPosition());
+            notifyItemRangeChanged(holder.getAdapterPosition(), foodModelArrayList.size());
         });
     }
 
@@ -72,6 +81,7 @@ public class FoodMenuViewHolder extends RecyclerView.Adapter<FoodMenuViewHolder.
         private final TextView foodDesc;
         private final TextView price;
         private final Button editBtn;
+        private final Button deleteBtn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,6 +89,7 @@ public class FoodMenuViewHolder extends RecyclerView.Adapter<FoodMenuViewHolder.
             foodDesc = itemView.findViewById(R.id.foodDesc);
             price = itemView.findViewById(R.id.foodPrice);
             editBtn = itemView.findViewById(R.id.editFoodBtn);
+            deleteBtn = itemView.findViewById(R.id.deleteFoodBtn);
         }
     }
 }

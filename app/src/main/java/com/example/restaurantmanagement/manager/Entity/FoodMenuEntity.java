@@ -48,5 +48,10 @@ public class FoodMenuEntity {
         DBHandler DB = new DBHandler(context);
         DB.updateFoodInfo(foodName, foodDesc, price, foodKey);
     }
+
+    public void deleteFood(int menuId) {
+        DBHandler DB = new DBHandler(context);
+        DB.deleteMenuItem(menuId);
+    }
 }
 

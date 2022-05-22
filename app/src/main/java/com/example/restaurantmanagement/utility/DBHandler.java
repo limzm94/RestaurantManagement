@@ -169,7 +169,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
-    public void deleteMenuItem(Integer menuId) {
+    public void deleteMenuItem(int menuId) {
         SQLiteDatabase db = getReadableDatabase();
         String delete = String.format("DELETE FROM Foods WHERE menuId = %d", menuId);
 
