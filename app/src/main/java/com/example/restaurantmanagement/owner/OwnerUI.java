@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.admin.Boundary.AdminPageView;
-import com.example.restaurantmanagement.customer.Boundary.CustomerUI;
-import com.example.restaurantmanagement.manager.Boundary.ManagerUI;
+import com.example.restaurantmanagement.customer.Boundary.CustomerView;
+import com.example.restaurantmanagement.manager.Boundary.ManagerView;
 
 public class OwnerUI extends AppCompatActivity {
     @Override
@@ -37,13 +37,13 @@ public class OwnerUI extends AppCompatActivity {
         });
 
         customerBtn.setOnClickListener(v -> {
-            Intent customer = new Intent(OwnerUI.this, CustomerUI.class);
+            Intent customer = new Intent(OwnerUI.this, CustomerView.class);
             startActivity(customer);
             finish();
         });
 
         managerBtn.setOnClickListener(v -> {
-            Intent manager = new Intent(OwnerUI.this, ManagerUI.class);
+            Intent manager = new Intent(OwnerUI.this, ManagerView.class);
             startActivity(manager);
             finish();
         });

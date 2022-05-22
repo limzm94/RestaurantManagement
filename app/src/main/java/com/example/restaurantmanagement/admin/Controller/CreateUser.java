@@ -25,8 +25,5 @@ public class CreateUser {
         } else {
             Toast.makeText(context, "User already exists!", Toast.LENGTH_LONG).show();
         }
-
-
-
     }
 }

@@ -15,12 +15,12 @@ import com.example.restaurantmanagement.customer.Entity.OrderObject;
 
 import java.util.ArrayList;
 
-public class CustomerController extends RecyclerView.Adapter<CustomerController.ViewHolder> {
+public class CustomerViewHolder extends RecyclerView.Adapter<CustomerViewHolder.ViewHolder> {
 
     private final ArrayList<OrderObject> courseModelArrayList;
 
     // Constructor
-    public CustomerController(ArrayList<OrderObject> courseModelArrayList) {
+    public CustomerViewHolder(ArrayList<OrderObject> courseModelArrayList) {
         this.courseModelArrayList = courseModelArrayList;
     }
 

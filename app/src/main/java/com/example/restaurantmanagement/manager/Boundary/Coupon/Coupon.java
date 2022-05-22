@@ -14,7 +14,7 @@ import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.manager.Controller.Coupon.ViewCoupon;
 
 public class Coupon extends AppCompatActivity {
-
+// create delete food menu item function
     @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +24,6 @@ public class Coupon extends AppCompatActivity {
         RecyclerView couponRV = findViewById(R.id.idRVCouponManager);
         ViewCoupon viewCoupon = new ViewCoupon(Coupon.this);
 
-
-        // need to do this in controller
-
-// need to do this in controller
-
         // we are initializing our adapter class and passing our arraylist to it.
         CouponViewHolder couponAdapter = new CouponViewHolder(Coupon.this, viewCoupon.showCoupon());
         // below line is for setting a layout manager for our recycler view.
@@ -37,7 +32,6 @@ public class Coupon extends AppCompatActivity {
         // in below two lines we are setting layoutManager and adapter to our recycler view.
         couponRV.setLayoutManager(linearLayoutManager);
         couponRV.setAdapter(couponAdapter);
-
 
         createCouponBtn.setOnClickListener(v -> {
             Intent createFood = new Intent(Coupon.this, CreateCouponView.class);

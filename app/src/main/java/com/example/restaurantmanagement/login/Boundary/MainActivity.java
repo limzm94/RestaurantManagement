@@ -11,15 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.admin.Boundary.AdminPageView;
 import com.example.restaurantmanagement.admin.Controller.CreateUser;
-import com.example.restaurantmanagement.customer.Boundary.CustomerUI;
+import com.example.restaurantmanagement.customer.Boundary.CustomerView;
 import com.example.restaurantmanagement.login.Controller.CheckIsActive;
 import com.example.restaurantmanagement.login.Controller.CheckLogin;
 import com.example.restaurantmanagement.login.Controller.CheckRole;
-import com.example.restaurantmanagement.manager.Boundary.ManagerUI;
+import com.example.restaurantmanagement.manager.Boundary.ManagerView;
 import com.example.restaurantmanagement.manager.Controller.FoodMenu.CreateFoodMenu;
 import com.example.restaurantmanagement.owner.OwnerUI;
 import com.example.restaurantmanagement.staffs.StaffUI;
-import com.example.restaurantmanagement.utility.DBHandler;
 
 public class MainActivity extends AppCompatActivity {
     //ZM test push
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         }
                         case "Manager": {
-                            Intent intent = new Intent(MainActivity.this, ManagerUI.class);
+                            Intent intent = new Intent(MainActivity.this, ManagerView.class);
                             startActivity(intent);
                             break;
                         }
@@ -76,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         }
                         default: {
-                            Intent intent = new Intent(MainActivity.this, CustomerUI.class);
+                            Intent intent = new Intent(MainActivity.this, CustomerView.class);
                             startActivity(intent);
                             break;
                         }

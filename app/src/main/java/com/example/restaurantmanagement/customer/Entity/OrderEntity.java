@@ -32,7 +32,7 @@ public class OrderEntity {
         int count = 0;
         while (allFoodName.size() > count) {
             menuList.add(new OrderObject(allFoodName.get(count), allFoodDesc.get(count), allPrice.get(count),
-                    0, "Customer Name", "Unfulfilled", 0, allFoodKey.get(count), 0));
+                    0, "Customer Name", "Unfulfilled", 0, allFoodKey.get(count), 0, ""));
             count++;
         }
         return menuList;
@@ -56,5 +56,11 @@ public class OrderEntity {
     public int getOrderId() {
         DBHandler DB = new DBHandler(context);
         return DB.getOrderID();
+    }
+
+    public void submitOrder(String foodName, String orderDate, double price, double discountedPrice, int quantity, String customerName,
+                            String isFulfilled, int orderId, int foodKey, int discount) {
+        DBHandler DB = new DBHandler(context);
+        DB.insertOrderDetails(foodName, orderDate, price, discountedPrice,quantity, customerName, isFulfilled, orderId, foodKey, discount);
     }
 }

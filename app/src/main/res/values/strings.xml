@@ -51,6 +51,7 @@
     <string name="description">Description</string>
     <string name="discount_percentage">Discount Percentage</string>
     <string name="search">Search</string>
+    <string name="submit_order">Submit order</string>
     <string-array name="roles">
             <item>Owner</item>
             <item>Admin</item>

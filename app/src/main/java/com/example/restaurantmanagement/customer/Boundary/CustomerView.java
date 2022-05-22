@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -16,23 +15,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.customer.Controller.ChangeCustomer;
-import com.example.restaurantmanagement.customer.Controller.CheckCustomer;
 import com.example.restaurantmanagement.customer.Controller.CouponDiscount;
 import com.example.restaurantmanagement.customer.Controller.ShowMenu;
 import com.example.restaurantmanagement.customer.Entity.OrderObject;
 
 import java.util.ArrayList;
 
-public class CustomerUI extends AppCompatActivity {
+public class CustomerView extends AppCompatActivity {
 
     @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
-        ShowMenu showMenu = new ShowMenu(CustomerUI.this);
-        CouponDiscount couponDiscount = new CouponDiscount(CustomerUI.this);
-        ChangeCustomer changeCustomer = new ChangeCustomer(CustomerUI.this);
+        ShowMenu showMenu = new ShowMenu(CustomerView.this);
+        CouponDiscount couponDiscount = new CouponDiscount(CustomerView.this);
+        ChangeCustomer changeCustomer = new ChangeCustomer(CustomerView.this);
         EditText customerNameText = findViewById(R.id.customerName);
         Button changeCustomerBtn = findViewById(R.id.changeCustomerBtn);
         Button checkOutBtn = findViewById(R.id.checkOutBtn);
@@ -45,7 +43,7 @@ public class CustomerUI extends AppCompatActivity {
         orderList = showMenu.displayMenu();
         customerNameText.setText("No Customer Selected");
         // we are initializing our adapter class and passing our arraylist to it.
-        CustomerController foodAdapter = new CustomerController(orderList);
+        CustomerViewHolder foodAdapter = new CustomerViewHolder(orderList);
 
         // below line is for setting a layout manager for our recycler view.
         // here we are creating vertical list so we will provide orientation as vertical
@@ -56,7 +54,7 @@ public class CustomerUI extends AppCompatActivity {
         adminRV.setAdapter(foodAdapter);
 
         checkOutBtn.setOnClickListener(v -> {
-            Intent cartCheckOut = new Intent(CustomerUI.this, CheckoutActivity.class);
+            Intent cartCheckOut = new Intent(CustomerView.this, CheckoutActivity.class);
             cartCheckOut.putExtra("foodList", orderList);
             startActivity(cartCheckOut);
         });
@@ -68,9 +66,9 @@ public class CustomerUI extends AppCompatActivity {
             builder.setView(couponInput)
                     .setPositiveButton("Confirm", (dialog, id) ->{
                         if (couponDiscount.couponDiscount(orderList ,couponInput.getText().toString())) {
-                            Toast.makeText(CustomerUI.this, "Coupon authorized", Toast.LENGTH_LONG).show();
+                            Toast.makeText(CustomerView.this, "Coupon authorized", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(CustomerUI.this, "Invalid Coupon", Toast.LENGTH_LONG).show();
+                            Toast.makeText(CustomerView.this, "Invalid Coupon", Toast.LENGTH_LONG).show();
                         }
                             }
                     )
@@ -84,9 +82,9 @@ public class CustomerUI extends AppCompatActivity {
         changeCustomerBtn.setOnClickListener(v -> {
             String customerName = customerNameText.getText().toString();
             if (changeCustomer.changeCustomer(orderList, customerName)) {
-                Toast.makeText(CustomerUI.this, "Customer changed", Toast.LENGTH_LONG).show();
+                Toast.makeText(CustomerView.this, "Customer changed", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(CustomerUI.this, "Customer record not found", Toast.LENGTH_LONG).show();
+                Toast.makeText(CustomerView.this, "Customer record not found", Toast.LENGTH_LONG).show();
             }
         });
         logOutBtn.setOnClickListener(v -> finish());

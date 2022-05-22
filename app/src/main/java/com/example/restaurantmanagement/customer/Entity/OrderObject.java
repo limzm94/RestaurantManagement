@@ -4,20 +4,21 @@ import java.io.Serializable;
 
 public class OrderObject extends FoodObject implements Serializable {
 
-    private String customerName, isFulfilled;
+    private String customerName, isFulfilled, orderDate;
     private int quantity;
     private int orderId;
 
 
     private int discount;
 
-    public OrderObject(String foodName, String foodDesc, double price, int quantity, String customerName, String isFulfilled, int orderId, int foodKey, int discount) {
+    public OrderObject(String foodName, String foodDesc, double price, int quantity, String customerName, String isFulfilled, int orderId, int foodKey, int discount, String orderDate) {
         super(foodName, foodDesc, price, foodKey);
         this.quantity = quantity;
         this.customerName = customerName;
         this.isFulfilled = isFulfilled;
         this.orderId = orderId;
         this.discount = discount;
+        this.orderDate = orderDate;
     }
 
 

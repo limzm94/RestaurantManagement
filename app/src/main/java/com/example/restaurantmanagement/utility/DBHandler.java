@@ -88,6 +88,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 "Quantity TEXT," +
                 "Price FLOAT," +
                 "Discount INTEGER," +
+                "DiscountedPrice FLOAT," +
                 "CustomerName TEXT," +
                 "UserID INTEGER," +
                 "OrderDate TEXT,"+
@@ -420,7 +421,6 @@ public class DBHandler extends SQLiteOpenHelper {
             user = new UserObject(id,name,status,position,username,password);
 
         }
-
         return user;
     }
 
@@ -476,7 +476,6 @@ public class DBHandler extends SQLiteOpenHelper {
         contentValues.put("name", foodName);
         contentValues.put("description", foodDesc);
         contentValues.put("price", price);
-
         long result = MyDB.insert("foods", null, contentValues);
         return result != -1;
     }
@@ -488,9 +487,25 @@ public class DBHandler extends SQLiteOpenHelper {
         contentValues.put("description", couponDesc);
         contentValues.put("isActive", status);
         contentValues.put("discount", discount);
-
         long result = MyDB.insert("coupons", null, contentValues);
         return result != -1;
+    }
+
+    public void insertOrderDetails(String foodName, String orderDate, double price, double discountedPrice, int quantity, String customerName, String isFulfilled, int orderId, int foodKey, int discount) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("ProductName", foodName);
+        contentValues.put("Quantity", quantity);
+        contentValues.put("Price", price);
+        contentValues.put("Discount", discount);
+        contentValues.put("DiscountedPrice", discountedPrice);
+        contentValues.put("CustomerName", customerName);
+        contentValues.put("OrderDate", orderDate);
+        contentValues.put("MenuId", foodKey);
+        contentValues.put("OrderId", orderId);
+        contentValues.put("isFulfilled", isFulfilled);
+        long result = MyDB.insert("coupons", null, contentValues);
+       // return result != -1;
     }
 
     public int getDiscount(String code) {

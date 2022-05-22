@@ -11,7 +11,7 @@ import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.manager.Boundary.Coupon.Coupon;
 import com.example.restaurantmanagement.manager.Boundary.FoodMenu.FoodMenuView;
 
-public class ManagerUI extends AppCompatActivity {
+public class ManagerView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,22 +20,18 @@ public class ManagerUI extends AppCompatActivity {
         Button couponBtn = findViewById(R.id.mngrCouponBtn);
         Button logoutBtn = findViewById(R.id.logout_btn);
 
-
-
         foodMenuBtn.setOnClickListener(v -> {
-            Intent admin = new Intent(ManagerUI.this, FoodMenuView.class);
+            Intent admin = new Intent(ManagerView.this, FoodMenuView.class);
             startActivity(admin);
             finish();
         });
 
         couponBtn.setOnClickListener(v -> {
-            Intent customer = new Intent(ManagerUI.this, Coupon.class);
+            Intent customer = new Intent(ManagerView.this, Coupon.class);
             startActivity(customer);
             finish();
         });
 
         logoutBtn.setOnClickListener(v -> finish());
-
-
     }
 }

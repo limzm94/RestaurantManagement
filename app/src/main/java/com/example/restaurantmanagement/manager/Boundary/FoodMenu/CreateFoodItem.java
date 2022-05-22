@@ -41,8 +41,6 @@ public class CreateFoodItem extends AppCompatActivity {
             }
         });
 
-        cancelBtn.setOnClickListener(v -> {
-            finish();
-        });
+        cancelBtn.setOnClickListener(v -> finish());
     }
 }

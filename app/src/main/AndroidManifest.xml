@@ -26,7 +26,7 @@
             android:label="Edit Account"/>
         <activity android:name=".owner.OwnerUI"
             android:label="Owner Homepage"/>
-        <activity android:name=".customer.Boundary.CustomerUI"
+        <activity android:name=".customer.Boundary.CustomerView"
             android:label="Food Menu" />
         <activity android:name=".customer.Boundary.CheckoutActivity"
             android:label="Cart Checkout"/>
@@ -34,7 +34,7 @@
             android:label="Manage Menu"/>
         <activity android:name=".manager.Boundary.FoodMenu.CreateFoodItem"
             android:label="Create new item"/>
-        <activity android:name=".manager.Boundary.ManagerUI"
+        <activity android:name=".manager.Boundary.ManagerView"
             android:label="Manager Homepage"/>
         <activity android:name=".manager.Boundary.FoodMenu.EditFoodItem"
             android:label="Edit Food Item"/>
