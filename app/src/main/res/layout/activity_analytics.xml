@@ -2,5 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/adminSecondMenu"
+        android:layout_below="@+id/adminTopMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
 
+        <EditText
+            android:id="@+id/search_date"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:importantForAutofill="no" />
+
+        <Button
+            android:id="@+id/searchDateBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="@string/search"
+            android:textColor="@color/white" />
+    </LinearLayout>
 </LinearLayout>

@@ -97,7 +97,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 "isFulfilled TEXT)";
 
 //        String rolesQuery = "CREATE TABLE " + "roles" + " ("
-//                + "id" + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+//                + "id" + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
+//                "isActive INTEGER,"
 //                + "role" + " TEXT)";
 //
 //        String userRolesQuery = "create table users_roles(\n" +
@@ -168,6 +169,13 @@ public class DBHandler extends SQLiteOpenHelper {
 
         db.execSQL(query);
     }
+
+//    public void suspendRoles(int id ) {
+//        SQLiteDatabase db = getReadableDatabase();
+//        String delete = String.format("UPDATE roles SET isActive = %s WHERE ID = %d",0, id);
+//
+//        db.execSQL(delete);
+//    }
 
     public void deleteMenuItem(int menuId) {
         SQLiteDatabase db = getReadableDatabase();
@@ -491,7 +499,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    public void insertOrderDetails(String foodName, String orderDate, double price, double discountedPrice, int quantity, String customerName, String isFulfilled, int orderId, int foodKey, int discount) {
+    public boolean insertOrderDetails(String foodName, String orderDate, double price, double discountedPrice, int quantity, String customerName, String isFulfilled, int orderId, int foodKey, int discount) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("ProductName", foodName);
@@ -504,8 +512,8 @@ public class DBHandler extends SQLiteOpenHelper {
         contentValues.put("MenuId", foodKey);
         contentValues.put("OrderId", orderId);
         contentValues.put("isFulfilled", isFulfilled);
-        long result = MyDB.insert("coupons", null, contentValues);
-       // return result != -1;
+        long result = MyDB.insert("OrderDetail", null, contentValues);
+        return result != -1;
     }
 
     public int getDiscount(String code) {
