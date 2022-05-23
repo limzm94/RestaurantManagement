@@ -28,9 +28,9 @@ public class SendOrder {
         @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String strDate = dateFormat.format(date);
 
-        for(OrderObject order : orderList) {
+        for (OrderObject order : orderList) {
             orderEntity.submitOrder(order.getFoodName(), strDate, order.getPrice(), ((order.getPrice() * (100 - order.getDiscount()) / 100)), order.getQuantity(),
-            order.getCustomerName(), "Unfulfilled", orderId, order.getFoodKey(), order.getDiscount());
+                    order.getCustomerName(), "Unfulfilled", orderId, order.getFoodKey(), order.getDiscount());
         }
     }
 }

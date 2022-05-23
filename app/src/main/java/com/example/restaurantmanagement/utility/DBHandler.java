@@ -504,7 +504,7 @@ public class DBHandler extends SQLiteOpenHelper {
         contentValues.put("MenuId", foodKey);
         contentValues.put("OrderId", orderId);
         contentValues.put("isFulfilled", isFulfilled);
-        long result = MyDB.insert("coupons", null, contentValues);
+        long result = MyDB.insert("OrderDetail", null, contentValues);
        // return result != -1;
     }
 

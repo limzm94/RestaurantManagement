@@ -17,11 +17,11 @@ import java.util.ArrayList;
 
 public class CustomerViewHolder extends RecyclerView.Adapter<CustomerViewHolder.ViewHolder> {
 
-    private final ArrayList<OrderObject> courseModelArrayList;
+    private final ArrayList<OrderObject> orderList;
 
     // Constructor
     public CustomerViewHolder(ArrayList<OrderObject> courseModelArrayList) {
-        this.courseModelArrayList = courseModelArrayList;
+        this.orderList = courseModelArrayList;
     }
 
     @NonNull
@@ -37,7 +37,7 @@ public class CustomerViewHolder extends RecyclerView.Adapter<CustomerViewHolder.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // to set data to textview and imageview of each card layout
         String priceText;
-        OrderObject model = courseModelArrayList.get(position);
+        OrderObject model = orderList.get(position);
         holder.foodName.setText(model.getFoodName());
         holder.foodDesc.setText(model.getFoodDesc());
         priceText = "$" + String.format("%.2f", model.getPrice());
@@ -65,7 +65,7 @@ public class CustomerViewHolder extends RecyclerView.Adapter<CustomerViewHolder.
     public int getItemCount() {
         // this method is used for showing number
         // of card items in recycler view.
-        return courseModelArrayList.size();
+        return orderList.size();
     }
 
     // View holder class for initializing of

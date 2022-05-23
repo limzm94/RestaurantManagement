@@ -33,19 +33,18 @@ public class OwnerUI extends AppCompatActivity {
         adminBtn.setOnClickListener(v -> {
             Intent admin = new Intent(OwnerUI.this, AdminPageView.class);
             startActivity(admin);
-            finish();
         });
 
         customerBtn.setOnClickListener(v -> {
             Intent customer = new Intent(OwnerUI.this, CustomerView.class);
+            customer.putExtra("accountRole","Owner");
+            customer.putExtra("customerName","");
             startActivity(customer);
-            finish();
         });
 
         managerBtn.setOnClickListener(v -> {
             Intent manager = new Intent(OwnerUI.this, ManagerView.class);
             startActivity(manager);
-            finish();
         });
 
         logoutBtn.setOnClickListener(v -> finish());

@@ -19,7 +19,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class AdminPageView extends AppCompatActivity {
-    private RecyclerView adminRV;
     // Arraylist for storing data
     private ArrayList<UserObject> userAccList = new ArrayList<>();
     String searchRequirement = "";
@@ -34,8 +33,7 @@ public class AdminPageView extends AppCompatActivity {
         Button createAccBtn = findViewById(R.id.createAcc);
         Button logoutBtn = findViewById(R.id.adminLogOut);
         Button searchBtn = findViewById(R.id.searchBtn);
-        adminRV = findViewById(R.id.idRVAdmin);
-        FloatingActionButton homeFab = findViewById(R.id.homeFAB);
+        RecyclerView adminRV = findViewById(R.id.idRVAdmin);
 
         userAccList.addAll(viewUser.showUser(""));
         // we are initializing our adapter class and passing our arraylist to it.
@@ -49,19 +47,9 @@ public class AdminPageView extends AppCompatActivity {
         adminRV.setLayoutManager(linearLayoutManager);
         adminRV.setAdapter(adminAdapter);
 
-
         createAccBtn.setOnClickListener(v -> {
             Intent createAcc = new Intent(AdminPageView.this, CreateAccountView.class);
             startActivity(createAcc);
-            finish();
-        });
-
-
-        // need to check if owner log in to show the button
-        homeFab.setOnClickListener(v -> {
-            Intent createAcc = new Intent(AdminPageView.this, OwnerUI.class);
-            startActivity(createAcc);
-            finish();
         });
 
         searchBtn.setOnClickListener(v -> {

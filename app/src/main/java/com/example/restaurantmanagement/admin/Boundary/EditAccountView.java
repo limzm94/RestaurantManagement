@@ -65,8 +65,9 @@ public class EditAccountView extends AppCompatActivity {
                 Toast.makeText(EditAccountView.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
             else {
                 editUser.updateAcc(editedUsername, editedPassword, editedPersonName, editedStatus, editedRole, userKey);
-                Intent editAcc = new Intent(EditAccountView.this, AdminPageView.class);
-                startActivity(editAcc);
+                Intent intent = new Intent(EditAccountView.this, AdminPageView.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 finish();
             }
         });

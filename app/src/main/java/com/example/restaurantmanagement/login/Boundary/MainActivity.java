@@ -56,26 +56,32 @@ public class MainActivity extends AppCompatActivity {
                     switch (checkRole.checkRoles(user, pass)) {
                         case "Owner": {
                             Intent intent = new Intent(MainActivity.this, OwnerUI.class);
+                            intent.putExtra("accountRole","Owner");
                             startActivity(intent);
                             break;
                         }
                         case "Admin": {
                             Intent intent = new Intent(MainActivity.this, AdminPageView.class);
+                            intent.putExtra("accountRole","Admin");
                             startActivity(intent);
                             break;
                         }
                         case "Manager": {
                             Intent intent = new Intent(MainActivity.this, ManagerView.class);
+                            intent.putExtra("accountRole","Manager");
                             startActivity(intent);
                             break;
                         }
                         case "Staff": {
                             Intent intent = new Intent(MainActivity.this, StaffUI.class);
+                            intent.putExtra("accountRole","Staff");
                             startActivity(intent);
                             break;
                         }
                         default: {
                             Intent intent = new Intent(MainActivity.this, CustomerView.class);
+                            intent.putExtra("accountRole","Customer");
+                            intent.putExtra("customerName",user);
                             startActivity(intent);
                             break;
                         }
