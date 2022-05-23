@@ -22,7 +22,7 @@ public class CreateFoodMenu {
                 Toast.makeText(context, "Registration failed", Toast.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(context, "User already exists! please sign in", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Food Item already Exist!", Toast.LENGTH_LONG).show();
         }
     }
 }
