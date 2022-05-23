@@ -34,7 +34,6 @@ public class CustomerView extends AppCompatActivity {
         ChangeCustomer changeCustomer = new ChangeCustomer(CustomerView.this);
         CheckCustomer checkCustomer = new CheckCustomer(CustomerView.this);
         EditText customerNameText = findViewById(R.id.customerName);
-        Button changeCustomerBtn = findViewById(R.id.changeCustomerBtn);
         Button checkOutBtn = findViewById(R.id.checkOutBtn);
         Button logOutBtn = findViewById(R.id.logout_btn);
         Button couponBtn = findViewById(R.id.couponBtn);
@@ -93,7 +92,6 @@ public class CustomerView extends AppCompatActivity {
         });
 
         if (role.equals("Customer")) {
-            changeCustomerBtn.setEnabled(false);
             customerNameText.setText(customerName);
             customerNameText.setEnabled(false);
         } else {
