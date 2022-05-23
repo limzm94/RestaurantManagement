@@ -560,6 +560,42 @@ public class DBHandler extends SQLiteOpenHelper {
         return list;
     }
 
+    //get orderId that is fulfilled or unfulfilled
+    public List<Integer> getAllFulfilledEtc(String fulfilled) {
+        String[] params = new String[]{fulfilled};
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<Integer> list=new ArrayList<Integer>();
+        Cursor c = db.rawQuery("Select OrderId from OrderDetail where isFulfilled = ?", params);
+        if (c.moveToFirst()) {
+            list.add(c.getInt(0));
+        }
+        System.out.print(list);
+        return list;
+    }
+
+    //get all the order rows by orderID
+    public ArrayList<OrderObject> getOrderByID(String orderid) {
+        String[] params = new String[]{orderid};
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<OrderObject>  list=new ArrayList<OrderObject> ();
+        Cursor c = db.rawQuery("Select * from OrderDetail where OrderId = ?", params);
+        if (c.moveToFirst()) {
+            String foodname = c.getString(c.getColumnIndexOrThrow("ProductName"));
+            String fooddesc = c.getString(c.getColumnIndexOrThrow("Description"));
+            String isFulfilled = c.getString(c.getColumnIndexOrThrow("isFulfilled"));
+            String OrderDate = c.getString(c.getColumnIndexOrThrow("OrderDate"));
+            String CustomerName = c.getString(c.getColumnIndexOrThrow("CustomerName"));
+            int Quantity = c.getInt(c.getColumnIndexOrThrow("Quantity"));
+            int OrderId  = c.getInt(c.getColumnIndexOrThrow("OrderId"));
+            int Discount  = c.getInt(c.getColumnIndexOrThrow("Discount"));
+            int MenuId = c.getInt(c.getColumnIndexOrThrow("MenuId"));
+            Float price = c.getFloat(c.getColumnIndexOrThrow("Price"));
+            OrderObject order = new OrderObject(foodname,fooddesc, price,Quantity,CustomerName,isFulfilled, OrderId,MenuId, Discount, OrderDate);
+            list.add(order);
+        }
+        return list;
+    }
+
     //view monthly spending
     public int getMonthlyEarning(String date1, String date2) {
         String[] params = new String[]{"20/10/2013", "25/10/2013"};
