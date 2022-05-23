@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.admin.Controller.CreateUser;
+import com.example.restaurantmanagement.customer.Boundary.CustomerView;
 
 public class CreateAccountView extends AppCompatActivity {
     @Override
@@ -47,8 +48,9 @@ public class CreateAccountView extends AppCompatActivity {
                 Toast.makeText(CreateAccountView.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
             else {
                 createUser.createAcc(username, password, status, personName, role);
-                Intent createAcc = new Intent(CreateAccountView.this, AdminPageView.class);
-                startActivity(createAcc);
+                Intent intent = new Intent(CreateAccountView.this, AdminPageView.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 finish();
             }
         });

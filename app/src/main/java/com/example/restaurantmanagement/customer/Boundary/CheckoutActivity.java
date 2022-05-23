@@ -2,6 +2,7 @@ package com.example.restaurantmanagement.customer.Boundary;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.Button;
@@ -28,11 +29,12 @@ public class CheckoutActivity extends AppCompatActivity {
         Button submitOrderBtn = findViewById(R.id.confirmBtn);
         Button cancelBtn = findViewById(R.id.cancelBtn);
         ArrayList<OrderObject> orderList;
+        String customerName = getIntent().getStringExtra("customerName");
+        String role = getIntent().getStringExtra("accountRole");
 
         orderList = (ArrayList<OrderObject>)getIntent().getSerializableExtra("foodList");
         double totalCharge = 0.00;
         int discount = 0;
-        String customerName = "";
         StringBuilder cartSummary = new StringBuilder((String.format("%-13s %-3s %-5s %-8s %n", "Item", "Qty", "Price", "Subtotal")));
         for(OrderObject customerEntity : orderList) {
             System.out.println("Food name: "+ customerEntity.getFoodName());
@@ -40,7 +42,6 @@ public class CheckoutActivity extends AppCompatActivity {
             totalCharge += (customerEntity.getPrice() * customerEntity.getQuantity());
             System.out.println("Total Charge: " + totalCharge);
             discount = customerEntity.getDiscount();
-            customerName = customerEntity.getCustomerName();
             cartSummary.append(String.format("%-13s %-3d $%-5.2f $%-8.2f %n", customerEntity.getFoodName(), customerEntity.getQuantity(), customerEntity.getPrice(),
                     customerEntity.getQuantity() * customerEntity.getPrice()));
         }
@@ -54,9 +55,14 @@ public class CheckoutActivity extends AppCompatActivity {
 
         submitOrderBtn.setOnClickListener(v -> {
             sendOrder.submitOrder(orderList);
+            Intent intent = new Intent(this, CustomerView.class);
+            intent.putExtra("accountRole",role);
+            intent.putExtra("customerName",customerName);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
         });
 
         cancelBtn.setOnClickListener(v -> finish());
-
     }
 }

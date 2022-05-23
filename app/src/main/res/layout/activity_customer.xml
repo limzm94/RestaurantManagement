@@ -38,19 +38,13 @@
 
         <EditText
             android:id="@+id/customerName"
-            android:layout_width="120dp"
+            android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginHorizontal="10dp"
-            android:textSize="12sp"
-            android:inputType="textPersonName" />
+            android:textSize="13sp"
+            android:inputType="textPersonName"
+            android:autofillHints="Input username" />
 
-        <Button
-            android:id="@+id/changeCustomerBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/change_customer"
-            android:layout_marginHorizontal="5dp"
-            android:textSize="11sp" />
         <Button
             android:id="@+id/logout_btn"
             android:layout_width="wrap_content"

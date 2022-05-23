@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.example.restaurantmanagement.admin.Entity.UserEntity;
 import com.example.restaurantmanagement.admin.Entity.UserObject;
+import com.example.restaurantmanagement.customer.Entity.OrderObject;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -529,26 +530,33 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // Date string split
     // not working
-    public List<String> getOrdersByDate(String date) {
-        String[] params = new String[]{"20/10/2013"};
+    public ArrayList<OrderObject> getOrdersByDate(String date) {
+        String[] params = new String[]{date};
         SQLiteDatabase db = this.getWritableDatabase();
 //        ArrayList<String> tableString;
-        List<String> list=new ArrayList<>();
-        Cursor c = db.rawQuery("Select * from OrderDetail where DateOrdered = ?", params);
+        ArrayList<OrderObject> list=new ArrayList<>();
+        Cursor c = db.rawQuery("Select * from OrderDetail where OrderDate = ?", params);
         if (c.moveToFirst()) {
-            list.add(c.getString(c.getColumnIndexOrThrow("ProductName")));
-            list.add(c.getString(c.getColumnIndexOrThrow("Price")));
+            int id = c.getInt(c.getColumnIndexOrThrow("ID"));
+            String productName = c.getString(c.getColumnIndexOrThrow("ProductName"));
+            String quantity = c.getString(c.getColumnIndexOrThrow("Quantity"));
+            String price = c.getString(c.getColumnIndexOrThrow("Price"));
+            String isFulfilled  = c.getString(c.getColumnIndexOrThrow("isFulfilled"));
+            String OrderDate = c.getString(c.getColumnIndexOrThrow("OrderDate"));
+            OrderObject order = new OrderObject(productName,"",29.9,
+                    1,"", isFulfilled, id,id,20,OrderDate);
+            list.add(order);
         }
-        // day
-        int day = Integer.parseInt(date.substring(0, 1));
-        int month =  Integer.parseInt(date.substring(3, 4));
-        int year =  Integer.parseInt(date.substring(6, 9));
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, day);
-        int weekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
-
-        System.out.print(list);
+//        // day
+//        int day = Integer.parseInt(date.substring(0, 1));
+//        int month =  Integer.parseInt(date.substring(3, 4));
+//        int year =  Integer.parseInt(date.substring(6, 9));
+//
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.set(year, month, day);
+//        int weekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
+//
+//        System.out.print(list);
         return list;
     }
 

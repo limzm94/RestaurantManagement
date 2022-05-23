@@ -18,12 +18,12 @@ public class CreateUser {
 
         if (!checkUser.checkAcc(username)) {
             if (userEntity.insertUser(username, password, status, personName, role)) {
-                Toast.makeText(context, "Registered successfully", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Registered successfully", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(context, "Registration failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Registration failed", Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText(context, "User already exists!", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "User already exists!", Toast.LENGTH_SHORT).show();
         }
     }
 }
