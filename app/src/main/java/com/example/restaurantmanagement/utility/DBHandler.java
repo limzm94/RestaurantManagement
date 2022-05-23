@@ -177,6 +177,13 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(delete);
     }
 
+    public void deleteUser(int userID) {
+        SQLiteDatabase db = getReadableDatabase();
+        String delete = String.format("DELETE FROM Foods WHERE id = %d", userID);
+
+        db.execSQL(delete);
+    }
+
 
     // example to check if column exist
     public boolean columnExists(String value) {
