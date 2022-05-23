@@ -44,6 +44,8 @@
             android:label="Create Coupon"/>
         <activity android:name=".manager.Boundary.Coupon.EditCouponView"
             android:label="Edit Coupon"/>
+        <activity android:name=".owner.Boundary.OwnerView"
+            android:label="Analytics"/>
 
     </application>
 
