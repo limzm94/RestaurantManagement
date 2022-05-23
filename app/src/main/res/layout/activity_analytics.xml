@@ -17,6 +17,10 @@
             android:layout_weight="1"
             android:textSize="15sp"
             android:importantForAutofill="no" />
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
 
         <Button
             android:id="@+id/searchDateBtn"
@@ -25,5 +29,15 @@
             android:layout_weight="1"
             android:text="@string/search"
             android:textColor="@color/white" />
+
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/analyticsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="TextView" />
+
 </LinearLayout>

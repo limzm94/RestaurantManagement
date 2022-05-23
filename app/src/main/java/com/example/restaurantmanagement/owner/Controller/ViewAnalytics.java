@@ -2,6 +2,7 @@ package com.example.restaurantmanagement.owner.Controller;
 
 import android.content.Context;
 import com.example.restaurantmanagement.customer.Entity.FoodObject;
+import com.example.restaurantmanagement.customer.Entity.OrderObject;
 import com.example.restaurantmanagement.manager.Entity.FoodMenuEntity;
 import com.example.restaurantmanagement.owner.Entity.AnalyticsEntity;
 
@@ -14,9 +15,10 @@ public class ViewAnalytics {
         this.context = context;
     }
 
-    public ArrayList<FoodObject> showFoodMenu() {
-        FoodMenuEntity foodMenuEntity = new FoodMenuEntity(context);
-        return foodMenuEntity.listFoods();
+
+    public ArrayList<OrderObject> getAllAnalytics(String date) {
+        AnalyticsEntity analyticsEntity = new AnalyticsEntity(context);
+        return analyticsEntity.getAnalytics(date);
     }
 
     public boolean forTesting() {
