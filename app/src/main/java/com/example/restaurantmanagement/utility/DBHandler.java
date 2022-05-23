@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.example.restaurantmanagement.admin.Entity.UserEntity;
 import com.example.restaurantmanagement.admin.Entity.UserObject;
+import com.example.restaurantmanagement.customer.Entity.OrderObject;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -541,6 +542,42 @@ public class DBHandler extends SQLiteOpenHelper {
         int weekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
 
         System.out.print(list);
+        return list;
+    }
+
+    //get orderId that is fulfilled or unfulfilled
+    public List<String> getAllFulfilledEtc(String fulfilled) {
+        String[] params = new String[]{fulfilled};
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<String> list=new ArrayList<>();
+        Cursor c = db.rawQuery("Select OrderId from OrderDetail where isFulfilled = ?", params);
+        if (c.moveToFirst()) {
+            list.add(c.getString(0));
+        }
+        System.out.print(list);
+        return list;
+    }
+
+    //get all the order rows by orderID
+    public ArrayList<OrderObject> getOrderByID(String orderid) {
+        String[] params = new String[]{orderid};
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<OrderObject>  list=new ArrayList<OrderObject> ();
+        Cursor c = db.rawQuery("Select * from OrderDetail where OrderId = ?", params);
+        if (c.moveToFirst()) {
+            String foodname = c.getString(c.getColumnIndexOrThrow("ProductName"));
+            String fooddesc = c.getString(c.getColumnIndexOrThrow("Description"));
+            String isFulfilled = c.getString(c.getColumnIndexOrThrow("isFulfilled"));
+            String OrderDate = c.getString(c.getColumnIndexOrThrow("OrderDate"));
+            String CustomerName = c.getString(c.getColumnIndexOrThrow("CustomerName"));
+            int Quantity = c.getInt(c.getColumnIndexOrThrow("Quantity"));
+            int OrderId  = c.getInt(c.getColumnIndexOrThrow("OrderId"));
+            int Discount  = c.getInt(c.getColumnIndexOrThrow("Discount"));
+            int MenuId = c.getInt(c.getColumnIndexOrThrow("MenuId"));
+            Float price = c.getFloat(c.getColumnIndexOrThrow("Price"));
+            OrderObject order = new OrderObject(foodname,fooddesc, price,Quantity,CustomerName,isFulfilled, OrderId,MenuId, Discount, OrderDate);
+            list.add(order);
+        }
         return list;
     }
 
