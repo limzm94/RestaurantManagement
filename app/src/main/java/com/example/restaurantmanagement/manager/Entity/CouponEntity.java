@@ -47,4 +47,9 @@ public class CouponEntity {
         DBHandler DB = new DBHandler(context);
         DB.updateCouponInfo(couponCode, couponDesc, discount, status, couponId);
     }
+
+    public void removeCoupon(int couponCode) {
+        DBHandler DB = new DBHandler(context);
+        DB.deleteCoupon(couponCode);
+    }
 }

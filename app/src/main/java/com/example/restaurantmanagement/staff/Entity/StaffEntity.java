@@ -29,4 +29,9 @@ public class StaffEntity {
         DBHandler DB = new DBHandler(context);
         return DB.listOrderObject(orderId);
     }
+
+    public boolean checkFulfilled(int orderId){
+        DBHandler DB = new DBHandler(context);
+        return DB.checkOrderFulfilled(orderId);
+    }
 }

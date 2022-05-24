@@ -188,6 +188,12 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(delete);
     }
 
+    public void deleteCoupon(int couponId) {
+        SQLiteDatabase db = getReadableDatabase();
+        String delete = String.format("DELETE FROM Coupons WHERE menuId = %d", couponId);
+        db.execSQL(delete);
+    }
+
     public void deleteUser(int userID) {
         SQLiteDatabase db = getReadableDatabase();
         String delete = String.format("DELETE FROM Foods WHERE id = %d", userID);
@@ -278,6 +284,12 @@ public class DBHandler extends SQLiteOpenHelper {
     public Boolean checkCouponValid(String couponCode) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from coupons where code = ? and isActive = ?", new String[]{couponCode, "Active"});
+        return cursor.getCount() > 0;
+    }
+
+    public Boolean checkOrderFulfilled(int orderId) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select * from OrderDetail where orderId = ? and isFulfilled = ?", new String[]{String.valueOf(orderId), "Fulfilled"});
         return cursor.getCount() > 0;
     }
 

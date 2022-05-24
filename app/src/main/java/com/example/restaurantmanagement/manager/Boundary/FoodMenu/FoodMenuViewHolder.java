@@ -60,7 +60,7 @@ public class FoodMenuViewHolder extends RecyclerView.Adapter<FoodMenuViewHolder.
         });
 
         holder.deleteBtn.setOnClickListener(v -> {
-            deleteFoodMenu.insertFoodMenu(model.getFoodKey());
+            deleteFoodMenu.deleteFoodMenu(model.getFoodKey());
             foodModelArrayList.remove(holder.getAdapterPosition());
             notifyItemRemoved(holder.getAdapterPosition());
             notifyItemRangeChanged(holder.getAdapterPosition(), foodModelArrayList.size());
