@@ -18,4 +18,9 @@ public class StaffEntity {
         DBHandler DB = new DBHandler(context);
         return DB.listIsItFulfilled("OrderDetail", "OrderId", fulfill);
     }
+
+    public void markFulfilled(int orderId){
+        DBHandler DB = new DBHandler(context);
+        DB.updateOrderFulFilled(orderId);
+    }
 }

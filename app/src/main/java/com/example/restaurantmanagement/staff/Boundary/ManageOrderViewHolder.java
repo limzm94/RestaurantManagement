@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.customer.Entity.OrderObject;
 import com.example.restaurantmanagement.manager.Boundary.Coupon.EditCouponView;
+import com.example.restaurantmanagement.staff.Controller.MarkOrderFulfilled;
 
 import java.util.ArrayList;
 
@@ -40,6 +41,7 @@ public class ManageOrderViewHolder extends RecyclerView.Adapter<ManageOrderViewH
     @Override
     public void onBindViewHolder(@NonNull ManageOrderViewHolder.ViewHolder holder, int position) {
         // to set data to textview and imageview of each card layout
+        MarkOrderFulfilled markOrderFulfilled = new MarkOrderFulfilled(context);
         Integer model = orderObjectArrayList.get(position);
         holder.orderId.setText(model.toString());
         holder.viewBtn.setOnClickListener(v -> {
@@ -51,6 +53,10 @@ public class ManageOrderViewHolder extends RecyclerView.Adapter<ManageOrderViewH
 
         holder.markBtn.setOnClickListener(v -> {
             // need to change the isFulfilled in the database from Unfulfilled to Fulfilled
+            markOrderFulfilled.markFulFilled(model);
+            orderObjectArrayList.remove(holder.getAdapterPosition());
+            notifyItemRemoved(holder.getAdapterPosition());
+            notifyItemRangeChanged(holder.getAdapterPosition(), orderObjectArrayList.size());
         });
     }
 

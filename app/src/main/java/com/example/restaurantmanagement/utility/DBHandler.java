@@ -392,6 +392,13 @@ public class DBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public void updateOrderFulFilled(int orderId) {
+        SQLiteDatabase db = getReadableDatabase();
+        ContentValues args = new ContentValues();
+        args.put("isFulfilled", "Fulfilled");
+        db.update("OrderDetail", args, "OrderId" + "=" + orderId, null);
+    }
+
     public void updateUserInfo(String username, String password, String personName, String status, String role, int userKey) {
         SQLiteDatabase db = getReadableDatabase();
         ContentValues args = new ContentValues();
@@ -640,9 +647,7 @@ public class DBHandler extends SQLiteOpenHelper {
             int id = c.getInt(c.getColumnIndexOrThrow("ID"));
             String productId = c.getString(c.getColumnIndexOrThrow("ProductId"));
 
-
         }
-
         return orders;
     }
 
