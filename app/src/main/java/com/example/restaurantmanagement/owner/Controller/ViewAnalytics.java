@@ -16,14 +16,56 @@ public class ViewAnalytics {
     }
 
 
-    public ArrayList<OrderObject> getAllAnalytics(String date) {
+    public ArrayList<OrderObject> getAllSpending() {
         AnalyticsEntity analyticsEntity = new AnalyticsEntity(context);
-        return analyticsEntity.getAnalytics(date);
+        return analyticsEntity.getSpendingAnalytics();
     }
 
-    public boolean forTesting() {
+    public int getTodayEarnings(String date) {
         AnalyticsEntity analyticsEntity = new AnalyticsEntity(context);
-        return analyticsEntity.insertAnalytics();
+        return analyticsEntity.getDailyEarnings(date);
     }
+
+    public int getMonthlyEarnings(String date) {
+        AnalyticsEntity analyticsEntity = new AnalyticsEntity(context);
+        return analyticsEntity.getMonthlyEarnings(date);
+    }
+
+    public int getYearlyEarnings(String date) {
+        AnalyticsEntity analyticsEntity = new AnalyticsEntity(context);
+        return analyticsEntity.getYearlyEarnings(date);
+    }
+
+    // menu recommendation
+    public String getMenuRecommendationToday(String date) {
+        AnalyticsEntity analyticsEntity = new AnalyticsEntity(context);
+        return analyticsEntity.getTdyFoodPreference(date);
+    }
+
+    public String getMenuRecommendationMonth(String date) {
+        AnalyticsEntity analyticsEntity = new AnalyticsEntity(context);
+        return analyticsEntity.getMthFoodPreference(date);
+    }
+
+    public String getMenuRecommendationYear(String date) {
+        AnalyticsEntity analyticsEntity = new AnalyticsEntity(context);
+        return analyticsEntity.getYearFoodPreference(date);
+    }
+
+    public int getFrequencyToday(String date) {
+        AnalyticsEntity analyticsEntity = new AnalyticsEntity(context);
+        return analyticsEntity.getFrqVisit(date);
+    }
+
+    public int getFrequencyYear(String date) {
+        AnalyticsEntity analyticsEntity = new AnalyticsEntity(context);
+        return analyticsEntity.getFrqVisitYear(date);
+    }
+
+    public int getFrequencyMonth(String date) {
+        AnalyticsEntity analyticsEntity = new AnalyticsEntity(context);
+        return analyticsEntity.getFrqVisitMonth(date);
+    }
+
 }
 

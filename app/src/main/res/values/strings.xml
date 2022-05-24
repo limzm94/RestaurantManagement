@@ -60,4 +60,15 @@
             <item>Staff</item>
             <item>Customer</item>
         </string-array>
+    <string-array name="year">
+        <item>Year</item>
+        <item>Month</item>
+        <item>Day</item>
+    </string-array>
+    <string-array name="filterby">
+        <item>View spending pattern</item>
+        <item>View frequency of visit</item>
+        <item>View preference</item>
+        <item>View earning</item>
+    </string-array>
 </resources>

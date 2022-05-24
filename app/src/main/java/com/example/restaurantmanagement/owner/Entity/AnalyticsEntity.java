@@ -13,16 +13,64 @@ public class AnalyticsEntity {
         this.context = context;
     }
 
-    public boolean insertAnalytics() {
+
+    public ArrayList<OrderObject> getSpendingAnalytics(){
         DBHandler DB = new DBHandler(context);
-        return DB.insertOrderDetails("food", "21-03-1999",29.9,29.9,1,"Jade", "0",1,2,0);
+        return DB.getSpendingHabit();
     }
 
-    //TODO: un hardcode this
-    public ArrayList<OrderObject> getAnalytics(String date){
+
+    // earnings
+    public int getDailyEarnings(String date){
         DBHandler DB = new DBHandler(context);
-        return DB.getOrdersByDate("21-03-1999");
+        return DB.getDailyEarnings(date);
     }
+
+    public int getMonthlyEarnings(String date){
+        DBHandler DB = new DBHandler(context);
+        return DB.getMonthlyEarnings(date);
+    }
+
+    public int getYearlyEarnings(String date){
+        DBHandler DB = new DBHandler(context);
+        return DB.getYearlyEarnings(date);
+    }
+
+    // food preference
+
+    public String getTdyFoodPreference(String date) {
+        DBHandler DB = new DBHandler(context);
+        return DB.getPreferenceFood(date);
+    }
+
+    public String getMthFoodPreference(String date) {
+        DBHandler DB = new DBHandler(context);
+        return DB.getMonthPreferenceFood(date);
+    }
+
+    public String getYearFoodPreference(String date){
+        DBHandler DB = new DBHandler(context);
+        return DB.getYearPreferenceFood(date);
+    }
+
+    // frequency of visit
+
+    public int getFrqVisit(String date){
+        DBHandler DB = new DBHandler(context);
+        return DB.getFrequencyVisit(date);
+    }
+
+    public int getFrqVisitMonth(String date){
+        DBHandler DB = new DBHandler(context);
+        return DB.getFrequencyVisitByMonth(date);
+    }
+
+    public int getFrqVisitYear(String date){
+        DBHandler DB = new DBHandler(context);
+        return DB.getFrequencyVisitByYear(date);
+    }
+
+
 
 
 }
