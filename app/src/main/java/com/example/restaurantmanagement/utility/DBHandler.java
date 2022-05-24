@@ -16,8 +16,10 @@ import com.example.restaurantmanagement.customer.Entity.OrderObject;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 public class DBHandler extends SQLiteOpenHelper {
 
@@ -92,8 +94,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 "DiscountedPrice FLOAT," +
                 "CustomerName TEXT," +
                 "UserID INTEGER," +
-                "OrderDate TEXT,"+
-                "MenuId TEXT,"+
+                "OrderDate TEXT," +
+                "MenuId TEXT," +
                 "OrderId INTEGER," +
                 "isFulfilled TEXT)";
 
@@ -271,8 +273,6 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 
-
-
     //to list all the data in the table by column
     public ArrayList<String> listColumnsDataStr(String specifiedTable, String specifiedColumn) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
@@ -335,6 +335,18 @@ public class DBHandler extends SQLiteOpenHelper {
         return tableInteger;
     }
 
+    public ArrayList<Integer> listUnfulfilled(String specifiedTable, String specifiedColumn) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Log.d("", "tableToString called");
+        ArrayList<Integer> tableInteger;
+        Cursor allRows = MyDB.rawQuery("SELECT * FROM " + specifiedTable + " WHERE isFulfilled = 'Unfulfilled'", null);
+        tableInteger = cursorToInt(allRows, specifiedColumn);
+        Set<Integer> set = new HashSet<>(tableInteger);
+        tableInteger.clear();
+        tableInteger.addAll(set);
+        return tableInteger;
+    }
+
     //to list all the data in the table by column
     @SuppressLint("Range")
     public ArrayList<Integer> cursorToInt(Cursor cursor, String specifiedColumn) {
@@ -351,6 +363,15 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         return userList;
     }
+
+   /* public ArrayList<Integer> listOrderId(String fulfilled) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Log.d("", "tableToString called");
+        ArrayList<Integer> tableInteger;
+        Cursor allRows = MyDB.rawQuery("SELECT * FROM " + specifiedTable, null);
+        tableInteger = cursorToInt(allRows, specifiedColumn);
+        return tableInteger;
+    }*/
 
 
     public Boolean insertUserAdmin(String username, String password, String role) {
@@ -426,7 +447,7 @@ public class DBHandler extends SQLiteOpenHelper {
             String password = c.getString(c.getColumnIndexOrThrow("password"));
             String status = c.getString(c.getColumnIndexOrThrow("status"));
             String position = c.getString(c.getColumnIndexOrThrow("role"));
-            user = new UserObject(id,name,status,position,username,password);
+            user = new UserObject(id, name, status, position, username, password);
 
         }
         return user;
@@ -445,7 +466,7 @@ public class DBHandler extends SQLiteOpenHelper {
             String password = c.getString(c.getColumnIndexOrThrow("password"));
             String status = c.getString(c.getColumnIndexOrThrow("status"));
             String position = c.getString(c.getColumnIndexOrThrow("role"));
-            UserObject user = new UserObject(id,name,status,position,username,password);
+            UserObject user = new UserObject(id, name, status, position, username, password);
             users.add(user);
 
         }
@@ -513,7 +534,7 @@ public class DBHandler extends SQLiteOpenHelper {
         contentValues.put("OrderId", orderId);
         contentValues.put("isFulfilled", isFulfilled);
         long result = MyDB.insert("OrderDetail", null, contentValues);
-       // return result != -1;
+        // return result != -1;
     }
 
     public int getDiscount(String code) {
@@ -533,7 +554,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String[] params = new String[]{"20/10/2013"};
         SQLiteDatabase db = this.getWritableDatabase();
 //        ArrayList<String> tableString;
-        List<String> list=new ArrayList<>();
+        List<String> list = new ArrayList<>();
         Cursor c = db.rawQuery("Select * from OrderDetail where DateOrdered = ?", params);
         if (c.moveToFirst()) {
             list.add(c.getString(c.getColumnIndexOrThrow("ProductName")));
@@ -541,8 +562,8 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         // day
         int day = Integer.parseInt(date.substring(0, 1));
-        int month =  Integer.parseInt(date.substring(3, 4));
-        int year =  Integer.parseInt(date.substring(6, 9));
+        int month = Integer.parseInt(date.substring(3, 4));
+        int year = Integer.parseInt(date.substring(6, 9));
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, day);
@@ -564,11 +585,12 @@ public class DBHandler extends SQLiteOpenHelper {
         return list;
     }
 
+
     //get all the order rows by orderID
     public ArrayList<OrderObject> getOrderByID(String orderid) {
         String[] params = new String[]{orderid};
         SQLiteDatabase db = this.getWritableDatabase();
-        ArrayList<OrderObject>  list=new ArrayList<OrderObject> ();
+        ArrayList<OrderObject> list = new ArrayList<OrderObject>();
         Cursor c = db.rawQuery("Select * from OrderDetail where OrderId = ?", params);
         if (c.moveToFirst()) {
             String foodname = c.getString(c.getColumnIndexOrThrow("ProductName"));
@@ -577,11 +599,11 @@ public class DBHandler extends SQLiteOpenHelper {
             String OrderDate = c.getString(c.getColumnIndexOrThrow("OrderDate"));
             String CustomerName = c.getString(c.getColumnIndexOrThrow("CustomerName"));
             int Quantity = c.getInt(c.getColumnIndexOrThrow("Quantity"));
-            int OrderId  = c.getInt(c.getColumnIndexOrThrow("OrderId"));
-            int Discount  = c.getInt(c.getColumnIndexOrThrow("Discount"));
+            int OrderId = c.getInt(c.getColumnIndexOrThrow("OrderId"));
+            int Discount = c.getInt(c.getColumnIndexOrThrow("Discount"));
             int MenuId = c.getInt(c.getColumnIndexOrThrow("MenuId"));
             Float price = c.getFloat(c.getColumnIndexOrThrow("Price"));
-            OrderObject order = new OrderObject(foodname,fooddesc, price,Quantity,CustomerName,isFulfilled, OrderId,MenuId, Discount, OrderDate);
+            OrderObject order = new OrderObject(foodname, fooddesc, price, Quantity, CustomerName, isFulfilled, OrderId, MenuId, Discount, OrderDate);
             list.add(order);
         }
         return list;
@@ -593,7 +615,7 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 //        ArrayList<String> tableString;
         List<Number> earnings;
-        List<String> list=new ArrayList<>();
+        List<String> list = new ArrayList<>();
         Cursor c = db.rawQuery("Select Price from OrderDetail where OrderDate BETWEEN ? AND ?", params);
         int total = 0;
         if (c.moveToFirst()) {
@@ -610,7 +632,7 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<Order> orders = new ArrayList<Order>();
         List<Number> earnings;
-        List<String> list=new ArrayList<>();
+        List<String> list = new ArrayList<>();
         Cursor c = db.rawQuery("Select * from OrderDetail where UserID = ?", params);
         int total = 0;
         String date;
@@ -627,7 +649,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public int getOrderID() {
         String[] params = new String[]{};
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("Select OrderId from OrderDetail ORDER BY OrderId DESC LIMIT 1",params);
+        Cursor c = db.rawQuery("Select OrderId from OrderDetail ORDER BY OrderId DESC LIMIT 1", params);
         int name = 0;
         if (c.moveToFirst()) {
             name = c.getInt(0);

@@ -11,7 +11,13 @@ public class EditFoodMenu {
     }
 
     public void updateFoodItem(String foodName, String foodDesc, double price, int foodKey) {
-        FoodMenuEntity foodMenuEntity = new FoodMenuEntity(context);
-        foodMenuEntity.editFood(foodName, foodDesc, price, foodKey);
+        CheckMenuItem checkMenuItem = new CheckMenuItem(context);
+        if (checkMenuItem.checkFoodItem(foodName)) {
+            FoodMenuEntity foodMenuEntity = new FoodMenuEntity(context);
+            foodMenuEntity.editFood(foodName, foodDesc, price, foodKey);
+        } else {
+
+        }
+
     }
 }

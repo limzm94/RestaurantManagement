@@ -30,14 +30,17 @@
         <entry key="..\:/Users/lzm_1/AndroidStudioProjects/RestaurantManagement/app/src/main/res/layout/activity_customer.xml" value="0.33" />
         <entry key="..\:/Users/lzm_1/AndroidStudioProjects/RestaurantManagement/app/src/main/res/layout/activity_food.xml" value="0.3546195652173913" />
         <entry key="..\:/Users/lzm_1/AndroidStudioProjects/RestaurantManagement/app/src/main/res/layout/activity_main.xml" value="0.12993920972644377" />
+        <entry key="..\:/Users/lzm_1/AndroidStudioProjects/RestaurantManagement/app/src/main/res/layout/activity_manage_order.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/lzm_1/AndroidStudioProjects/RestaurantManagement/app/src/main/res/layout/activity_manager.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/lzm_1/AndroidStudioProjects/RestaurantManagement/app/src/main/res/layout/activity_manger.xml" value="0.3546195652173913" />
         <entry key="..\:/Users/lzm_1/AndroidStudioProjects/RestaurantManagement/app/src/main/res/layout/activity_owner.xml" value="0.24322916666666666" />
+        <entry key="..\:/Users/lzm_1/AndroidStudioProjects/RestaurantManagement/app/src/main/res/layout/activity_staff.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/lzm_1/AndroidStudioProjects/RestaurantManagement/app/src/main/res/layout/admin_activity.xml" value="0.2" />
         <entry key="..\:/Users/lzm_1/AndroidStudioProjects/RestaurantManagement/app/src/main/res/layout/admin_cardview.xml" value="0.33" />
         <entry key="..\:/Users/lzm_1/AndroidStudioProjects/RestaurantManagement/app/src/main/res/layout/coupon_cardview.xml" value="0.3546195652173913" />
         <entry key="..\:/Users/lzm_1/AndroidStudioProjects/RestaurantManagement/app/src/main/res/layout/customer_cardview.xml" value="0.1" />
-        <entry key="..\:/Users/lzm_1/AndroidStudioProjects/RestaurantManagement/app/src/main/res/layout/food_cardview.xml" value="0.3546195652173913" />
+        <entry key="..\:/Users/lzm_1/AndroidStudioProjects/RestaurantManagement/app/src/main/res/layout/food_cardview.xml" value="0.28285714285714286" />
+        <entry key="..\:/Users/lzm_1/AndroidStudioProjects/RestaurantManagement/app/src/main/res/layout/manage_order_cardview.xml" value="0.33" />
         <entry key="..\:/Users/lzm_1/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_item.xml" value="0.26902173913043476" />
       </map>
     </option>
