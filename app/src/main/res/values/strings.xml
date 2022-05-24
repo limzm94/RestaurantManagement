@@ -51,8 +51,15 @@
     <string name="description">Description</string>
     <string name="discount_percentage">Discount Percentage</string>
     <string name="search">Search</string>
-    <string name="submit_order">Submit order</string>
+    <string name="submit_order">Pay and submit order</string>
     <string name="delete">Delete</string>
+    <string name="manage_order">Manage Order</string>
+    <string name="order_food">Order Food</string>
+    <string name="view_unfulfilled">View Unfulfilled</string>
+    <string name="view_fulfilled">View Fulfilled</string>
+    <string name="view_order">View Order</string>
+    <string name="mark_fulfilled">Mark Fulfilled</string>
+    <string name="edit_order">Edit order</string>
     <string-array name="roles">
             <item>Owner</item>
             <item>Admin</item>

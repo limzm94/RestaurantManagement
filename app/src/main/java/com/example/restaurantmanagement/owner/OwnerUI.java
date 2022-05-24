@@ -12,6 +12,7 @@ import com.example.restaurantmanagement.admin.Boundary.AdminPageView;
 import com.example.restaurantmanagement.customer.Boundary.CustomerView;
 import com.example.restaurantmanagement.manager.Boundary.ManagerView;
 import com.example.restaurantmanagement.owner.Boundary.OwnerView;
+import com.example.restaurantmanagement.staff.Boundary.StaffView;
 
 public class OwnerUI extends AppCompatActivity {
     @Override
@@ -29,6 +30,11 @@ public class OwnerUI extends AppCompatActivity {
             Intent createAcc = new Intent(OwnerUI.this, OwnerView.class);
             startActivity(createAcc);
             finish();
+        });
+
+        staffBtn.setOnClickListener(v -> {
+            Intent admin = new Intent(OwnerUI.this, StaffView.class);
+            startActivity(admin);
         });
 
         adminBtn.setOnClickListener(v -> {

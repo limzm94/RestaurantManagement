@@ -18,7 +18,7 @@ import com.example.restaurantmanagement.login.Controller.CheckRole;
 import com.example.restaurantmanagement.manager.Boundary.ManagerView;
 import com.example.restaurantmanagement.manager.Controller.FoodMenu.CreateFoodMenu;
 import com.example.restaurantmanagement.owner.OwnerUI;
-import com.example.restaurantmanagement.staffs.StaffUI;
+import com.example.restaurantmanagement.staff.Boundary.StaffView;
 
 public class MainActivity extends AppCompatActivity {
     //ZM test push
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         }
                         case "Staff": {
-                            Intent intent = new Intent(MainActivity.this, StaffUI.class);
+                            Intent intent = new Intent(MainActivity.this, StaffView.class);
                             intent.putExtra("accountRole","Staff");
                             startActivity(intent);
                             break;

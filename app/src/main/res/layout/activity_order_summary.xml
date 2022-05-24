@@ -23,11 +23,11 @@
         android:layout_alignParentBottom="true" >
 
         <Button
-            android:id="@+id/confirmBtn"
+            android:id="@+id/editOrderBtn"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:textSize="11sp"
-            android:text="@string/submit_order"
+            android:text="@string/edit_order"
             android:layout_weight="1"
             android:layout_marginHorizontal="5dp"/>
         <Button
@@ -38,7 +38,5 @@
             android:layout_weight="1"
             android:textSize="11sp"
             />
-
     </LinearLayout>
-
 </RelativeLayout>

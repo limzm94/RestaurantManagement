@@ -28,7 +28,7 @@
             android:label="Owner Homepage"/>
         <activity android:name=".customer.Boundary.CustomerView"
             android:label="Food Menu" />
-        <activity android:name=".customer.Boundary.CheckoutActivity"
+        <activity android:name=".customer.Boundary.CheckoutView"
             android:label="Cart Checkout"/>
         <activity android:name=".manager.Boundary.FoodMenu.FoodMenuView"
             android:label="Manage Menu"/>
@@ -46,7 +46,12 @@
             android:label="Edit Coupon"/>
         <activity android:name=".owner.Boundary.OwnerView"
             android:label="Analytics"/>
-
-    </application>
+    <activity android:name=".staff.Boundary.StaffView"
+            android:label="Staff Homepage"/>
+        <activity android:name=".staff.Boundary.ManageOrderView"
+            android:label="Manage Order"/>
+        <activity android:name=".staff.Boundary.OrderSummaryView"
+            android:label="Order Summary"/>
+</application>
 
 </manifest>

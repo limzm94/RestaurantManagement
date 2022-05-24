@@ -1,30 +1,27 @@
 package com.example.restaurantmanagement.customer.Boundary;
 
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.customer.Controller.LatestOrderId;
 import com.example.restaurantmanagement.customer.Controller.SendOrder;
 import com.example.restaurantmanagement.customer.Entity.OrderObject;
 
 import java.util.ArrayList;
 
-public class CheckoutActivity extends AppCompatActivity {
+public class CheckoutView extends AppCompatActivity {
     @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
-        SendOrder sendOrder = new SendOrder(CheckoutActivity.this);
+        SendOrder sendOrder = new SendOrder(CheckoutView.this);
         TextView summaryText = findViewById(R.id.orderSummary);
         Button submitOrderBtn = findViewById(R.id.confirmBtn);
         Button cancelBtn = findViewById(R.id.cancelBtn);
