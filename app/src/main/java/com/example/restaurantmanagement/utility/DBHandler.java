@@ -300,6 +300,40 @@ public class DBHandler extends SQLiteOpenHelper {
         return userList;
     }
 
+
+    //to list all the data in the table by column
+    public ArrayList<OrderObject> listOrderObject(int orderId) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Log.d("", "tableToString called");
+        ArrayList<OrderObject> tableString;
+        Cursor allRows = MyDB.rawQuery("SELECT * FROM OrderDetail WHERE orderId = " + "'" + orderId  +"'" , null);
+        tableString = cursorToOrderObject(allRows);
+        return tableString;
+    }
+
+    //to list all the data in the table by column
+    @SuppressLint("Range")
+    public ArrayList<OrderObject> cursorToOrderObject(Cursor cursor) {
+        ArrayList<OrderObject> orderList = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+           // String[] columnNames = cursor.getColumnNames();
+            do {
+                String foodName = cursor.getString(cursor.getColumnIndexOrThrow("ProductName"));
+                String isFulfilled = cursor.getString(cursor.getColumnIndexOrThrow("isFulfilled"));
+                String OrderDate = cursor.getString(cursor.getColumnIndexOrThrow("OrderDate"));
+                String CustomerName = cursor.getString(cursor.getColumnIndexOrThrow("CustomerName"));
+                int Quantity = cursor.getInt(cursor.getColumnIndexOrThrow("Quantity"));
+                int OrderId = cursor.getInt(cursor.getColumnIndexOrThrow("OrderId"));
+                int Discount = cursor.getInt(cursor.getColumnIndexOrThrow("Discount"));
+                int MenuId = cursor.getInt(cursor.getColumnIndexOrThrow("MenuId"));
+                Float price = cursor.getFloat(cursor.getColumnIndexOrThrow("Price"));
+                OrderObject order = new OrderObject(foodName, "", price, Quantity, CustomerName, isFulfilled, OrderId, MenuId, Discount, OrderDate);
+                orderList.add(order);
+            } while (cursor.moveToNext());
+        }
+        return orderList;
+    }
+
     public ArrayList<Double> listColumnsDataDbl(String specifiedTable, String specifiedColumn) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Log.d("", "tableToString called");
@@ -592,14 +626,13 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
     //get all the order rows by orderID
-    public ArrayList<OrderObject> getOrderByID(String orderid) {
-        String[] params = new String[]{orderid};
+    public ArrayList<OrderObject> getOrderByID(String orderId) {
+        String[] params = new String[]{orderId};
         SQLiteDatabase db = this.getWritableDatabase();
-        ArrayList<OrderObject> list = new ArrayList<OrderObject>();
+        ArrayList<OrderObject> list = new ArrayList<>();
         Cursor c = db.rawQuery("Select * from OrderDetail where OrderId = ?", params);
         if (c.moveToFirst()) {
             String foodname = c.getString(c.getColumnIndexOrThrow("ProductName"));
-            //String fooddesc = c.getString(c.getColumnIndexOrThrow("Description"));
             String isFulfilled = c.getString(c.getColumnIndexOrThrow("isFulfilled"));
             String OrderDate = c.getString(c.getColumnIndexOrThrow("OrderDate"));
             String CustomerName = c.getString(c.getColumnIndexOrThrow("CustomerName"));

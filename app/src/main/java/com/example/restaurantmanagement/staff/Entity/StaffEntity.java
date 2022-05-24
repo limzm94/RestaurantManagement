@@ -27,6 +27,6 @@ public class StaffEntity {
 
     public ArrayList<OrderObject> listOrder(int orderId){
         DBHandler DB = new DBHandler(context);
-        return DB.getOrderByID(String.valueOf(orderId));
+        return DB.listOrderObject(orderId);
     }
 }

@@ -48,7 +48,7 @@ public class ManageOrderViewHolder extends RecyclerView.Adapter<ManageOrderViewH
         holder.viewBtn.setOnClickListener(v -> {
             // send the account info to edit account activity
             Intent intent = new Intent(context, OrderSummaryView.class);
-            intent.putExtra("orderId", orderObjectArrayList.get(model));
+            intent.putExtra("orderId", model);
             context.startActivity(intent);
         });
 
