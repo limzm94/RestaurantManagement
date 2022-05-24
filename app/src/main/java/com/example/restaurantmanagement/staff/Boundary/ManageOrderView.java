@@ -13,13 +13,15 @@ import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.customer.Entity.OrderObject;
 import com.example.restaurantmanagement.manager.Boundary.Coupon.CouponViewHolder;
 import com.example.restaurantmanagement.manager.Boundary.Coupon.CreateCouponView;
+import com.example.restaurantmanagement.staff.Controller.ListFulfilledOrders;
 import com.example.restaurantmanagement.staff.Controller.ListUnfulfilledOrders;
 
 import java.util.ArrayList;
 
 public class ManageOrderView extends AppCompatActivity {
     // create delete food menu item function
-    @SuppressLint("DefaultLocale")
+    ArrayList<Integer> orderObjects = new ArrayList<>();
+    @SuppressLint({"DefaultLocale", "NotifyDataSetChanged"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +30,9 @@ public class ManageOrderView extends AppCompatActivity {
         Button viewFulfilled = findViewById(R.id.viewFulfilled);
         RecyclerView manageOrderRV = findViewById(R.id.idRVManageOrderManager);
         ListUnfulfilledOrders listUnfulfilledOrders = new ListUnfulfilledOrders(ManageOrderView.this);
-        ArrayList<Integer> orderObjects;
-        orderObjects = listUnfulfilledOrders.showFulFilled();
+        ListFulfilledOrders listFulfilledOrders = new ListFulfilledOrders(ManageOrderView.this);
+
+        orderObjects.addAll(listUnfulfilledOrders.showFulFilled());
         System.out.println(orderObjects + "Integer list");
 
         // we are initializing our adapter class and passing our arraylist to it.
@@ -43,12 +46,20 @@ public class ManageOrderView extends AppCompatActivity {
 
         viewUnfulfilled.setOnClickListener(v -> {
             //load the arraylist with orders that is unfulfilled
+            orderObjects.clear();
+            orderObjects.addAll(listUnfulfilledOrders.showFulFilled());
             //notify changes
+            manageOrderAdapter.notifyDataSetChanged();
+
         });
 
         viewFulfilled.setOnClickListener(v -> {
             //load the arraylist with orders that is fulfilled
+            orderObjects.clear();
+            orderObjects.addAll(listFulfilledOrders.showFulFilled());
             //notify changes
+            manageOrderAdapter.notifyDataSetChanged();
+
         });
 
     }

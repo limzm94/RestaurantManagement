@@ -335,11 +335,11 @@ public class DBHandler extends SQLiteOpenHelper {
         return tableInteger;
     }
 
-    public ArrayList<Integer> listUnfulfilled(String specifiedTable, String specifiedColumn) {
+    public ArrayList<Integer> listIsItFulfilled(String specifiedTable, String specifiedColumn, String isItFulfilled) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Log.d("", "tableToString called");
         ArrayList<Integer> tableInteger;
-        Cursor allRows = MyDB.rawQuery("SELECT * FROM " + specifiedTable + " WHERE isFulfilled = 'Unfulfilled'", null);
+        Cursor allRows = MyDB.rawQuery("SELECT * FROM " + specifiedTable + " WHERE isFulfilled = " + "'" +isItFulfilled + "'", null);
         tableInteger = cursorToInt(allRows, specifiedColumn);
         Set<Integer> set = new HashSet<>(tableInteger);
         tableInteger.clear();
