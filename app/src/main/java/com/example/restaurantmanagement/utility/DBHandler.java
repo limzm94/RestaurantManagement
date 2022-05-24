@@ -475,9 +475,7 @@ public class DBHandler extends SQLiteOpenHelper {
             String position = c.getString(c.getColumnIndexOrThrow("role"));
             UserObject user = new UserObject(id, name, status, position, username, password);
             users.add(user);
-
         }
-
         return users;
     }
 
@@ -601,7 +599,7 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor c = db.rawQuery("Select * from OrderDetail where OrderId = ?", params);
         if (c.moveToFirst()) {
             String foodname = c.getString(c.getColumnIndexOrThrow("ProductName"));
-            String fooddesc = c.getString(c.getColumnIndexOrThrow("Description"));
+            //String fooddesc = c.getString(c.getColumnIndexOrThrow("Description"));
             String isFulfilled = c.getString(c.getColumnIndexOrThrow("isFulfilled"));
             String OrderDate = c.getString(c.getColumnIndexOrThrow("OrderDate"));
             String CustomerName = c.getString(c.getColumnIndexOrThrow("CustomerName"));
@@ -610,7 +608,7 @@ public class DBHandler extends SQLiteOpenHelper {
             int Discount = c.getInt(c.getColumnIndexOrThrow("Discount"));
             int MenuId = c.getInt(c.getColumnIndexOrThrow("MenuId"));
             Float price = c.getFloat(c.getColumnIndexOrThrow("Price"));
-            OrderObject order = new OrderObject(foodname, fooddesc, price, Quantity, CustomerName, isFulfilled, OrderId, MenuId, Discount, OrderDate);
+            OrderObject order = new OrderObject(foodname, "", price, Quantity, CustomerName, isFulfilled, OrderId, MenuId, Discount, OrderDate);
             list.add(order);
         }
         return list;
@@ -646,7 +644,6 @@ public class DBHandler extends SQLiteOpenHelper {
         if (c != null && c.moveToFirst()) {
             int id = c.getInt(c.getColumnIndexOrThrow("ID"));
             String productId = c.getString(c.getColumnIndexOrThrow("ProductId"));
-
         }
         return orders;
     }

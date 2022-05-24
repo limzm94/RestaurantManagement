@@ -63,7 +63,7 @@ public class CustomerView extends AppCompatActivity {
                 Toast.makeText(CustomerView.this, "Invalid username", Toast.LENGTH_LONG).show();
             } else {
                 changeCustomer.changeCustomer(orderList, customerNameText.getText().toString());
-                Intent cartCheckOut = new Intent(CustomerView.this, CheckoutActivity.class);
+                Intent cartCheckOut = new Intent(CustomerView.this, CheckoutView.class);
                 cartCheckOut.putExtra("foodList", orderList);
                 cartCheckOut.putExtra("accountRole", role);
                 cartCheckOut.putExtra("customerName", customerNameText.getText().toString());

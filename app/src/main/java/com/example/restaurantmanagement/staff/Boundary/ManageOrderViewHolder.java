@@ -16,6 +16,7 @@ import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.customer.Entity.OrderObject;
 import com.example.restaurantmanagement.manager.Boundary.Coupon.EditCouponView;
 import com.example.restaurantmanagement.staff.Controller.MarkOrderFulfilled;
+import com.example.restaurantmanagement.staff.Controller.ViewOrderSummary;
 
 import java.util.ArrayList;
 
@@ -46,8 +47,8 @@ public class ManageOrderViewHolder extends RecyclerView.Adapter<ManageOrderViewH
         holder.orderId.setText(model.toString());
         holder.viewBtn.setOnClickListener(v -> {
             // send the account info to edit account activity
-            Intent intent = new Intent(context, EditCouponView.class);
-            intent.putExtra("couponKey", orderObjectArrayList.get(model));
+            Intent intent = new Intent(context, OrderSummaryView.class);
+            intent.putExtra("orderId", orderObjectArrayList.get(model));
             context.startActivity(intent);
         });
 

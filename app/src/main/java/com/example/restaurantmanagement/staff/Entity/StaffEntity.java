@@ -3,6 +3,7 @@ package com.example.restaurantmanagement.staff.Entity;
 
 import android.content.Context;
 
+import com.example.restaurantmanagement.customer.Entity.OrderObject;
 import com.example.restaurantmanagement.utility.DBHandler;
 
 import java.util.ArrayList;
@@ -22,5 +23,10 @@ public class StaffEntity {
     public void markFulfilled(int orderId){
         DBHandler DB = new DBHandler(context);
         DB.updateOrderFulFilled(orderId);
+    }
+
+    public ArrayList<OrderObject> listOrder(int orderId){
+        DBHandler DB = new DBHandler(context);
+        return DB.getOrderByID(String.valueOf(orderId));
     }
 }
