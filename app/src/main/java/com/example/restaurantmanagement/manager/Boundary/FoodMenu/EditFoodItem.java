@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
+import com.example.restaurantmanagement.manager.Controller.FoodMenu.CheckMenuItem;
 import com.example.restaurantmanagement.manager.Controller.FoodMenu.EditFoodMenu;
 
 public class EditFoodItem extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class EditFoodItem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_food);
         EditFoodMenu editFoodMenu = new EditFoodMenu(EditFoodItem.this);
+        CheckMenuItem checkMenuItem = new CheckMenuItem(EditFoodItem.this);
         EditText foodNameText = findViewById(R.id.foodName_create);
         EditText foodDescText = findViewById(R.id.foodDesc_create);
         EditText priceText = findViewById(R.id.price_create);
@@ -44,7 +46,9 @@ public class EditFoodItem extends AppCompatActivity {
 
             if (editedFoodName.equals("") || editedFoodDesc.equals("") || editedPrice == 0)
                 Toast.makeText(EditFoodItem.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
-            else {
+            else if (checkMenuItem.checkFoodItem(editedFoodName)) {
+                Toast.makeText(EditFoodItem.this, "Cannot change menu item to have same name", Toast.LENGTH_SHORT).show();
+            } else {
                 editFoodMenu.updateFoodItem(editedFoodName, editedFoodDesc, editedPrice, foodKey);
                 Intent createAcc = new Intent(EditFoodItem.this, FoodMenuView.class);
                 startActivity(createAcc);

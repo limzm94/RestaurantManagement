@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
+import com.example.restaurantmanagement.admin.Controller.CheckUser;
 import com.example.restaurantmanagement.admin.Controller.EditUser;
 
 public class EditAccountView extends AppCompatActivity {
@@ -22,7 +23,7 @@ public class EditAccountView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
         EditUser editUser = new EditUser(EditAccountView.this);
-
+        CheckUser checkUser = new CheckUser(EditAccountView.this);
         Spinner statusSpinner = findViewById(R.id.status_create);
         Spinner rolesSpinner = findViewById(R.id.roles_create);
         EditText usernameText = findViewById(R.id.username_create);
@@ -63,7 +64,9 @@ public class EditAccountView extends AppCompatActivity {
 
             if (editedUsername.equals("") || editedPassword.equals("") || editedPersonName.equals(""))
                 Toast.makeText(EditAccountView.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
-            else {
+            else if (checkUser.checkAcc(editedUsername)) {
+                Toast.makeText(EditAccountView.this, "Username already exists!", Toast.LENGTH_SHORT).show();
+            } else {
                 editUser.updateAcc(editedUsername, editedPassword, editedPersonName, editedStatus, editedRole, userKey);
                 Intent intent = new Intent(EditAccountView.this, AdminPageView.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

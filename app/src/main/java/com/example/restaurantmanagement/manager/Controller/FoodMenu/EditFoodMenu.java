@@ -1,6 +1,8 @@
 package com.example.restaurantmanagement.manager.Controller.FoodMenu;
 
 import android.content.Context;
+import android.widget.Toast;
+
 import com.example.restaurantmanagement.manager.Entity.FoodMenuEntity;
 
 public class EditFoodMenu {
@@ -11,13 +13,7 @@ public class EditFoodMenu {
     }
 
     public void updateFoodItem(String foodName, String foodDesc, double price, int foodKey) {
-        CheckMenuItem checkMenuItem = new CheckMenuItem(context);
-        if (checkMenuItem.checkFoodItem(foodName)) {
-            FoodMenuEntity foodMenuEntity = new FoodMenuEntity(context);
-            foodMenuEntity.editFood(foodName, foodDesc, price, foodKey);
-        } else {
-
-        }
-
+        FoodMenuEntity foodMenuEntity = new FoodMenuEntity(context);
+        foodMenuEntity.editFood(foodName, foodDesc, price, foodKey);
     }
 }

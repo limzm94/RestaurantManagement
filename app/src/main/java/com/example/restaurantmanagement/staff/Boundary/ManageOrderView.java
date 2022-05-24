@@ -1,7 +1,6 @@
 package com.example.restaurantmanagement.staff.Boundary;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -10,9 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.customer.Entity.OrderObject;
-import com.example.restaurantmanagement.manager.Boundary.Coupon.CouponViewHolder;
-import com.example.restaurantmanagement.manager.Boundary.Coupon.CreateCouponView;
 import com.example.restaurantmanagement.staff.Controller.ListFulfilledOrders;
 import com.example.restaurantmanagement.staff.Controller.ListUnfulfilledOrders;
 
