@@ -553,15 +553,14 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     //get orderId that is fulfilled or unfulfilled
-    public List<Integer> getAllFulfilledEtc(String fulfilled) {
+    public ArrayList<Integer> getAllFulfilledEtc(String fulfilled) {
         String[] params = new String[]{fulfilled};
         SQLiteDatabase db = this.getWritableDatabase();
-        List<Integer> list=new ArrayList<Integer>();
+        ArrayList<Integer> list=new ArrayList<Integer>();
         Cursor c = db.rawQuery("Select OrderId from OrderDetail where isFulfilled = ?", params);
         if (c.moveToFirst()) {
             list.add(c.getInt(0));
         }
-        System.out.print(list);
         return list;
     }
 
