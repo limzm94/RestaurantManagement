@@ -121,6 +121,30 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(categoryQuery);
         db.execSQL(orderDetailQuery);
         db.execSQL(codeQuery);
+
+        // insert users on load
+        for (int i = 0; i < 11; i++) {
+            String insert = String.format("insert into Users (id,username,password,name,status,role) VALUES('%s','%s', '%s','%s','%s','%s');",
+                    i,
+                    "owner" + i,
+                    "password" + i,
+                    "ownername" + i,
+                    "Active",
+                    "Owner");
+            db.execSQL(insert);
+        }
+
+        for (int i = 0; i < 11; i++) {
+            String insert = String.format("insert into Users (id,username,password,name,status,role) VALUES('%s','%s', '%s','%s','%s','%s');",
+                    i,
+                    "customer" + i,
+                    "password" + i,
+                    "customername" + i,
+                    "Active",
+                    "Customer");
+            db.execSQL(insert);
+        }
+
 //        db.execSQL(rolesQuery);
 //        db.execSQL(userRolesQuery);
     }
