@@ -124,8 +124,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         // insert users on load
         for (int i = 0; i < 11; i++) {
-            String insert = String.format("insert into Users (id,username,password,name,status,role) VALUES('%s','%s', '%s','%s','%s','%s');",
-                    i,
+            String insert = String.format("insert into Users (username,password,name,status,role) VALUES('%s','%s', '%s','%s','%s');",
                     "owner" + i,
                     "password" + i,
                     "ownername" + i,
@@ -134,9 +133,8 @@ public class DBHandler extends SQLiteOpenHelper {
             db.execSQL(insert);
         }
 
-        for (int i = 0; i < 11; i++) {
-            String insert = String.format("insert into Users (id,username,password,name,status,role) VALUES('%s','%s', '%s','%s','%s','%s');",
-                    i,
+        for (int i = 0; i < 30; i++) {
+            String insert = String.format("insert into Users (username,password,name,status,role) VALUES('%s','%s', '%s','%s','%s');",
                     "customer" + i,
                     "password" + i,
                     "customername" + i,
@@ -144,6 +142,101 @@ public class DBHandler extends SQLiteOpenHelper {
                     "Customer");
             db.execSQL(insert);
         }
+
+        for (int i = 0; i < 30; i++) {
+            String insert = String.format("insert into Users (username,password,name,status,role) VALUES('%s','%s', '%s','%s','%s');",
+                    "manager" + i,
+                    "password" + i,
+                    "managername" + i,
+                    "Active",
+                    "Manager");
+            db.execSQL(insert);
+        }
+
+        for (int i = 0; i < 30; i++) {
+            String insert = String.format("insert into Users (username,password,name,status,role) VALUES('%s','%s', '%s','%s','%s');",
+                    "admin" + i,
+                    "password" + i,
+                    "adminname" + i,
+                    "Active",
+                    "Admin");
+            db.execSQL(insert);
+        }
+
+        for (int i = 0; i < 30; i++) {
+            String insert = String.format("insert into Users (username,password,name,status,role) VALUES('%s','%s', '%s','%s','%s');",
+                    "staff" + i,
+                    "password" + i,
+                    "staffname" + i,
+                    "Active",
+                    "Staff");
+            db.execSQL(insert);
+        }
+
+        //insert foods
+//        insert into FOODS (description,name,price)VALUES('init food 1', 'food1', 30.0 );
+
+        for (int i = 0; i < 30; i++) {
+            String insert = String.format("insert into FOODS (description,name,price) VALUES('%s','%s','%s');",
+                    "description" + i,
+                    "foodname20" + i,
+                    20);
+            db.execSQL(insert);
+        }
+
+        for (int i = 0; i < 30; i++) {
+            String insert = String.format("insert into FOODS (description,name,price) VALUES('%s','%s','%s');",
+                    "description" + i,
+                    "foodname15" + i,
+                    15);
+            db.execSQL(insert);
+        }
+
+        for (int i = 0; i < 50; i++) {
+            String insert = String.format("insert into FOODS (description,name,price) VALUES('%s','%s','%s');",
+                    "description" + i,
+                    "foodname30" + i,
+                    30);
+            db.execSQL(insert);
+        }
+
+        //coupons
+        for (int i = 0; i < 110; i++) {
+            String insert = String.format("Insert into coupons(code,description,isActive,discount) VALUES ('%s','%s','%s','%s')",
+                    "code" + i,
+                    "description coupon" + i,
+                    "Active",
+                    30);
+            db.execSQL(insert);
+        }
+
+        String ss = "CREATE TABLE OrderDetail (" +
+                "ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "ProductName TEXT," +
+                "Quantity TEXT," +
+                "Price FLOAT," +
+                "Discount INTEGER," +
+                "DiscountedPrice FLOAT," +
+                "CustomerName TEXT," +
+                "UserID INTEGER," +
+                "OrderDate TEXT," +
+                "MenuId TEXT," +
+                "OrderId INTEGER," +
+                "isFulfilled TEXT)";
+
+//        //order detail
+//        for (int i = 0; i < 110; i++) {
+//            String insert = String.format("INSERT INTO OrderDetail(ProductName,Quantity,Price,Discount,DiscountedPrice," +
+//                            "CustomerName,UserID,OrderDate,MenuId,OrderId,isFulfilled) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');",
+//                    "foodname30" + i,
+//                    1,
+//                    30,
+//                    0,
+//                    order.getDiscount(),
+//                    order.getImage());
+//            db.execSQL(insert);
+//        }
+
 
 //        db.execSQL(rolesQuery);
 //        db.execSQL(userRolesQuery);
