@@ -783,14 +783,15 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         int totalEarning = 0;
         String[] params = new String[]{date};
-        Cursor c = db.rawQuery("Select SUM(PRICE) from OrderDetail where OrderDate = ?", params);
+        Cursor c = db.rawQuery("Select (Price * Quantity) from OrderDetail where OrderDate = ?", params);
         if (c.moveToFirst()) {
-            totalEarning = c.getInt(0);
+            do {
+                totalEarning += c.getInt(0);
+            } while (c.moveToNext());
         }
         return totalEarning;
     }
 
-    //todo: change input to mm-yyyy instead of dd-mm-yyyy for all months
     public int getMonthlyEarnings(String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         int totalEarning = 0;
@@ -798,9 +799,11 @@ public class DBHandler extends SQLiteOpenHelper {
         String yearString = date.substring(first + 1);
         String monthString = date.substring(0, 2);
         String[] params = new String[]{monthString,yearString};
-        Cursor c = db.rawQuery("Select SUM(Price) from OrderDetail where substr(OrderDate,4,2) and substr(OrderDate,7,4) = ?", params);
+        Cursor c = db.rawQuery("Select (Price * Quantity) from OrderDetail where substr(OrderDate,4,2) and substr(OrderDate,7,4) = ?", params);
         if (c.moveToFirst()) {
-            totalEarning = c.getInt(0);
+            do {
+                totalEarning += c.getInt(0);
+            } while (c.moveToNext());
         }
         return totalEarning;
     }
@@ -817,9 +820,12 @@ public class DBHandler extends SQLiteOpenHelper {
         String[] params = new String[]{yearString};
         // 8 when date is "date"
 //        OrderDate,8,4
-        Cursor c = db.rawQuery("Select SUM(Price) from OrderDetail where substr(OrderDate,7,4) = ?", params);
+        Cursor c = db.rawQuery("Select (Price * Quantity) from OrderDetail where substr(OrderDate,7,4) = ?", params);
         if (c.moveToFirst()) {
-            totalEarning = c.getInt(0);
+//            totalEarning += c.getInt(0);
+            do {
+                totalEarning += c.getInt(0);
+            } while (c.moveToNext());
         }
         return totalEarning;
     }
