@@ -484,6 +484,22 @@ public class DBHandler extends SQLiteOpenHelper {
         db.update("coupons", args, "couponId" + "=" + couponId, null);
     }
 
+    public void updateOrder(int OrderId, String foodName, String orderDate, double price, double discountedPrice, int quantity, String customerName, String isFulfilled, int orderId, int foodKey, int discount) {
+        SQLiteDatabase db = getReadableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("ProductName", foodName);
+        contentValues.put("Quantity", quantity);
+        contentValues.put("Price", price);
+        contentValues.put("Discount", discount);
+        contentValues.put("DiscountedPrice", discountedPrice);
+        contentValues.put("CustomerName", customerName);
+        contentValues.put("OrderDate", orderDate);
+        contentValues.put("MenuId", foodKey);
+        contentValues.put("OrderId", orderId);
+        contentValues.put("isFulfilled", isFulfilled);
+        db.update("OrderDetail", contentValues, "OrderId" + "=" + OrderId, null);
+    }
+
     public String getUserRole(String username, String password) {
         String[] params = new String[]{username, password};
         SQLiteDatabase db = this.getWritableDatabase();
