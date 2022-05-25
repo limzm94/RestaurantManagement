@@ -135,18 +135,6 @@
             android:textColor="@color/white"
             android:textSize="20sp" />
 
-        <!--<Button
-            android:id="@+id/signup_btn"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="100dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:text="Sign up"
-            android:textColor="@color/white"
-            android:textSize="20sp" />-->
     </LinearLayout>
 
 
