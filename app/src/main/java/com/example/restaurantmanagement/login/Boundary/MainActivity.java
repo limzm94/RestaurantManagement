@@ -33,17 +33,6 @@ public class MainActivity extends AppCompatActivity {
         EditText edtPassword = findViewById(R.id.login_password_et);
         Button btnSignIn = findViewById(R.id.login_btn);
 
-        CreateUser createUser = new CreateUser(MainActivity.this);
-        createUser.createAcc("masterAdmin", "password", "Active", "UwU", "Owner");
-
-        //Preloaded menu NEED TO BE REMOVED
-        CreateFoodMenu createFoodMenu = new CreateFoodMenu(MainActivity.this);
-        createFoodMenu.insertFoodMenu("Curry", "Curry is a dish with a sauce seasoned with spices.", 7.50);
-        createFoodMenu.insertFoodMenu("Chicken Rice", "Hainan's chicken rice is a dish of poached chicken and seasoned rice.", 4.50);
-        createFoodMenu.insertFoodMenu("Ramen", "Ramen is a Japanese noodle dish.", 10.90);
-        createFoodMenu.insertFoodMenu("Bingsu", "Bingsu is a Korean shaved ice dessert with sweet toppings.", 8.00);
-        createFoodMenu.insertFoodMenu("Carrot Cake", "Carrot cake is cake that contains carrots mixed into the batter.", 6.50);
-
         btnSignIn.setOnClickListener(v -> {
             String user = edtUsername.getText().toString();
             String pass = edtPassword.getText().toString();

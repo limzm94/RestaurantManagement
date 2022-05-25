@@ -60,6 +60,7 @@
     <string name="view_order">View Order</string>
     <string name="mark_fulfilled">Mark Fulfilled</string>
     <string name="edit_order">Edit order</string>
+    <string name="stimulate_data">Stimulate Data</string>
     <string-array name="roles">
             <item>Owner</item>
             <item>Admin</item>
