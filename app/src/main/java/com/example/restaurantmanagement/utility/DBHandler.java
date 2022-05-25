@@ -663,12 +663,12 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         int totalEarning = 0;
         String[] params = new String[]{};
-        Cursor c = db.rawQuery("select CustomerName, OrderDate, sum(price) from OrderDetail WHERE Quantity != 0 group by CustomerName, OrderDate", params);
+        Cursor c = db.rawQuery("select CustomerName, OrderDate, (sum(price)*Quantity) from OrderDetail WHERE Quantity != 0 group by CustomerName, OrderDate", params);
         if (c.moveToFirst()) {
             do {
                 String CustomerName = c.getString(c.getColumnIndexOrThrow("CustomerName"));
                 String OrderDate = c.getString(c.getColumnIndexOrThrow("OrderDate"));
-                Float price = c.getFloat(c.getColumnIndexOrThrow("sum(price)"));
+                Float price = c.getFloat(c.getColumnIndexOrThrow("(sum(price)*Quantity)"));
                 OrderObject yay = new OrderObject("","",price,0,CustomerName,"",0,0,0, OrderDate);
                 orderList.add(yay);
             }while (c.moveToNext());
@@ -693,13 +693,8 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         int totalEarning = 0;
         int first = date.indexOf("-");
-        int last = date.indexOf("-");
-        String dayWithYear = date.substring(first + 1);
-        String yearString = dayWithYear.substring(last + 1);
-        String monthString = dayWithYear.substring(0, last);
-        System.out.println(yearString);
-        System.out.println(monthString);
-        System.out.println("FISIFII");
+        String yearString = date.substring(first + 1);
+        String monthString = date.substring(0, 2);
         String[] params = new String[]{monthString,yearString};
         Cursor c = db.rawQuery("Select COUNT(DISTINCT(OrderId)) from OrderDetail where substr(OrderDate,4,2) = ? AND substr(OrderDate,7,4) = ?", params);
         if (c.moveToFirst()) {
@@ -709,14 +704,11 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     //get count of visits of user by date
+    //input - 2022
     public int getFrequencyVisitByYear(String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         int totalEarning = 0;
-        int first = date.indexOf("-");
-        int last = date.indexOf("-");
-        String dayWithYear = date.substring(first + 1);
-        String yearString = dayWithYear.substring(last + 1);
-        String[] params = new String[]{yearString};
+        String[] params = new String[]{date};
         Cursor c = db.rawQuery("Select COUNT(DISTINCT(OrderId)) from OrderDetail where substr(OrderDate,7,4) = ?", params);
         if (c.moveToFirst()) {
             totalEarning = c.getInt(0);
@@ -750,15 +742,14 @@ public class DBHandler extends SQLiteOpenHelper {
         return food;
     }
 
+    //input type 05-2022 (mm-yyyy)
     public String getMonthPreferenceFood(String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         int totalEarning = 0;
         String food = "";
         int first = date.indexOf("-");
-        int last = date.indexOf("-");
-        String dayWithYear = date.substring(first + 1);
-        String yearString = dayWithYear.substring(last + 1);
-        String monthString = dayWithYear.substring(0, last);
+        String yearString = date.substring(first + 1);
+        String monthString = date.substring(0, 2);
         String[] params = new String[]{monthString, yearString};
         Cursor c = db.rawQuery("select name from Foods where menuId = (" +
                 "SELECT menuId from OrderDetail where substr(OrderDate,4,2) = ? " +
@@ -799,17 +790,15 @@ public class DBHandler extends SQLiteOpenHelper {
         return totalEarning;
     }
 
-    //todo: add year
+    //todo: change input to mm-yyyy instead of dd-mm-yyyy for all months
     public int getMonthlyEarnings(String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         int totalEarning = 0;
         int first = date.indexOf("-");
-        String dayWithYear = date.substring(first + 1);
-        int last = dayWithYear.indexOf("-");
-        String yearString = dayWithYear.substring(last + 1);
-        String monthString = dayWithYear.substring(0, last);
-        String[] params = new String[]{monthString};
-        Cursor c = db.rawQuery("Select SUM(Price) from OrderDetail where substr(OrderDate,4,2) = ?", params);
+        String yearString = date.substring(first + 1);
+        String monthString = date.substring(0, 2);
+        String[] params = new String[]{monthString,yearString};
+        Cursor c = db.rawQuery("Select SUM(Price) from OrderDetail where substr(OrderDate,4,2) and substr(OrderDate,7,4) = ?", params);
         if (c.moveToFirst()) {
             totalEarning = c.getInt(0);
         }
