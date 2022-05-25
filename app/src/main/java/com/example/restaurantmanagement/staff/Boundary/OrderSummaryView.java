@@ -26,7 +26,6 @@ public class OrderSummaryView extends AppCompatActivity {
         setContentView(R.layout.activity_order_summary);
         TextView summaryText = findViewById(R.id.orderSummary);
         ViewOrderSummary viewOrderSummary = new ViewOrderSummary(OrderSummaryView.this);
-        Button editOrder = findViewById(R.id.editOrderBtn);
         Button cancelBtn = findViewById(R.id.cancelBtn);
         ArrayList<OrderObject> orderList;
 
@@ -55,16 +54,6 @@ public class OrderSummaryView extends AppCompatActivity {
         cartSummary.append(String.format("Order ID: %d%n", orderId));
         summaryText.setTypeface(Typeface.MONOSPACE);
         summaryText.setText(cartSummary);
-
-        editOrder.setOnClickListener(v -> {
-            /*sendOrder.submitOrder(orderList);
-            Intent intent = new Intent(this, CustomerView.class);
-            intent.putExtra("accountRole",role);
-            intent.putExtra("customerName",customerName);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            finish();*/
-        });
 
         cancelBtn.setOnClickListener(v -> finish());
     }

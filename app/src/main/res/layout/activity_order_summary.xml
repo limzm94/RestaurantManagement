@@ -23,14 +23,6 @@
         android:layout_alignParentBottom="true" >
 
         <Button
-            android:id="@+id/editOrderBtn"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:textSize="11sp"
-            android:text="@string/edit_order"
-            android:layout_weight="1"
-            android:layout_marginHorizontal="5dp"/>
-        <Button
             android:id="@+id/cancelBtn"
             android:layout_width="0dp"
             android:layout_height="50dp"

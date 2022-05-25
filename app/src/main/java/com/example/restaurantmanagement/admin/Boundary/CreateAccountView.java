@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
 import com.example.restaurantmanagement.admin.Controller.CreateUser;
-import com.example.restaurantmanagement.customer.Boundary.CustomerView;
 
 public class CreateAccountView extends AppCompatActivity {
     @Override

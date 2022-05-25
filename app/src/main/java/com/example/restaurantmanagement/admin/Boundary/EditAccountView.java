@@ -1,6 +1,5 @@
 package com.example.restaurantmanagement.admin.Boundary;
 
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.admin.Controller.CheckUser;
 import com.example.restaurantmanagement.admin.Controller.EditUser;
 
 public class EditAccountView extends AppCompatActivity {
@@ -23,7 +21,6 @@ public class EditAccountView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
         EditUser editUser = new EditUser(EditAccountView.this);
-        CheckUser checkUser = new CheckUser(EditAccountView.this);
         Spinner statusSpinner = findViewById(R.id.status_create);
         Spinner rolesSpinner = findViewById(R.id.roles_create);
         EditText usernameText = findViewById(R.id.username_create);
@@ -58,7 +55,6 @@ public class EditAccountView extends AppCompatActivity {
 
         String userRole = getIntent().getStringExtra("accountRole");
 
-
         editBtn.setOnClickListener(v -> {
             String editedUsername = usernameText.getText().toString();
             String editedPassword = passwordText.getText().toString();
@@ -78,8 +74,6 @@ public class EditAccountView extends AppCompatActivity {
             }
         });
 
-        cancelBtn.setOnClickListener(v -> {
-            finish();
-        });
+        cancelBtn.setOnClickListener(v -> finish());
     }
 }

@@ -24,7 +24,7 @@ import com.example.restaurantmanagement.customer.Entity.OrderObject;
 import java.util.ArrayList;
 
 public class CustomerView extends AppCompatActivity {
-
+    int orderQuantity = 0;
     @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class CustomerView extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         String customerName = getIntent().getStringExtra("customerName");
         String role = getIntent().getStringExtra("accountRole");
+
 
         if (role.equals("Owner") || role.equals("Staff")) {
             logOutBtn.setVisibility(View.GONE);
@@ -62,11 +63,17 @@ public class CustomerView extends AppCompatActivity {
         adminRV.setLayoutManager(linearLayoutManager);
         adminRV.setAdapter(foodAdapter);
 
+        for(OrderObject orderObject : orderList) {
+            orderQuantity = orderQuantity + orderObject.getQuantity();
+        }
+
         checkOutBtn.setOnClickListener(v -> {
             if (customerNameText.getText().toString().equals("")) {
                 Toast.makeText(CustomerView.this, "Please enter a username", Toast.LENGTH_LONG).show();
-            } else if (!checkCustomer.checkCustomer(customerNameText.getText().toString())) {
-                Toast.makeText(CustomerView.this, "Invalid username", Toast.LENGTH_LONG).show();
+            } else if (orderQuantity == 0) {
+                Toast.makeText(CustomerView.this, "Please add item to cart", Toast.LENGTH_LONG).show();}
+            else if (!checkCustomer.checkCustomer(customerNameText.getText().toString())) {
+                    Toast.makeText(CustomerView.this, "Invalid username", Toast.LENGTH_LONG).show();
             } else {
                 changeCustomer.changeCustomer(orderList, customerNameText.getText().toString());
                 Intent cartCheckOut = new Intent(CustomerView.this, CheckoutView.class);
