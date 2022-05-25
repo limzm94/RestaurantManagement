@@ -23,6 +23,7 @@ import java.io.Writer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
@@ -128,7 +129,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 "isFulfilled TEXT)";
 
 //        String rolesQuery = "CREATE TABLE " + "roles" + " ("
-//                + "id" + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+//                + "id" + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
+//                "isActive INTEGER,"
 //                + "role" + " TEXT)";
 //
 //        String userRolesQuery = "create table users_roles(\n" +
@@ -203,10 +205,23 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(query);
     }
 
+//    public void suspendRoles(int id ) {
+//        SQLiteDatabase db = getReadableDatabase();
+//        String delete = String.format("UPDATE roles SET isActive = %s WHERE ID = %d",0, id);
+//
+//        db.execSQL(delete);
+//    }
+
     public void deleteMenuItem(int menuId) {
         SQLiteDatabase db = getReadableDatabase();
         String delete = String.format("DELETE FROM Foods WHERE menuId = %d", menuId);
 
+        db.execSQL(delete);
+    }
+
+    public void deleteCoupon(int couponId) {
+        SQLiteDatabase db = getReadableDatabase();
+        String delete = String.format("DELETE FROM Coupons WHERE menuId = %d", couponId);
         db.execSQL(delete);
     }
 
@@ -300,6 +315,12 @@ public class DBHandler extends SQLiteOpenHelper {
     public Boolean checkCouponValid(String couponCode) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from coupons where code = ? and isActive = ?", new String[]{couponCode, "Active"});
+        return cursor.getCount() > 0;
+    }
+
+    public Boolean checkOrderFulfilled(int orderId) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select * from OrderDetail where orderId = ? and isFulfilled = ?", new String[]{String.valueOf(orderId), "Fulfilled"});
         return cursor.getCount() > 0;
     }
 
@@ -621,7 +642,7 @@ public class DBHandler extends SQLiteOpenHelper {
     // Date string split
     // not working
     public List<String> getOrdersByDate(String date) {
-        String[] params = new String[]{"20/10/2013"};
+        String[] params = new String[]{date};
         SQLiteDatabase db = this.getWritableDatabase();
 //        ArrayList<String> tableString;
         List<String> list = new ArrayList<>();
@@ -630,6 +651,7 @@ public class DBHandler extends SQLiteOpenHelper {
             list.add(c.getString(c.getColumnIndexOrThrow("ProductName")));
             list.add(c.getString(c.getColumnIndexOrThrow("Price")));
         }
+
         // day
         int day = Integer.parseInt(date.substring(0, 1));
         int month = Integer.parseInt(date.substring(3, 4));
@@ -642,6 +664,189 @@ public class DBHandler extends SQLiteOpenHelper {
         System.out.print(list);
         return list;
     }
+
+    //select CustomerName, sum(price) from OrderDetail where OrderDate = '21-05-1999' group by CustomerName;
+
+    //get count of visits of user by date
+    public ArrayList<OrderObject> getSpendingHabit() {
+//        select CustomerName, sum(price) from OrderDetail where OrderDate = '21-05-1999'
+//        group by CustomerName;
+        ArrayList<OrderObject> orderList = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        int totalEarning = 0;
+        String[] params = new String[]{};
+        Cursor c = db.rawQuery("select CustomerName, OrderDate, sum(price) from OrderDetail group by CustomerName, OrderDate", params);
+        if (c.moveToFirst()) {
+            do {
+                String CustomerName = c.getString(c.getColumnIndexOrThrow("CustomerName"));
+                String OrderDate = c.getString(c.getColumnIndexOrThrow("OrderDate"));
+                Float price = c.getFloat(c.getColumnIndexOrThrow("sum(price)"));
+                OrderObject yay = new OrderObject("","",price,0,CustomerName,"",0,0,0, OrderDate);
+                orderList.add(yay);
+            }while (c.moveToNext());
+        }
+        return orderList;
+    }
+
+    //get count of visits of user by date
+    public int getFrequencyVisit(String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int totalEarning = 0;
+        String[] params = new String[]{date};
+        Cursor c = db.rawQuery("Select COUNT(DISTINCT(OrderId)) from OrderDetail where OrderDate = ?", params);
+        if (c.moveToFirst()) {
+            totalEarning = c.getInt(0);
+        }
+        return totalEarning;
+    }
+
+    //get count of visits of user by date
+    public int getFrequencyVisitByMonth(String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int totalEarning = 0;
+        int first = date.indexOf("-");
+        int last = date.indexOf("-");
+        String dayWithYear = date.substring(first + 1);
+        String yearString = dayWithYear.substring(last + 1);
+        String monthString = dayWithYear.substring(0, last);
+        System.out.println(yearString);
+        System.out.println(monthString);
+        System.out.println("FISIFII");
+        String[] params = new String[]{monthString,yearString};
+        Cursor c = db.rawQuery("Select COUNT(DISTINCT(OrderId)) from OrderDetail where substr(OrderDate,4,2) = ? AND substr(OrderDate,7,4) = ?", params);
+        if (c.moveToFirst()) {
+            totalEarning = c.getInt(0);
+        }
+        return totalEarning;
+    }
+
+    //get count of visits of user by date
+    public int getFrequencyVisitByYear(String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int totalEarning = 0;
+        int first = date.indexOf("-");
+        int last = date.indexOf("-");
+        String dayWithYear = date.substring(first + 1);
+        String yearString = dayWithYear.substring(last + 1);
+        String[] params = new String[]{yearString};
+        Cursor c = db.rawQuery("Select COUNT(DISTINCT(OrderId)) from OrderDetail where substr(OrderDate,7,4) = ?", params);
+        if (c.moveToFirst()) {
+            totalEarning = c.getInt(0);
+        }
+        return totalEarning;
+    }
+
+
+    //get dish of orders on that day with the most orders??
+
+//    select * from Foods where menuId = (SELECT       menuId
+//    FROM     OrderDetail
+//    WHERE OrderDate = '21-03-1999'
+//    GROUP BY menuId
+//    ORDER BY COUNT(*) DESC
+//    LIMIT    1);
+
+    public String getPreferenceFood(String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int totalEarning = 0;
+        String food = "";
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date(12,3,22));//Set specific Date if you want to
+        String[] params = new String[]{date};
+        Cursor c = db.rawQuery("select name from Foods where menuId = (" +
+                "SELECT menuId from OrderDetail WHERE OrderDate = ? GROUP BY menuId " +
+                "ORDER BY COUNT(*) DESC LIMIT 1)", params);
+        if (c.moveToFirst()) {
+            food = c.getString(0);
+        }
+        return food;
+    }
+
+    public String getMonthPreferenceFood(String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int totalEarning = 0;
+        String food = "";
+        int first = date.indexOf("-");
+        int last = date.indexOf("-");
+        String dayWithYear = date.substring(first + 1);
+        String yearString = dayWithYear.substring(last + 1);
+        String monthString = dayWithYear.substring(0, last);
+        String[] params = new String[]{monthString, yearString};
+        Cursor c = db.rawQuery("select name from Foods where menuId = (" +
+                "SELECT menuId from OrderDetail where substr(OrderDate,4,2) = ? " +
+                "AND substr(OrderDate,7,4) = ? GROUP BY menuId " +
+                "ORDER BY COUNT(*) DESC LIMIT 1)", params);
+        if (c.moveToFirst()) {
+            food = c.getString(0);
+        }
+        return food;
+    }
+
+    public String getYearPreferenceFood(String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int totalEarning = 0;
+        String food = "";
+        int first = date.indexOf("-");
+        int last = date.indexOf("-");
+        String dayWithYear = date.substring(first + 1);
+        String yearString = dayWithYear.substring(last + 1);
+        String[] params = new String[]{yearString};
+        Cursor c = db.rawQuery("select name from Foods where menuId = (" +
+                "SELECT menuId from OrderDetail WHERE substr(OrderDate,7,4) = ? GROUP BY menuId " +
+                "ORDER BY COUNT(*) DESC LIMIT 1)", params);
+        if (c.moveToFirst()) {
+            food = c.getString(0);
+        }
+        return food;
+    }
+
+    public int getDailyEarnings(String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int totalEarning = 0;
+        String[] params = new String[]{date};
+        Cursor c = db.rawQuery("Select SUM(PRICE) from OrderDetail where OrderDate = ?", params);
+        if (c.moveToFirst()) {
+            totalEarning = c.getInt(0);
+        }
+        return totalEarning;
+    }
+
+    //todo: add year
+    public int getMonthlyEarnings(String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int totalEarning = 0;
+        int first = date.indexOf("-");
+        String dayWithYear = date.substring(first + 1);
+        int last = dayWithYear.indexOf("-");
+        String yearString = dayWithYear.substring(last + 1);
+        String monthString = dayWithYear.substring(0, last);
+        String[] params = new String[]{monthString};
+        Cursor c = db.rawQuery("Select SUM(Price) from OrderDetail where substr(OrderDate,4,2) = ?", params);
+        if (c.moveToFirst()) {
+            totalEarning = c.getInt(0);
+        }
+        return totalEarning;
+    }
+
+    public int getYearlyEarnings(String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int totalEarning = 0;
+        int first = date.indexOf("-");
+        int last = date.indexOf("-");
+        String dayWithYear = date.substring(first + 1);
+        String yearString = dayWithYear.substring(last + 1);
+        System.out.print(yearString);
+        System.out.print("yearString");
+        String[] params = new String[]{yearString};
+        // 8 when date is "date"
+//        OrderDate,8,4
+        Cursor c = db.rawQuery("Select SUM(Price) from OrderDetail where substr(OrderDate,7,4) = ?", params);
+        if (c.moveToFirst()) {
+            totalEarning = c.getInt(0);
+        }
+        return totalEarning;
+    }
+
 
     //get orderId that is fulfilled or unfulfilled
     public ArrayList<Integer> getAllFulfilledEtc(String fulfilled) {

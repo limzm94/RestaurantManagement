@@ -44,13 +44,14 @@
             android:label="Create Coupon"/>
         <activity android:name=".manager.Boundary.Coupon.EditCouponView"
             android:label="Edit Coupon"/>
-        <activity android:name=".staff.Boundary.StaffView"
+        <activity android:name=".owner.Boundary.OwnerView"
+            android:label="Analytics"/>
+    <activity android:name=".staff.Boundary.StaffView"
             android:label="Staff Homepage"/>
         <activity android:name=".staff.Boundary.ManageOrderView"
             android:label="Manage Order"/>
         <activity android:name=".staff.Boundary.OrderSummaryView"
             android:label="Order Summary"/>
-
-    </application>
+</application>
 
 </manifest>

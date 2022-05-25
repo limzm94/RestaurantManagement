@@ -12,7 +12,7 @@ public class DeleteFoodMenu {
         this.context = context;
     }
 
-    public void insertFoodMenu(int menuId) {
+    public void deleteFoodMenu(int menuId) {
         FoodMenuEntity foodMenuEntity = new FoodMenuEntity(context);
         foodMenuEntity.deleteFood(menuId);
     }

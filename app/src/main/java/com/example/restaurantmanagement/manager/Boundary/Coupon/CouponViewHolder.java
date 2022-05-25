@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
+import com.example.restaurantmanagement.manager.Controller.Coupon.DeleteCoupon;
 import com.example.restaurantmanagement.manager.Entity.CouponObject;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class CouponViewHolder extends RecyclerView.Adapter<CouponViewHolder.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // to set data to textview and imageview of each card layout
         String discText;
+        DeleteCoupon deleteCoupon = new DeleteCoupon(context);
         CouponObject model = couponModelArrayList.get(position);
         holder.couponCode.setText(model.getCouponCode());
         holder.couponDesc.setText(model.getCouponDesc());
@@ -57,6 +59,13 @@ public class CouponViewHolder extends RecyclerView.Adapter<CouponViewHolder.View
             intent.putExtra("couponStatus", model.getCouponStatus());
             intent.putExtra("couponDisc", model.getCouponDisc());
             context.startActivity(intent);
+        });
+
+        holder.deleteBtn.setOnClickListener(v -> {
+            deleteCoupon.deleteCoupon(model.getCouponKey());
+            couponModelArrayList.remove(holder.getAdapterPosition());
+            notifyItemRemoved(holder.getAdapterPosition());
+            notifyItemRangeChanged(holder.getAdapterPosition(), couponModelArrayList.size());
         });
     }
 
@@ -75,6 +84,7 @@ public class CouponViewHolder extends RecyclerView.Adapter<CouponViewHolder.View
         private final TextView couponStatus;
         private final TextView couponDiscount;
         private final Button editBtn;
+        private final Button deleteBtn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,6 +93,7 @@ public class CouponViewHolder extends RecyclerView.Adapter<CouponViewHolder.View
             couponStatus = itemView.findViewById(R.id.couponStatus);
             couponDiscount = itemView.findViewById(R.id.couponDisc);
             editBtn = itemView.findViewById(R.id.editCouponBtn);
+            deleteBtn = itemView.findViewById(R.id.deleteCouponBtn);
         }
     }
 }

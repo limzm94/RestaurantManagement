@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class ManageOrderView extends AppCompatActivity {
     // create delete food menu item function
     ArrayList<Integer> orderObjects = new ArrayList<>();
+    boolean isFulfilled;
     @SuppressLint({"DefaultLocale", "NotifyDataSetChanged"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,20 +43,20 @@ public class ManageOrderView extends AppCompatActivity {
 
         viewUnfulfilled.setOnClickListener(v -> {
             //load the arraylist with orders that is unfulfilled
+            isFulfilled = false;
             orderObjects.clear();
             orderObjects.addAll(listUnfulfilledOrders.showFulFilled());
             //notify changes
             manageOrderAdapter.notifyDataSetChanged();
-
         });
 
         viewFulfilled.setOnClickListener(v -> {
             //load the arraylist with orders that is fulfilled
+            isFulfilled = true;
             orderObjects.clear();
             orderObjects.addAll(listFulfilledOrders.showFulFilled());
             //notify changes
             manageOrderAdapter.notifyDataSetChanged();
-
         });
 
     }

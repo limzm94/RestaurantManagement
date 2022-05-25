@@ -75,6 +75,14 @@
                 android:textSize="12sp"
                 android:text="@string/edit"
                 android:layout_marginHorizontal="5dp"/>
+            <Button
+                android:id="@+id/deleteCouponBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textSize="12sp"
+                android:text="@string/delete"
+                android:backgroundTint="@color/primary_mid"
+                android:layout_marginHorizontal="5dp"/>
         </LinearLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

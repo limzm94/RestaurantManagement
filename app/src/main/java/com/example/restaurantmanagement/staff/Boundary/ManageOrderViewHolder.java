@@ -13,10 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.customer.Entity.OrderObject;
-import com.example.restaurantmanagement.manager.Boundary.Coupon.EditCouponView;
+import com.example.restaurantmanagement.staff.Controller.CheckFulfilled;
 import com.example.restaurantmanagement.staff.Controller.MarkOrderFulfilled;
-import com.example.restaurantmanagement.staff.Controller.ViewOrderSummary;
 
 import java.util.ArrayList;
 
@@ -43,7 +41,15 @@ public class ManageOrderViewHolder extends RecyclerView.Adapter<ManageOrderViewH
     public void onBindViewHolder(@NonNull ManageOrderViewHolder.ViewHolder holder, int position) {
         // to set data to textview and imageview of each card layout
         MarkOrderFulfilled markOrderFulfilled = new MarkOrderFulfilled(context);
+        CheckFulfilled checkFulfilled = new CheckFulfilled(context);
         Integer model = orderObjectArrayList.get(position);
+
+        if (checkFulfilled.checkFulfilled(model)){
+            holder.markBtn.setVisibility(View.GONE);
+        }
+        else {
+            holder.markBtn.setVisibility(View.VISIBLE);
+        }
         holder.orderId.setText(model.toString());
         holder.viewBtn.setOnClickListener(v -> {
             // send the account info to edit account activity

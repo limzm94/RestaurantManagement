@@ -50,6 +50,10 @@ public class OrderObject extends FoodObject implements Serializable {
         return isFulfilled;
     }
 
+    public String getOrderDate(){
+        return orderDate;
+    }
+
     public void setIsFulfilled(String isFulfilled) {
         this.isFulfilled = isFulfilled;
     }
