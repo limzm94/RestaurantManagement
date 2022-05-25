@@ -21,11 +21,13 @@ public class AdminViewHolder extends RecyclerView.Adapter<AdminViewHolder.ViewHo
 
     private Context context;
     private ArrayList<UserObject> adminModelArrayList;
+    private String role;
 
     // Constructor
-    public AdminViewHolder(Context context, ArrayList<UserObject> adminModelArrayList) {
+    public AdminViewHolder(Context context, ArrayList<UserObject> adminModelArrayList, String role) {
         this.context = context;
         this.adminModelArrayList = adminModelArrayList;
+        this.role = role;
     }
 
     @NonNull
@@ -55,6 +57,7 @@ public class AdminViewHolder extends RecyclerView.Adapter<AdminViewHolder.ViewHo
             intent.putExtra("position", model.getRole());
             intent.putExtra("username", model.getUsername());
             intent.putExtra("password", model.getPassword());
+            intent.putExtra("accountRole",role);
             context.startActivity(intent);
         });
     }

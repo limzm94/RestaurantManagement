@@ -54,6 +54,7 @@ public class EditAccountView extends AppCompatActivity {
         rolesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         rolesSpinner.setAdapter(rolesAdapter);
         rolesSpinner.setSelection(rolesAdapter.getPosition(role));
+        usernameText.setEnabled(false);
 
         editBtn.setOnClickListener(v -> {
             String editedUsername = usernameText.getText().toString();
@@ -64,9 +65,7 @@ public class EditAccountView extends AppCompatActivity {
 
             if (editedUsername.equals("") || editedPassword.equals("") || editedPersonName.equals(""))
                 Toast.makeText(EditAccountView.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
-            else if (checkUser.checkAcc(editedUsername)) {
-                Toast.makeText(EditAccountView.this, "Username already exists!", Toast.LENGTH_SHORT).show();
-            } else {
+           {
                 editUser.updateAcc(editedUsername, editedPassword, editedPersonName, editedStatus, editedRole, userKey);
                 Intent intent = new Intent(EditAccountView.this, AdminPageView.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

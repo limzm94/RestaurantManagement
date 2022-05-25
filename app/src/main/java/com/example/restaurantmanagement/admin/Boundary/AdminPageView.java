@@ -46,7 +46,7 @@ public class AdminPageView extends AppCompatActivity {
 
         userAccList.addAll(viewUser.showUser(""));
         // we are initializing our adapter class and passing our arraylist to it.
-        AdminViewHolder adminAdapter = new AdminViewHolder(this, userAccList);
+        AdminViewHolder adminAdapter = new AdminViewHolder(this, userAccList, role);
 
         // below line is for setting a layout manager for our recycler view.
         // here we are creating vertical list so we will provide orientation as vertical
@@ -58,6 +58,7 @@ public class AdminPageView extends AppCompatActivity {
 
         createAccBtn.setOnClickListener(v -> {
             Intent createAcc = new Intent(AdminPageView.this, CreateAccountView.class);
+            createAcc.putExtra("accountRole",role);
             startActivity(createAcc);
         });
 

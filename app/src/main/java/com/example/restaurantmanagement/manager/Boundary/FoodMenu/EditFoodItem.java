@@ -38,6 +38,7 @@ public class EditFoodItem extends AppCompatActivity {
         foodNameText.setText(foodName);
         foodDescText.setText(foodDesc);
         priceText.setText(Double.toString(price));
+        foodNameText.setEnabled(false);
 
         editBtn.setOnClickListener(v -> {
             String editedFoodName = foodNameText.getText().toString();
@@ -46,9 +47,7 @@ public class EditFoodItem extends AppCompatActivity {
 
             if (editedFoodName.equals("") || editedFoodDesc.equals("") || editedPrice == 0)
                 Toast.makeText(EditFoodItem.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
-            else if (checkMenuItem.checkFoodItem(editedFoodName)) {
-                Toast.makeText(EditFoodItem.this, "Cannot change menu item to have same name", Toast.LENGTH_SHORT).show();
-            } else {
+            else {
                 editFoodMenu.updateFoodItem(editedFoodName, editedFoodDesc, editedPrice, foodKey);
                 Intent createAcc = new Intent(EditFoodItem.this, FoodMenuView.class);
                 startActivity(createAcc);

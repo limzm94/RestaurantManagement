@@ -29,7 +29,6 @@ public class OwnerUI extends AppCompatActivity {
             Intent intent = new Intent(OwnerUI.this, OwnerView.class);
             intent.putExtra("accountRole","Owner");
             startActivity(intent);
-            finish();
         });
 
         staffBtn.setOnClickListener(v -> {

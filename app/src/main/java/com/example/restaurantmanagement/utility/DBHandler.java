@@ -190,7 +190,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public void deleteCoupon(int couponId) {
         SQLiteDatabase db = getReadableDatabase();
-        String delete = String.format("DELETE FROM Coupons WHERE menuId = %d", couponId);
+        String delete = String.format("DELETE FROM Coupons WHERE couponId = %d", couponId);
         db.execSQL(delete);
     }
 

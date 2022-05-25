@@ -47,6 +47,8 @@ public class EditCouponView extends AppCompatActivity {
         statusSpinner.setAdapter(statusAdapter);
         statusSpinner.setSelection(statusAdapter.getPosition(couponStatus));
 
+        couponCodeText.setEnabled(false);
+
         editBtn.setOnClickListener(v -> {
             String editedCouponCode = couponCodeText.getText().toString();
             String editedCouponDesc = couponDescText.getText().toString();
@@ -55,9 +57,7 @@ public class EditCouponView extends AppCompatActivity {
 
             if (editedCouponCode.equals("") || editedCouponDesc.equals("") || editedDiscount == 0)
                 Toast.makeText(EditCouponView.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
-            else if (checkCoupon.couponCheck(editedCouponCode)) {
-                Toast.makeText(EditCouponView.this, "Please change coupon code", Toast.LENGTH_SHORT).show();
-            } else {
+             else {
                 editCoupon.updateCoupon(editedCouponCode, editedCouponDesc, editedDiscount, editedStatus, couponKey);
                 Intent editCouponIntent = new Intent(EditCouponView.this, Coupon.class);
                 startActivity(editCouponIntent);
