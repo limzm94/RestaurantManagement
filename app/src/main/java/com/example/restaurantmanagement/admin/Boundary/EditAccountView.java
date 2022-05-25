@@ -56,6 +56,9 @@ public class EditAccountView extends AppCompatActivity {
         rolesSpinner.setSelection(rolesAdapter.getPosition(role));
         usernameText.setEnabled(false);
 
+        String userRole = getIntent().getStringExtra("accountRole");
+
+
         editBtn.setOnClickListener(v -> {
             String editedUsername = usernameText.getText().toString();
             String editedPassword = passwordText.getText().toString();
@@ -69,6 +72,7 @@ public class EditAccountView extends AppCompatActivity {
                 editUser.updateAcc(editedUsername, editedPassword, editedPersonName, editedStatus, editedRole, userKey);
                 Intent intent = new Intent(EditAccountView.this, AdminPageView.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("accountRole",userRole);
                 startActivity(intent);
                 finish();
             }

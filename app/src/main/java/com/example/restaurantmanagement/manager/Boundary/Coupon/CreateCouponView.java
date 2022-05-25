@@ -39,6 +39,9 @@ public class CreateCouponView extends AppCompatActivity {
 
             if (couponCode.equals("") || couponDesc.equals("") || discount == 0)
                 Toast.makeText(CreateCouponView.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
+            else if (discount > 100) {
+                Toast.makeText(CreateCouponView.this, "Invalid discount percentage", Toast.LENGTH_SHORT).show();
+            }
             else {
                 createCoupon.insertCoupon(couponCode, couponDesc, discount, status);
                 Intent couponIntent = new Intent(CreateCouponView.this, Coupon.class);

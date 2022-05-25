@@ -20,7 +20,6 @@ public class EditFoodItem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_food);
         EditFoodMenu editFoodMenu = new EditFoodMenu(EditFoodItem.this);
-        CheckMenuItem checkMenuItem = new CheckMenuItem(EditFoodItem.this);
         EditText foodNameText = findViewById(R.id.foodName_create);
         EditText foodDescText = findViewById(R.id.foodDesc_create);
         EditText priceText = findViewById(R.id.price_create);

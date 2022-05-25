@@ -57,7 +57,9 @@ public class EditCouponView extends AppCompatActivity {
 
             if (editedCouponCode.equals("") || editedCouponDesc.equals("") || editedDiscount == 0)
                 Toast.makeText(EditCouponView.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
-             else {
+            else if (editedDiscount > 100) {
+                Toast.makeText(EditCouponView.this, "Invalid discount percentage", Toast.LENGTH_SHORT).show();
+            } else {
                 editCoupon.updateCoupon(editedCouponCode, editedCouponDesc, editedDiscount, editedStatus, couponKey);
                 Intent editCouponIntent = new Intent(EditCouponView.this, Coupon.class);
                 startActivity(editCouponIntent);

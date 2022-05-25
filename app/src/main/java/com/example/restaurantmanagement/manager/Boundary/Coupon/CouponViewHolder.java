@@ -2,6 +2,7 @@ package com.example.restaurantmanagement.manager.Boundary.Coupon;
 
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -59,6 +60,7 @@ public class CouponViewHolder extends RecyclerView.Adapter<CouponViewHolder.View
             intent.putExtra("couponStatus", model.getCouponStatus());
             intent.putExtra("couponDisc", model.getCouponDisc());
             context.startActivity(intent);
+            ((Activity) context).finish();
         });
 
         holder.deleteBtn.setOnClickListener(v -> {

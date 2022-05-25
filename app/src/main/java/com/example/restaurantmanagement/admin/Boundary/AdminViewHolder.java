@@ -1,6 +1,7 @@
 package com.example.restaurantmanagement.admin.Boundary;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -57,8 +58,9 @@ public class AdminViewHolder extends RecyclerView.Adapter<AdminViewHolder.ViewHo
             intent.putExtra("position", model.getRole());
             intent.putExtra("username", model.getUsername());
             intent.putExtra("password", model.getPassword());
-            intent.putExtra("accountRole",role);
+            intent.putExtra("accountRole", role);
             context.startActivity(intent);
+            ((Activity) context).finish();
         });
     }
 

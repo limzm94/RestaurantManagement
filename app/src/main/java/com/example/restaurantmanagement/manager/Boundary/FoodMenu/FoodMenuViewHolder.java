@@ -2,6 +2,7 @@ package com.example.restaurantmanagement.manager.Boundary.FoodMenu;
 
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -57,6 +58,7 @@ public class FoodMenuViewHolder extends RecyclerView.Adapter<FoodMenuViewHolder.
             intent.putExtra("foodDesc", model.getFoodDesc());
             intent.putExtra("price", model.getPrice());
             context.startActivity(intent);
+            ((Activity) context).finish();
         });
 
         holder.deleteBtn.setOnClickListener(v -> {
