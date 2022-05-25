@@ -225,17 +225,57 @@ public class DBHandler extends SQLiteOpenHelper {
                 "isFulfilled TEXT)";
 
 //        //order detail
-//        for (int i = 0; i < 110; i++) {
-//            String insert = String.format("INSERT INTO OrderDetail(ProductName,Quantity,Price,Discount,DiscountedPrice," +
-//                            "CustomerName,UserID,OrderDate,MenuId,OrderId,isFulfilled) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');",
-//                    "foodname30" + i,
-//                    1,
-//                    30,
-//                    0,
-//                    order.getDiscount(),
-//                    order.getImage());
-//            db.execSQL(insert);
-//        }
+        for (int i = 0; i < 50; i++) {
+            String insert = String.format("INSERT INTO OrderDetail(ProductName,Quantity,Price,Discount,DiscountedPrice," +
+                            "CustomerName,UserID,OrderDate,MenuId,OrderId,isFulfilled) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');",
+                    "foodname30" + i,
+                    1,
+                    30,
+                    0,
+                    30,
+                    "customer"+i,
+                    i,
+                    "25-05-2022",
+                    i,
+                    i,
+                    "Fulfilled");
+            db.execSQL(insert);
+        }
+
+        for (int i = 0; i < 30; i++) {
+            String insert = String.format("INSERT INTO OrderDetail(ProductName,Quantity,Price,Discount,DiscountedPrice," +
+                            "CustomerName,UserID,OrderDate,MenuId,OrderId,isFulfilled) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');",
+                    "foodname15" + i,
+                    1,
+                    15,
+                    0,
+                    15,
+                    "customer"+i,
+                    i,
+                    "25-05-2022",
+                    i,
+                    i,
+                    "Fulfilled");
+            db.execSQL(insert);
+        }
+
+        for (int i = 0; i < 30; i++) {
+            String insert = String.format("INSERT INTO OrderDetail(ProductName,Quantity,Price,Discount,DiscountedPrice," +
+                            "CustomerName,UserID,OrderDate,MenuId,OrderId,isFulfilled) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');",
+                    "foodname20" + i,
+                    1,
+                    20,
+                    0,
+                    20,
+                    "customer"+i,
+                    i,
+                    "25-05-2021",
+                    i,
+                    i,
+                    "Fulfilled");
+            db.execSQL(insert);
+        }
+
 
 
 //        db.execSQL(rolesQuery);
@@ -882,11 +922,7 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         int totalEarning = 0;
         String food = "";
-        int first = date.indexOf("-");
-        int last = date.indexOf("-");
-        String dayWithYear = date.substring(first + 1);
-        String yearString = dayWithYear.substring(last + 1);
-        String[] params = new String[]{yearString};
+        String[] params = new String[]{date};
         Cursor c = db.rawQuery("select name from Foods where menuId = (" +
                 "SELECT menuId from OrderDetail WHERE substr(OrderDate,7,4) = ? GROUP BY menuId " +
                 "ORDER BY MAX(Quantity) DESC LIMIT 1)", params);
@@ -916,7 +952,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String yearString = date.substring(first + 1);
         String monthString = date.substring(0, 2);
         String[] params = new String[]{monthString,yearString};
-        Cursor c = db.rawQuery("Select (Price * Quantity) from OrderDetail where substr(OrderDate,4,2) and substr(OrderDate,7,4) = ?", params);
+        Cursor c = db.rawQuery("Select (Price * Quantity) from OrderDetail where substr(OrderDate,4,2) =? and substr(OrderDate,7,4) = ?", params);
         if (c.moveToFirst()) {
             do {
                 totalEarning += c.getInt(0);
