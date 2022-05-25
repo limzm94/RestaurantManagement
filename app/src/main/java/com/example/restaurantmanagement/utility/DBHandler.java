@@ -497,7 +497,10 @@ public class DBHandler extends SQLiteOpenHelper {
         contentValues.put("MenuId", foodKey);
         contentValues.put("OrderId", orderId);
         contentValues.put("isFulfilled", isFulfilled);
-        db.update("OrderDetail", contentValues, "OrderId" + "=" + OrderId, null);
+        db.update("OrderDetail",
+                contentValues,
+                "OrderId" + " = ? AND " + "MenuId" + " = ?",
+                new String[]{Integer.toString(OrderId), Integer.toString(foodKey)});
     }
 
     public String getUserRole(String username, String password) {
@@ -660,7 +663,7 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         int totalEarning = 0;
         String[] params = new String[]{};
-        Cursor c = db.rawQuery("select CustomerName, OrderDate, sum(price) from OrderDetail group by CustomerName, OrderDate", params);
+        Cursor c = db.rawQuery("select CustomerName, OrderDate, sum(price) from OrderDetail WHERE Quantity != 0 group by CustomerName, OrderDate", params);
         if (c.moveToFirst()) {
             do {
                 String CustomerName = c.getString(c.getColumnIndexOrThrow("CustomerName"));
@@ -740,7 +743,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String[] params = new String[]{date};
         Cursor c = db.rawQuery("select name from Foods where menuId = (" +
                 "SELECT menuId from OrderDetail WHERE OrderDate = ? GROUP BY menuId " +
-                "ORDER BY COUNT(*) DESC LIMIT 1)", params);
+                "ORDER BY MAX(Quantity) DESC LIMIT 1)", params);
         if (c.moveToFirst()) {
             food = c.getString(0);
         }
@@ -760,7 +763,7 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor c = db.rawQuery("select name from Foods where menuId = (" +
                 "SELECT menuId from OrderDetail where substr(OrderDate,4,2) = ? " +
                 "AND substr(OrderDate,7,4) = ? GROUP BY menuId " +
-                "ORDER BY COUNT(*) DESC LIMIT 1)", params);
+                "ORDER BY MAX(Quantity) DESC LIMIT 1)", params);
         if (c.moveToFirst()) {
             food = c.getString(0);
         }
@@ -778,7 +781,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String[] params = new String[]{yearString};
         Cursor c = db.rawQuery("select name from Foods where menuId = (" +
                 "SELECT menuId from OrderDetail WHERE substr(OrderDate,7,4) = ? GROUP BY menuId " +
-                "ORDER BY COUNT(*) DESC LIMIT 1)", params);
+                "ORDER BY MAX(Quantity) DESC LIMIT 1)", params);
         if (c.moveToFirst()) {
             food = c.getString(0);
         }
