@@ -36,6 +36,7 @@ public class OrderSummaryView extends AppCompatActivity {
 
         double totalCharge = 0.00;
         int discount = 0;
+        String customerName = "";
         StringBuilder cartSummary = new StringBuilder((String.format("%-13s %-3s %-5s %-8s %n", "Item", "Qty", "Price", "Subtotal")));
         for(OrderObject customerEntity : orderList) {
             System.out.println("Food name: "+ customerEntity.getFoodName());
@@ -43,13 +44,15 @@ public class OrderSummaryView extends AppCompatActivity {
             totalCharge += (customerEntity.getPrice() * customerEntity.getQuantity());
             System.out.println("Total Charge: " + totalCharge);
             discount = customerEntity.getDiscount();
+            customerName = customerEntity.getCustomerName();
             cartSummary.append(String.format("%-13s %-3d $%-5.2f $%-8.2f %n", customerEntity.getFoodName(), customerEntity.getQuantity(), customerEntity.getPrice(),
                     customerEntity.getQuantity() * customerEntity.getPrice()));
         }
         cartSummary.append(String.format("Total: $%.2f %n", totalCharge));
         cartSummary.append(String.format("Discount: %d%%%n", discount));
         cartSummary.append(String.format("Total after discount: $%.2f %n", totalCharge * (100 - discount) / 100 ));
-
+        cartSummary.append(String.format("Customer username: %s%n", customerName));
+        cartSummary.append(String.format("Order ID: %d%n", orderId));
         summaryText.setTypeface(Typeface.MONOSPACE);
         summaryText.setText(cartSummary);
 

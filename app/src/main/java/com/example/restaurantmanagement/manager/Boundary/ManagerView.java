@@ -1,8 +1,8 @@
 package com.example.restaurantmanagement.manager.Boundary;
 
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,16 +20,21 @@ public class ManagerView extends AppCompatActivity {
         Button couponBtn = findViewById(R.id.mngrCouponBtn);
         Button logoutBtn = findViewById(R.id.logout_btn);
 
+        String role = getIntent().getStringExtra("accountRole");
+        if (role.equals("Owner")) {
+            logoutBtn.setVisibility(View.GONE);
+        } else {
+            logoutBtn.setVisibility(View.VISIBLE);
+        }
+
         foodMenuBtn.setOnClickListener(v -> {
             Intent admin = new Intent(ManagerView.this, FoodMenuView.class);
             startActivity(admin);
-            finish();
         });
 
         couponBtn.setOnClickListener(v -> {
             Intent customer = new Intent(ManagerView.this, Coupon.class);
             startActivity(customer);
-            finish();
         });
 
         logoutBtn.setOnClickListener(v -> finish());

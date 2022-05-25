@@ -3,6 +3,7 @@ package com.example.restaurantmanagement.admin.Boundary;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -34,6 +35,14 @@ public class AdminPageView extends AppCompatActivity {
         Button logoutBtn = findViewById(R.id.adminLogOut);
         Button searchBtn = findViewById(R.id.searchBtn);
         RecyclerView adminRV = findViewById(R.id.idRVAdmin);
+
+
+        String role = getIntent().getStringExtra("accountRole");
+        if (role.equals("Owner")) {
+            logoutBtn.setVisibility(View.GONE);
+        } else {
+            logoutBtn.setVisibility(View.VISIBLE);
+        }
 
         userAccList.addAll(viewUser.showUser(""));
         // we are initializing our adapter class and passing our arraylist to it.

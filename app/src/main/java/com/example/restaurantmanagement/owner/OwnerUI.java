@@ -1,6 +1,5 @@
 package com.example.restaurantmanagement.owner;
 // need to implement navigation drawer for owner or else the activity flow will be weird for him
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -27,35 +26,37 @@ public class OwnerUI extends AppCompatActivity {
         Button logoutBtn = findViewById(R.id.logout_btn);
 
         ownerBtn.setOnClickListener(v -> {
-            Intent createAcc = new Intent(OwnerUI.this, OwnerView.class);
-            startActivity(createAcc);
+            Intent intent = new Intent(OwnerUI.this, OwnerView.class);
+            intent.putExtra("accountRole","Owner");
+            startActivity(intent);
             finish();
         });
 
         staffBtn.setOnClickListener(v -> {
-            Intent admin = new Intent(OwnerUI.this, StaffView.class);
-            startActivity(admin);
+            Intent intent = new Intent(OwnerUI.this, StaffView.class);
+            intent.putExtra("accountRole","Owner");
+            startActivity(intent);
         });
 
         adminBtn.setOnClickListener(v -> {
-            Intent admin = new Intent(OwnerUI.this, AdminPageView.class);
-            startActivity(admin);
+            Intent intent = new Intent(OwnerUI.this, AdminPageView.class);
+            intent.putExtra("accountRole","Owner");
+            startActivity(intent);
         });
 
         customerBtn.setOnClickListener(v -> {
-            Intent customer = new Intent(OwnerUI.this, CustomerView.class);
-            customer.putExtra("accountRole","Owner");
-            customer.putExtra("customerName","");
-            startActivity(customer);
+            Intent intent = new Intent(OwnerUI.this, CustomerView.class);
+            intent.putExtra("accountRole","Owner");
+            intent.putExtra("customerName","");
+            startActivity(intent);
         });
 
         managerBtn.setOnClickListener(v -> {
-            Intent manager = new Intent(OwnerUI.this, ManagerView.class);
-            startActivity(manager);
+            Intent intent = new Intent(OwnerUI.this, ManagerView.class);
+            intent.putExtra("accountRole","Owner");
+            startActivity(intent);
         });
 
         logoutBtn.setOnClickListener(v -> finish());
-
-
     }
 }

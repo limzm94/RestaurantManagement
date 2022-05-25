@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -42,6 +43,11 @@ public class CustomerView extends AppCompatActivity {
         String customerName = getIntent().getStringExtra("customerName");
         String role = getIntent().getStringExtra("accountRole");
 
+        if (role.equals("Owner") || role.equals("Staff")) {
+            logOutBtn.setVisibility(View.GONE);
+        } else {
+            logOutBtn.setVisibility(View.VISIBLE);
+        }
 
         ArrayList<OrderObject> orderList;
         orderList = showMenu.displayMenu();
