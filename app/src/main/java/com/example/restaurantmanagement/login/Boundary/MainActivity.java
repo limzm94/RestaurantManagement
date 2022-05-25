@@ -20,6 +20,8 @@ import com.example.restaurantmanagement.manager.Controller.FoodMenu.CreateFoodMe
 import com.example.restaurantmanagement.owner.OwnerUI;
 import com.example.restaurantmanagement.staff.Boundary.StaffView;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
     //ZM test push
     @Override
@@ -38,11 +40,18 @@ public class MainActivity extends AppCompatActivity {
 
         //Preloaded menu NEED TO BE REMOVED
         CreateFoodMenu createFoodMenu = new CreateFoodMenu(MainActivity.this);
-        createFoodMenu.insertFoodMenu("Curry", "Curry is a dish with a sauce seasoned with spices.", 7.50);
-        createFoodMenu.insertFoodMenu("Chicken Rice", "Hainan's chicken rice is a dish of poached chicken and seasoned rice.", 4.50);
-        createFoodMenu.insertFoodMenu("Ramen", "Ramen is a Japanese noodle dish.", 10.90);
-        createFoodMenu.insertFoodMenu("Bingsu", "Bingsu is a Korean shaved ice dessert with sweet toppings.", 8.00);
-        createFoodMenu.insertFoodMenu("Carrot Cake", "Carrot cake is cake that contains carrots mixed into the batter.", 6.50);
+        try {
+            int insertCount = createFoodMenu.insertFoodMenus(MainActivity.this,R.raw.food_db);
+            Toast.makeText(this, "Rows loaded from file= " + insertCount, Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+//        createFoodMenu.insertFoodMenu("Curry", "Curry is a dish with a sauce seasoned with spices.", 7.50);
+//        createFoodMenu.insertFoodMenu("Chicken Rice", "Hainan's chicken rice is a dish of poached chicken and seasoned rice.", 4.50);
+//        createFoodMenu.insertFoodMenu("Ramen", "Ramen is a Japanese noodle dish.", 10.90);
+//        createFoodMenu.insertFoodMenu("Bingsu", "Bingsu is a Korean shaved ice dessert with sweet toppings.", 8.00);
+//        createFoodMenu.insertFoodMenu("Carrot Cake", "Carrot cake is cake that contains carrots mixed into the batter.", 6.50);
 
         btnSignIn.setOnClickListener(v -> {
             String user = edtUsername.getText().toString();

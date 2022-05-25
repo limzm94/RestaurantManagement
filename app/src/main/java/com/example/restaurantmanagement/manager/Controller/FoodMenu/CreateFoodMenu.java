@@ -5,6 +5,8 @@ import android.widget.Toast;
 
 import com.example.restaurantmanagement.manager.Entity.FoodMenuEntity;
 
+import java.io.IOException;
+
 public class CreateFoodMenu {
     Context context;
 
@@ -25,4 +27,11 @@ public class CreateFoodMenu {
             Toast.makeText(context, "Food Item already Exist!", Toast.LENGTH_LONG).show();
         }
     }
+
+    public int insertFoodMenus(Context context, int resourceId) throws IOException {
+        FoodMenuEntity foodMenuEntity = new FoodMenuEntity(context);
+        return foodMenuEntity.insertAllFood(context,resourceId);
+    }
+
+
 }

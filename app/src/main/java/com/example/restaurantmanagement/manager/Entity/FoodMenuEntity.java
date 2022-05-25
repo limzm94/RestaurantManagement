@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.restaurantmanagement.customer.Entity.FoodObject;
 import com.example.restaurantmanagement.utility.DBHandler;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class FoodMenuEntity {
@@ -42,6 +43,11 @@ public class FoodMenuEntity {
     public boolean insertFood(String foodName, String foodDesc, double price) {
         DBHandler DB = new DBHandler(context);
         return DB.insertFoodData(foodName, foodDesc, price);
+    }
+
+    public int insertAllFood(Context context, int resourceId) throws IOException {
+        DBHandler DB = new DBHandler(context);
+        return DB.insertFromFile(context, resourceId);
     }
 
     public void editFood(String foodName, String foodDesc, double price, int foodKey) {

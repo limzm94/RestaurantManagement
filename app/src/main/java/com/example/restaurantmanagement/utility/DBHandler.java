@@ -13,6 +13,13 @@ import com.example.restaurantmanagement.admin.Entity.UserEntity;
 import com.example.restaurantmanagement.admin.Entity.UserObject;
 import com.example.restaurantmanagement.customer.Entity.OrderObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -47,6 +54,27 @@ public class DBHandler extends SQLiteOpenHelper {
     // creating a constructor for our database handler.
     public DBHandler(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
+    }
+
+    public int insertFromFile(Context context, int resourceId) throws IOException {
+        SQLiteDatabase db = getReadableDatabase();
+        // Reseting Counter
+        int result = 0;
+
+        // Open the resource
+        InputStream insertsStream = context.getResources().openRawResource(resourceId);
+        BufferedReader insertReader = new BufferedReader(new InputStreamReader(insertsStream));
+
+        // Iterate through lines (assuming each insert has its own line and theres no other stuff)
+        while (insertReader.ready()) {
+            String insertStmt = insertReader.readLine();
+            db.execSQL(insertStmt);
+            result++;
+        }
+        insertReader.close();
+
+        // returning number of inserted rows
+        return result;
     }
 
     // below method is for creating a database by running a sqlite query
@@ -119,6 +147,9 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(categoryQuery);
         db.execSQL(orderDetailQuery);
         db.execSQL(codeQuery);
+
+
+
 //        db.execSQL(rolesQuery);
 //        db.execSQL(userRolesQuery);
     }
