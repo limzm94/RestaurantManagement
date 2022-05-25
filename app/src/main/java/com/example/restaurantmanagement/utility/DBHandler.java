@@ -91,7 +91,6 @@ public class DBHandler extends SQLiteOpenHelper {
                 "ProductName TEXT," +
                 "Quantity TEXT," +
                 "Price FLOAT," +
-                "Subtotal FLOAT," +
                 "Discount INTEGER," +
                 "DiscountedPrice FLOAT," +
                 "CustomerName TEXT," +
