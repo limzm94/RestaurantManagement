@@ -63,11 +63,12 @@ public class CustomerView extends AppCompatActivity {
         adminRV.setLayoutManager(linearLayoutManager);
         adminRV.setAdapter(foodAdapter);
 
-        for(OrderObject orderObject : orderList) {
-            orderQuantity = orderQuantity + orderObject.getQuantity();
-        }
+
 
         checkOutBtn.setOnClickListener(v -> {
+            for(OrderObject orderObject : orderList) {
+                orderQuantity = orderQuantity + orderObject.getQuantity();
+            }
             if (customerNameText.getText().toString().equals("")) {
                 Toast.makeText(CustomerView.this, "Please enter a username", Toast.LENGTH_LONG).show();
             } else if (orderQuantity == 0) {
