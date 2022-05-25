@@ -37,6 +37,8 @@ public class CreateAccountView extends AppCompatActivity {
         rolesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         rolesSpinner.setAdapter(rolesAdapter);
 
+        String userRole = getIntent().getStringExtra("accountRole");
+
         createBtn.setOnClickListener(v -> {
             String username = usernameText.getText().toString();
             String password = passwordText.getText().toString();
@@ -50,6 +52,7 @@ public class CreateAccountView extends AppCompatActivity {
                 createUser.createAcc(username, password, status, personName, role);
                 Intent intent = new Intent(CreateAccountView.this, AdminPageView.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("accountRole",userRole);
                 startActivity(intent);
                 finish();
             }
