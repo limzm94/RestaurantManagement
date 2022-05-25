@@ -764,7 +764,7 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor c = db.rawQuery("select name from Foods where menuId = (" +
                 "SELECT menuId from OrderDetail where substr(OrderDate,4,2) = ? " +
                 "AND substr(OrderDate,7,4) = ? GROUP BY menuId " +
-                "ORDER BY COUNT(*) DESC LIMIT 1)", params);
+                "ORDER BY MAX(Quantity) DESC LIMIT 1)", params);
         if (c.moveToFirst()) {
             food = c.getString(0);
         }
@@ -782,7 +782,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String[] params = new String[]{yearString};
         Cursor c = db.rawQuery("select name from Foods where menuId = (" +
                 "SELECT menuId from OrderDetail WHERE substr(OrderDate,7,4) = ? GROUP BY menuId " +
-                "ORDER BY COUNT(*) DESC LIMIT 1)", params);
+                "ORDER BY MAX(Quantity) DESC LIMIT 1)", params);
         if (c.moveToFirst()) {
             food = c.getString(0);
         }
