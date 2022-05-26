@@ -3,6 +3,8 @@ package com.example.restaurantmanagement.owner.Boundary;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,17 +50,64 @@ public class OwnerView extends AppCompatActivity {
         statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinnerDate.setAdapter(statusAdapter);
+        String filtertype = spinner.getSelectedItem().toString();
 
-        searchBtn.setOnClickListener(v -> {
-            String finalFilter;
-            searchRequirement = searchText.getText().toString();
-
-            if (Objects.equals(searchRequirement, new String(""))){
-                Toast.makeText(OwnerView.this, "Invalid input", Toast.LENGTH_LONG).show();
-                return;
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+                if (position == 0){
+                    spinnerDate.setEnabled(false);
+                    searchText.setEnabled(false);
+                    searchText.setHint("No input required");
+                }
+                else{
+                    spinnerDate.setEnabled(true);
+                    searchText.setEnabled(true);
+                }
             }
 
-            String filtertype = spinner.getSelectedItem().toString();
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
+        spinnerDate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+                if(position == 0 && Objects.equals(filtertype, new String("View spending pattern"))){
+
+                }
+                else if (position == 0){
+                    searchText.setHint("YYYY");
+                }
+                else if (position == 1){
+                    searchText.setHint("MM-YYYY");
+                }
+                else{
+                    searchText.setHint("DD-MM-YYYY");
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
+        searchBtn.setOnClickListener(v -> {
+            searchRequirement = searchText.getText().toString();
+
+            if (!Objects.equals(filtertype, new String("View spending pattern"))){
+                if (Objects.equals(searchRequirement, new String(""))){
+                    Toast.makeText(OwnerView.this, "Invalid input", Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
 
             String yearMthSelection = spinnerDate.getSelectedItem().toString();
             if (Objects.equals(filtertype, new String("View spending pattern"))){
@@ -82,7 +131,7 @@ public class OwnerView extends AppCompatActivity {
 
                 }
                 else if (Objects.equals(filtertype, new String("View earning"))){
-                    int totalEarnings = viewAnalytics.getYearlyEarnings(searchRequirement);
+                    float totalEarnings = viewAnalytics.getYearlyEarnings(searchRequirement);
                     StringBuilder cartSummary = new StringBuilder((String.format("%-13s", "Earnings yearly: $")));
                     cartSummary.append(String.format("%-13s", totalEarnings));
                     summaryText.setTypeface(Typeface.MONOSPACE);

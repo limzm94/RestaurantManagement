@@ -31,7 +31,7 @@ public class AnalyticsEntity {
         return DB.getMonthlyEarnings(date);
     }
 
-    public int getYearlyEarnings(String date){
+    public float getYearlyEarnings(String date){
         DBHandler DB = new DBHandler(context);
         return DB.getYearlyEarnings(date);
     }
