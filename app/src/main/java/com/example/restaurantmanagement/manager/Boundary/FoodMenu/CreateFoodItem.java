@@ -10,7 +10,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.manager.Controller.FoodMenu.CheckMenuItem;
 import com.example.restaurantmanagement.manager.Controller.FoodMenu.CreateFoodMenu;
 
 public class CreateFoodItem extends AppCompatActivity {
@@ -19,7 +18,6 @@ public class CreateFoodItem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_food);
         CreateFoodMenu createFoodMenu = new CreateFoodMenu(CreateFoodItem.this);
-        CheckMenuItem checkMenuItem = new CheckMenuItem(CreateFoodItem.this);
         EditText foodNameText = findViewById(R.id.foodName_create);
         EditText foodDescText = findViewById(R.id.foodDesc_create);
         EditText priceText = findViewById(R.id.price_create);

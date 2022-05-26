@@ -38,14 +38,16 @@ public class OrderSummaryView extends AppCompatActivity {
         String customerName = "";
         StringBuilder cartSummary = new StringBuilder((String.format("%-13s %-3s %-5s %-8s %n", "Item", "Qty", "Price", "Subtotal")));
         for(OrderObject customerEntity : orderList) {
-            System.out.println("Food name: "+ customerEntity.getFoodName());
-            System.out.println("Food quantity: "+ customerEntity.getQuantity());  // Will invoke override `toString()` method
-            totalCharge += (customerEntity.getPrice() * customerEntity.getQuantity());
-            System.out.println("Total Charge: " + totalCharge);
-            discount = customerEntity.getDiscount();
-            customerName = customerEntity.getCustomerName();
-            cartSummary.append(String.format("%-13s %-3d $%-5.2f $%-8.2f %n", customerEntity.getFoodName(), customerEntity.getQuantity(), customerEntity.getPrice(),
-                    customerEntity.getQuantity() * customerEntity.getPrice()));
+            if(customerEntity.getQuantity() != 0) {
+                System.out.println("Food name: " + customerEntity.getFoodName());
+                System.out.println("Food quantity: " + customerEntity.getQuantity());  // Will invoke override `toString()` method
+                totalCharge += (customerEntity.getPrice() * customerEntity.getQuantity());
+                System.out.println("Total Charge: " + totalCharge);
+                discount = customerEntity.getDiscount();
+                customerName = customerEntity.getCustomerName();
+                cartSummary.append(String.format("%-13s %-3d $%-5.2f $%-8.2f %n", customerEntity.getFoodName(), customerEntity.getQuantity(), customerEntity.getPrice(),
+                        customerEntity.getQuantity() * customerEntity.getPrice()));
+            }
         }
         cartSummary.append(String.format("Total: $%.2f %n", totalCharge));
         cartSummary.append(String.format("Discount: %d%%%n", discount));

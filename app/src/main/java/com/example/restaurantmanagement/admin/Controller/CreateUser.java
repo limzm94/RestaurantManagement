@@ -13,10 +13,9 @@ public class CreateUser {
     }
 
     public void createAcc(String username, String password, String status, String personName, String role){
-        CheckUser checkUser = new CheckUser(context);
         UserEntity userEntity = new UserEntity(context);
 
-        if (!checkUser.checkAcc(username)) {
+        if (!userEntity.checkUser(username)) {
             if (userEntity.insertUser(username, password, status, personName, role)) {
                 Toast.makeText(context, "Registered successfully", Toast.LENGTH_SHORT).show();
             } else {

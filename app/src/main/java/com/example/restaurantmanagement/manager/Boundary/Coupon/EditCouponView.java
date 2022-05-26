@@ -12,7 +12,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.manager.Controller.Coupon.CheckCoupon;
 import com.example.restaurantmanagement.manager.Controller.Coupon.EditCoupon;
 
 public class EditCouponView extends AppCompatActivity {
@@ -22,7 +21,6 @@ public class EditCouponView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_coupon);
         EditCoupon editCoupon = new EditCoupon(EditCouponView.this);
-        CheckCoupon checkCoupon = new CheckCoupon(EditCouponView.this);
         Spinner statusSpinner = findViewById(R.id.couponStatus_create);
         EditText couponCodeText = findViewById(R.id.couponCode_create);
         EditText couponDescText = findViewById(R.id.couponDesc_create);

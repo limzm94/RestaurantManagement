@@ -146,9 +146,7 @@ public class OwnerView extends AppCompatActivity {
                     summaryText.setTypeface(Typeface.MONOSPACE);
                     summaryText.setText(cartSummary);
                 }
-
             }
-
         });
     }
 }

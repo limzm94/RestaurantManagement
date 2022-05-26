@@ -13,9 +13,8 @@ public class CreateFoodMenu {
     }
 
     public void insertFoodMenu(String foodName,String foodDesc,double price) {
-        CheckMenuItem checkMenuItem = new CheckMenuItem(context);
         FoodMenuEntity foodMenuEntity = new FoodMenuEntity(context);
-        if (!checkMenuItem.checkFoodItem(foodName)) {
+        if (!foodMenuEntity.checkFood(foodName)) {
             if (foodMenuEntity.insertFood(foodName, foodDesc, price)) {
                 Toast.makeText(context, "Registered successfully", Toast.LENGTH_LONG).show();
             } else {

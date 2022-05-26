@@ -13,9 +13,8 @@ public class CreateCoupon {
     }
 
     public void insertCoupon(String couponCode,String couponDesc,int discount,String status) {
-        CheckCoupon checkCoupon = new CheckCoupon(context);
         CouponEntity couponEntity = new CouponEntity(context);
-        if (!checkCoupon.couponCheck(couponCode)) {
+        if (!couponEntity.checkCoupon(couponCode)) {
             if (couponEntity.insertCoupon(couponCode, couponDesc, discount, status)) {
                 Toast.makeText(context, "Coupon created successfully", Toast.LENGTH_LONG).show();
             } else {

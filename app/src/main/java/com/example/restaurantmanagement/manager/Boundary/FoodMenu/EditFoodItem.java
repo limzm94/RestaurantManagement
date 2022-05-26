@@ -10,7 +10,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.R;
-import com.example.restaurantmanagement.manager.Controller.FoodMenu.CheckMenuItem;
 import com.example.restaurantmanagement.manager.Controller.FoodMenu.EditFoodMenu;
 
 public class EditFoodItem extends AppCompatActivity {
