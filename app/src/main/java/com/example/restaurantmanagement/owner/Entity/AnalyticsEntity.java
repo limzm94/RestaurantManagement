@@ -21,12 +21,12 @@ public class AnalyticsEntity {
 
 
     // earnings
-    public int getDailyEarnings(String date){
+    public float getDailyEarnings(String date){
         DBHandler DB = new DBHandler(context);
         return DB.getDailyEarnings(date);
     }
 
-    public int getMonthlyEarnings(String date){
+    public float getMonthlyEarnings(String date){
         DBHandler DB = new DBHandler(context);
         return DB.getMonthlyEarnings(date);
     }
