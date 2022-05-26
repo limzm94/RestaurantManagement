@@ -932,22 +932,22 @@ public class DBHandler extends SQLiteOpenHelper {
         return food;
     }
 
-    public int getDailyEarnings(String date) {
+    public float getDailyEarnings(String date) {
         SQLiteDatabase db = this.getWritableDatabase();
-        int totalEarning = 0;
+        float totalEarning = 0;
         String[] params = new String[]{date};
         Cursor c = db.rawQuery("Select (Price * Quantity) from OrderDetail where OrderDate = ?", params);
         if (c.moveToFirst()) {
             do {
-                totalEarning += c.getInt(0);
+                totalEarning += c.getFloat(0);
             } while (c.moveToNext());
         }
         return totalEarning;
     }
 
-    public int getMonthlyEarnings(String date) {
+    public float getMonthlyEarnings(String date) {
         SQLiteDatabase db = this.getWritableDatabase();
-        int totalEarning = 0;
+        float totalEarning = 0;
         int first = date.indexOf("-");
         String yearString = date.substring(first + 1);
         String monthString = date.substring(0, 2);
@@ -955,7 +955,7 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor c = db.rawQuery("Select (Price * Quantity) from OrderDetail where substr(OrderDate,4,2) =? and substr(OrderDate,7,4) = ?", params);
         if (c.moveToFirst()) {
             do {
-                totalEarning += c.getInt(0);
+                totalEarning += c.getFloat(0);
             } while (c.moveToNext());
         }
         return totalEarning;
