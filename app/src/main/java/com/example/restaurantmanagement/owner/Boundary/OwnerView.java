@@ -82,6 +82,17 @@ public class OwnerView extends AppCompatActivity {
                 else{
                     spinnerDate.setEnabled(true);
                     searchText.setEnabled(true);
+                    searchText.setHint("No input required");
+                    String yearMthSelection = spinnerDate.getSelectedItem().toString();
+                    if (Objects.equals(yearMthSelection, new String("Year"))){
+                        searchText.setHint("YYYY");
+                    }
+                    else if (Objects.equals(yearMthSelection, new String("Month"))){
+                        searchText.setHint("MM-YYYY");
+                    }
+                    else{
+                        searchText.setHint("DD-MM-YYYY");
+                    }
                 }
             }
 
