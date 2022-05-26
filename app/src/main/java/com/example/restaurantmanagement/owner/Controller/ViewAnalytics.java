@@ -31,7 +31,7 @@ public class ViewAnalytics {
         return analyticsEntity.getMonthlyEarnings(date);
     }
 
-    public int getYearlyEarnings(String date) {
+    public float getYearlyEarnings(String date) {
         AnalyticsEntity analyticsEntity = new AnalyticsEntity(context);
         return analyticsEntity.getYearlyEarnings(date);
     }

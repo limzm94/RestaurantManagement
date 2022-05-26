@@ -177,7 +177,7 @@ public class DBHandler extends SQLiteOpenHelper {
 //        insert into FOODS (description,name,price)VALUES('init food 1', 'food1', 30.0 );
 
         for (int i = 0; i < 30; i++) {
-            String insert = String.format("insert into FOODS (description,name,price) VALUES('%s','%s','%s');",
+            String insert = String.format("insert into Foods (description,name,price) VALUES('%s','%s','%s');",
                     "description" + i,
                     "foodname20" + i,
                     20);
@@ -185,7 +185,7 @@ public class DBHandler extends SQLiteOpenHelper {
         }
 
         for (int i = 0; i < 30; i++) {
-            String insert = String.format("insert into FOODS (description,name,price) VALUES('%s','%s','%s');",
+            String insert = String.format("insert into Foods (description,name,price) VALUES('%s','%s','%s');",
                     "description" + i,
                     "foodname15" + i,
                     15);
@@ -193,7 +193,7 @@ public class DBHandler extends SQLiteOpenHelper {
         }
 
         for (int i = 0; i < 50; i++) {
-            String insert = String.format("insert into FOODS (description,name,price) VALUES('%s','%s','%s');",
+            String insert = String.format("insert into Foods (description,name,price) VALUES('%s','%s','%s');",
                     "description" + i,
                     "foodname30" + i,
                     30);
@@ -961,9 +961,9 @@ public class DBHandler extends SQLiteOpenHelper {
         return totalEarning;
     }
 
-    public int getYearlyEarnings(String date) {
+    public float getYearlyEarnings(String date) {
         SQLiteDatabase db = this.getWritableDatabase();
-        int totalEarning = 0;
+        float totalEarning = 0;
         int first = date.indexOf("-");
         int last = date.indexOf("-");
         String dayWithYear = date.substring(first + 1);
@@ -977,7 +977,7 @@ public class DBHandler extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
 //            totalEarning += c.getInt(0);
             do {
-                totalEarning += c.getInt(0);
+                totalEarning += c.getFloat(0);
             } while (c.moveToNext());
         }
         return totalEarning;
