@@ -15,7 +15,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagement.customer.Entity.OrderObject;
-import com.example.restaurantmanagement.owner.Controller.ViewAnalytics;
+import com.example.restaurantmanagement.owner.Controller.GetAllSpending;
+import com.example.restaurantmanagement.owner.Controller.GetFrequencyMonth;
+import com.example.restaurantmanagement.owner.Controller.GetFrequencyToday;
+import com.example.restaurantmanagement.owner.Controller.GetFrequencyYear;
+import com.example.restaurantmanagement.owner.Controller.GetMenuRecommendationMonth;
+import com.example.restaurantmanagement.owner.Controller.GetMenuRecommendationToday;
+import com.example.restaurantmanagement.owner.Controller.GetMenuRecommendationYear;
+import com.example.restaurantmanagement.owner.Controller.GetMonthlyEarnings;
+import com.example.restaurantmanagement.owner.Controller.GetTodayEarnings;
+import com.example.restaurantmanagement.owner.Controller.GetYearlyEarnings;
 import com.example.restaurantmanagement.R;
 
 import java.util.ArrayList;
@@ -28,7 +37,16 @@ public class OwnerView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ViewAnalytics viewAnalytics = new ViewAnalytics(this);
+        GetAllSpending getAllSpending = new GetAllSpending(this);
+        GetYearlyEarnings getYearlyEarnings = new GetYearlyEarnings(this);
+        GetTodayEarnings getTodayEarnings = new GetTodayEarnings(this);
+        GetMonthlyEarnings getMonthlyEarnings = new GetMonthlyEarnings(this);
+        GetMenuRecommendationYear getMenuRecommendationYear = new GetMenuRecommendationYear(this);
+        GetMenuRecommendationMonth getMenuRecommendationMonth = new GetMenuRecommendationMonth(this);
+        GetMenuRecommendationToday getMenuRecommendationToday = new GetMenuRecommendationToday(this);
+        GetFrequencyMonth getFrequencyMonth = new GetFrequencyMonth(this);
+        GetFrequencyYear getFrequencyYear = new GetFrequencyYear(this);
+        GetFrequencyToday getFrequencyToday = new GetFrequencyToday(this);
         setContentView(R.layout.activity_analytics);
 
         EditText searchText = findViewById(R.id.search_date);
@@ -50,7 +68,7 @@ public class OwnerView extends AppCompatActivity {
         statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinnerDate.setAdapter(statusAdapter);
-        String filtertype = spinner.getSelectedItem().toString();
+
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -78,6 +96,7 @@ public class OwnerView extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // your code here
+                String filtertype = spinner.getSelectedItem().toString();
                 if(position == 0 && Objects.equals(filtertype, new String("View spending pattern"))){
 
                 }
@@ -101,6 +120,7 @@ public class OwnerView extends AppCompatActivity {
 
         searchBtn.setOnClickListener(v -> {
             searchRequirement = searchText.getText().toString();
+            String filtertype = spinner.getSelectedItem().toString();
 
             if (!Objects.equals(filtertype, new String("View spending pattern"))){
                 if (Objects.equals(searchRequirement, new String(""))){
@@ -111,7 +131,7 @@ public class OwnerView extends AppCompatActivity {
 
             String yearMthSelection = spinnerDate.getSelectedItem().toString();
             if (Objects.equals(filtertype, new String("View spending pattern"))){
-                ArrayList<OrderObject> spendings = viewAnalytics.getAllSpending();
+                ArrayList<OrderObject> spendings = getAllSpending.getAllSpending();
                 StringBuilder cartSummary = new StringBuilder((String.format("%-13s %-6s %-5s %n", "Customer", "Date", "Price")));
                 for (OrderObject val : spendings) // "val" will be each Double value within the object.
                 {
@@ -122,7 +142,7 @@ public class OwnerView extends AppCompatActivity {
             }
             else if (Objects.equals(yearMthSelection, new String("Year"))){
                 if (Objects.equals(filtertype, new String("View preference"))){
-                    String recommendedFood = viewAnalytics.getMenuRecommendationYear(searchRequirement);
+                    String recommendedFood = getMenuRecommendationYear.getMenuRecommendationYear(searchRequirement);
                     StringBuilder cartSummary = new StringBuilder((String.format("%-13s", "Recommended item: ")));
                     cartSummary.append(String.format("%-13s", recommendedFood));
                     summaryText.setTypeface(Typeface.MONOSPACE);
@@ -131,14 +151,14 @@ public class OwnerView extends AppCompatActivity {
 
                 }
                 else if (Objects.equals(filtertype, new String("View earning"))){
-                    float totalEarnings = viewAnalytics.getYearlyEarnings(searchRequirement);
+                    float totalEarnings = getYearlyEarnings.getYearlyEarnings(searchRequirement);
                     StringBuilder cartSummary = new StringBuilder((String.format("%-13s", "Earnings yearly: $")));
                     cartSummary.append(String.format("%-13s", totalEarnings));
                     summaryText.setTypeface(Typeface.MONOSPACE);
                     summaryText.setText(cartSummary);
                 }
                 else if (Objects.equals(filtertype, new String("View frequency of visit"))){
-                    int freqVisit = viewAnalytics.getFrequencyYear(searchRequirement);
+                    int freqVisit = getFrequencyYear.getFrequencyYear(searchRequirement);
                     StringBuilder cartSummary = new StringBuilder((String.format("%-13s", "Frequency of visit: ")));
                     cartSummary.append(String.format("%-13s", freqVisit));
                     summaryText.setTypeface(Typeface.MONOSPACE);
@@ -149,7 +169,7 @@ public class OwnerView extends AppCompatActivity {
                 }
             }else if (Objects.equals(yearMthSelection, new String("Month"))){
                 if (Objects.equals(filtertype, new String("View preference"))){
-                    String recommendedFood = viewAnalytics.getMenuRecommendationMonth(searchRequirement);
+                    String recommendedFood = getMenuRecommendationMonth.getMenuRecommendationMonth(searchRequirement);
                     StringBuilder cartSummary = new StringBuilder((String.format("%-13s", "Recommended item: ")));
                     cartSummary.append(String.format("%-13s", recommendedFood));
                     summaryText.setTypeface(Typeface.MONOSPACE);
@@ -158,14 +178,14 @@ public class OwnerView extends AppCompatActivity {
 
                 }
                 else if (Objects.equals(filtertype, new String("View earning"))){
-                    int totalEarnings = viewAnalytics.getMonthlyEarnings(searchRequirement);
+                    float totalEarnings = getMonthlyEarnings.getMonthlyEarnings(searchRequirement);
                     StringBuilder cartSummary = new StringBuilder((String.format("%-13s", "Earnings monthly: $")));
                     cartSummary.append(String.format("%-13s", totalEarnings));
                     summaryText.setTypeface(Typeface.MONOSPACE);
                     summaryText.setText(cartSummary);
                 }
                 else if (Objects.equals(filtertype, new String("View frequency of visit"))){
-                    int freqVisit = viewAnalytics.getFrequencyMonth(searchRequirement);
+                    int freqVisit = getFrequencyMonth.getFrequencyMonth(searchRequirement);
                     StringBuilder cartSummary = new StringBuilder((String.format("%-13s", "Frequency of visit: ")));
                     cartSummary.append(String.format("%-13s", freqVisit));
                     summaryText.setTypeface(Typeface.MONOSPACE);
@@ -173,23 +193,22 @@ public class OwnerView extends AppCompatActivity {
                 }
             }else{
                 if (Objects.equals(filtertype, new String("View preference"))){
-                    String recommendedFood = viewAnalytics.getMenuRecommendationToday(searchRequirement);
+                    String recommendedFood = getMenuRecommendationToday.getMenuRecommendationToday(searchRequirement);
                     StringBuilder cartSummary = new StringBuilder((String.format("%-13s", "Recommended item: ")));
                     cartSummary.append(String.format("%-13s", recommendedFood));
                     summaryText.setTypeface(Typeface.MONOSPACE);
                     summaryText.setText(cartSummary);
-                    System.out.print(recommendedFood);
 
                 }
                 else if (Objects.equals(filtertype, new String("View earning"))){
-                    int totalEarnings = viewAnalytics.getTodayEarnings(searchRequirement);
+                    float totalEarnings = getTodayEarnings.getTodayEarnings(searchRequirement);
                     StringBuilder cartSummary = new StringBuilder((String.format("%-13s", "Earnings daily: $")));
                     cartSummary.append(String.format("%-13s", totalEarnings));
                     summaryText.setTypeface(Typeface.MONOSPACE);
                     summaryText.setText(cartSummary);
                 }
                 else if (Objects.equals(filtertype, new String("View frequency of visit"))){
-                    int freqVisit = viewAnalytics.getFrequencyToday(searchRequirement);
+                    int freqVisit = getFrequencyToday.getFrequencyToday(searchRequirement);
                     StringBuilder cartSummary = new StringBuilder((String.format("%-13s", "Frequency of visit: ")));
                     cartSummary.append(String.format("%-13s", freqVisit));
                     summaryText.setTypeface(Typeface.MONOSPACE);
