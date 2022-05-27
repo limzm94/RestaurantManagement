@@ -7,7 +7,7 @@ import com.example.restaurantmanagement.utility.DBHandler;
 
 import java.util.ArrayList;
 public class AnalyticsEntity {
-    Context context;
+    private final Context context;
 
     public AnalyticsEntity(Context context) {
         this.context = context;

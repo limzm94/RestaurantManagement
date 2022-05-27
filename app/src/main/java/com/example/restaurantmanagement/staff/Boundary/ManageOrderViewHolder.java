@@ -50,7 +50,7 @@ public class ManageOrderViewHolder extends RecyclerView.Adapter<ManageOrderViewH
         else {
             holder.markBtn.setVisibility(View.VISIBLE);
         }
-        holder.orderId.setText(model.toString());
+        holder.orderId.setText("Order ID: " + model);
         holder.viewBtn.setOnClickListener(v -> {
             // send the account info to edit account activity
             Intent intent = new Intent(context, OrderSummaryView.class);

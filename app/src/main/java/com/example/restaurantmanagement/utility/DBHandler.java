@@ -310,19 +310,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 
-    // ORDERDETAIL
-    // add menu item to cart
-    public void addToCart(Order order) {
-        SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("INSERT INTO OrderDetail(ProductId,ProductName,Quantity,Price,Discount,Image) VALUES('%s','%s', '%s','%s','%s','%s');",
-                order.getProductId(),
-                order.getProductName(),
-                order.getQuantity(),
-                order.getPrice(),
-                order.getDiscount(),
-                order.getImage());
-        db.execSQL(query);
-    }
+
 
     public void cleanCart() {
         SQLiteDatabase db = getReadableDatabase();
@@ -1036,22 +1024,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 
-    //view weekly spending
-    public ArrayList<Order> getOrderHistory(String userid) {
-        String[] params = new String[]{userid};
-        SQLiteDatabase db = this.getWritableDatabase();
-        ArrayList<Order> orders = new ArrayList<Order>();
-        List<Number> earnings;
-        List<String> list = new ArrayList<>();
-        Cursor c = db.rawQuery("Select * from OrderDetail where UserID = ?", params);
-        int total = 0;
-        String date;
-        if (c != null && c.moveToFirst()) {
-            int id = c.getInt(c.getColumnIndexOrThrow("ID"));
-            String productId = c.getString(c.getColumnIndexOrThrow("ProductId"));
-        }
-        return orders;
-    }
+
 
     public int getOrderID() {
         String[] params = new String[]{};

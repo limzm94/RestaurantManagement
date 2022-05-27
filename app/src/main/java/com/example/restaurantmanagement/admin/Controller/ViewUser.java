@@ -8,7 +8,7 @@ import com.example.restaurantmanagement.admin.Entity.UserObject;
 import java.util.ArrayList;
 
 public class ViewUser {
-    Context context;
+    private final Context context;
 
     public ViewUser(Context context) {
         this.context = context;

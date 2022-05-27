@@ -6,7 +6,7 @@ import android.widget.Toast;
 import com.example.restaurantmanagement.manager.Entity.CouponEntity;
 
 public class CreateCoupon {
-    Context context;
+    private final Context context;
 
     public CreateCoupon(Context context) {
         this.context = context;

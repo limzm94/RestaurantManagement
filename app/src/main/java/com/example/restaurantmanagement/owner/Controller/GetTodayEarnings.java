@@ -5,7 +5,7 @@ import android.content.Context;
 import com.example.restaurantmanagement.owner.Entity.AnalyticsEntity;
 
 public class GetTodayEarnings {
-    Context context;
+    private final Context context;
 
     public GetTodayEarnings(Context context) {
         this.context = context;

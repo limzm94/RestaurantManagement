@@ -7,7 +7,7 @@ import com.example.restaurantmanagement.customer.Entity.OrderObject;
 import java.util.ArrayList;
 
 public class ChangeCustomer {
-    Context context;
+    private final Context context;
 
     public ChangeCustomer(Context context) {
         this.context = context;

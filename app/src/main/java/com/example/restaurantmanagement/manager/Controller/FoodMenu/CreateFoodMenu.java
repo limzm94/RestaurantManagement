@@ -6,7 +6,7 @@ import android.widget.Toast;
 import com.example.restaurantmanagement.manager.Entity.FoodMenuEntity;
 
 public class CreateFoodMenu {
-    Context context;
+    private final Context context;
 
     public CreateFoodMenu(Context context) {
         this.context = context;

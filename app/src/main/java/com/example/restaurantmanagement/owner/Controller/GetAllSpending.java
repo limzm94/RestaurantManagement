@@ -8,7 +8,7 @@ import com.example.restaurantmanagement.owner.Entity.AnalyticsEntity;
 import java.util.ArrayList;
 
 public class GetAllSpending {
-    Context context;
+    private final Context context;
 
     public GetAllSpending(Context context) {
         this.context = context;
