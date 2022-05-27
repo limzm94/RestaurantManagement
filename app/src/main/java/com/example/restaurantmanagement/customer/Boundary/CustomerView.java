@@ -24,7 +24,7 @@ import com.example.restaurantmanagement.customer.Entity.OrderObject;
 import java.util.ArrayList;
 
 public class CustomerView extends AppCompatActivity {
-    int orderQuantity = 0;
+    private int orderQuantity = 0;
     @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -5,7 +5,7 @@ import android.content.Context;
 import com.example.restaurantmanagement.admin.Entity.UserEntity;
 
 public class CheckLogin {
-    Context context;
+    private final Context context;
 
     public CheckLogin(Context context) {
         this.context = context;

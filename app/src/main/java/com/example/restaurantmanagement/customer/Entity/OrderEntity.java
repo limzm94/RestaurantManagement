@@ -10,7 +10,7 @@ import com.example.restaurantmanagement.utility.DBHandler;
 import java.util.ArrayList;
 
 public class OrderEntity {
-    private Context context;
+    private final Context context;
 
     public OrderEntity(Context context) {
         this.context = context;

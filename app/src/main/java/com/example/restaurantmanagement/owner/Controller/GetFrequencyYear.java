@@ -5,7 +5,7 @@ import android.content.Context;
 import com.example.restaurantmanagement.owner.Entity.AnalyticsEntity;
 
 public class GetFrequencyYear {
-    Context context;
+    private final Context context;
 
     public GetFrequencyYear(Context context) {
         this.context = context;

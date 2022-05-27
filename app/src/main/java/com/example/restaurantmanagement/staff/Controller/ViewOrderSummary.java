@@ -13,7 +13,7 @@ import com.example.restaurantmanagement.staff.Entity.StaffEntity;
 import java.util.ArrayList;
 
 public class ViewOrderSummary {
-    Context context;
+    private final Context context;
 
     public ViewOrderSummary(Context context) {
         this.context = context;

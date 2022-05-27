@@ -6,7 +6,7 @@ import android.content.Context;
 import com.example.restaurantmanagement.admin.Entity.UserEntity;
 
 public class EditUser {
-    Context context;
+    private final Context context;
 
     public EditUser(Context context) {
         this.context = context;

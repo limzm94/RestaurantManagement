@@ -5,7 +5,7 @@ import android.content.Context;
 import com.example.restaurantmanagement.manager.Entity.CouponEntity;
 
 public class DeleteCoupon {
-    Context context;
+    private final Context context;
 
     public DeleteCoupon(Context context) {
         this.context = context;

@@ -13,7 +13,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class SendOrder {
-    Context context;
+    private final Context context;
 
     public SendOrder(Context context) {
         this.context = context;

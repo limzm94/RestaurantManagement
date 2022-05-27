@@ -3,9 +3,6 @@ package com.example.restaurantmanagement.manager.Entity;
 public class CouponObject {
 
     private int couponKey, couponDisc ;
-
-
-
     private String couponCode, couponDesc, couponStatus;
 
     public CouponObject(String couponCode, String couponDesc, String couponStatus, int couponKey, int couponDisc) {

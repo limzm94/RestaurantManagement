@@ -6,7 +6,7 @@ import com.example.restaurantmanagement.manager.Entity.FoodMenuEntity;
 import java.util.ArrayList;
 
 public class ViewFoodMenu {
-    Context context;
+    private final Context context;
 
     public ViewFoodMenu(Context context) {
         this.context = context;

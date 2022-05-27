@@ -5,7 +5,7 @@ import android.content.Context;
 import com.example.restaurantmanagement.customer.Entity.OrderEntity;
 
 public class LatestOrderId {
-    Context context;
+    private final Context context;
 
     public LatestOrderId(Context context) {
         this.context = context;

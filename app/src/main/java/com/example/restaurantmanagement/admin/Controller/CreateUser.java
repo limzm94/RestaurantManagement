@@ -6,7 +6,7 @@ import android.widget.Toast;
 import com.example.restaurantmanagement.admin.Entity.UserEntity;
 
 public class CreateUser {
-    Context context;
+    private final Context context;
 
     public CreateUser(Context context) {
         this.context = context;

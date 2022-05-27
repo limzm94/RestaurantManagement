@@ -9,7 +9,7 @@ import com.example.restaurantmanagement.utility.DBHandler;
 import java.util.ArrayList;
 
 public class StaffEntity {
-    private Context context;
+    private final Context context;
 
     public StaffEntity(Context context) {
         this.context = context;

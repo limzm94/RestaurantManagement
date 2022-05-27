@@ -9,7 +9,7 @@ import com.example.restaurantmanagement.customer.Entity.OrderObject;
 import java.util.ArrayList;
 
 public class CouponDiscount {
-    Context context;
+    private final Context context;
 
     public CouponDiscount(Context context) {
         this.context = context;

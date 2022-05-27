@@ -8,7 +8,7 @@ import com.example.restaurantmanagement.utility.DBHandler;
 import java.util.ArrayList;
 
 public class FoodMenuEntity {
-    Context context;
+    private final Context context;
 
     public FoodMenuEntity(Context context) {
         this.context = context;

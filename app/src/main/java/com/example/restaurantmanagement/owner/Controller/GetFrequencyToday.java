@@ -5,7 +5,7 @@ import android.content.Context;
 import com.example.restaurantmanagement.owner.Entity.AnalyticsEntity;
 
 public class GetFrequencyToday {
-    Context context;
+    private final Context context;
 
     public GetFrequencyToday(Context context) {
         this.context = context;

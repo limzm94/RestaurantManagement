@@ -10,7 +10,7 @@ import com.example.restaurantmanagement.manager.Entity.CouponObject;
 import java.util.ArrayList;
 
 public class ViewCoupon {
-    Context context;
+    private final Context context;
 
     public ViewCoupon(Context context) {
         this.context = context;

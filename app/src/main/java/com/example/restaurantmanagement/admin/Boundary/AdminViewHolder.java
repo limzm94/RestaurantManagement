@@ -20,9 +20,9 @@ import java.util.ArrayList;
 
 public class AdminViewHolder extends RecyclerView.Adapter<AdminViewHolder.ViewHolder> {
 
-    private Context context;
-    private ArrayList<UserObject> adminModelArrayList;
-    private String role;
+    private final Context context;
+    private final ArrayList<UserObject> adminModelArrayList;
+    private final String role;
 
     // Constructor
     public AdminViewHolder(Context context, ArrayList<UserObject> adminModelArrayList, String role) {
@@ -74,8 +74,12 @@ public class AdminViewHolder extends RecyclerView.Adapter<AdminViewHolder.ViewHo
     // View holder class for initializing of
     // your views such as TextView and Imageview.
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView personName, status, position, username, password;
-        private Button editBtn;
+        private final TextView personName;
+        private final TextView status;
+        private final TextView position;
+        private final TextView username;
+        private final TextView password;
+        private final Button editBtn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

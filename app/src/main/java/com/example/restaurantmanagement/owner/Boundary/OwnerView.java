@@ -32,7 +32,7 @@ import java.util.Objects;
 
 
 public class OwnerView extends AppCompatActivity {
-    String searchRequirement = "";
+    private String searchRequirement = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

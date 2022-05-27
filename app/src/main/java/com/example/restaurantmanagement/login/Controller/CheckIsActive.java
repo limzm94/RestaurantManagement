@@ -5,7 +5,7 @@ import android.content.Context;
 import com.example.restaurantmanagement.admin.Entity.UserEntity;
 
 public class CheckIsActive {
-    Context context;
+    private final Context context;
 
     public CheckIsActive(Context context) {
         this.context = context;

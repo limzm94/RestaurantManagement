@@ -21,8 +21,8 @@ import java.util.ArrayList;
 
 public class AdminPageView extends AppCompatActivity {
     // Arraylist for storing data
-    ArrayList<UserObject> userAccList = new ArrayList<>();
-    String searchRequirement = "";
+     private final ArrayList<UserObject> userAccList = new ArrayList<>();
+     private String searchRequirement = "";
     
     @SuppressLint("NotifyDataSetChanged")
     @Override

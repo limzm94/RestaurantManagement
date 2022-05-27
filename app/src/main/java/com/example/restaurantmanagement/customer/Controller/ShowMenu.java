@@ -8,7 +8,7 @@ import com.example.restaurantmanagement.customer.Entity.OrderObject;
 import java.util.ArrayList;
 
 public class ShowMenu {
-    Context context;
+    private final Context context;
 
     public ShowMenu(Context context) {
         this.context = context;

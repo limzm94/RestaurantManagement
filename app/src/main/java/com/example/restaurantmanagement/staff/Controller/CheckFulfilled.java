@@ -11,7 +11,7 @@ import com.example.restaurantmanagement.staff.Entity.StaffEntity;
 import java.util.ArrayList;
 
 public class CheckFulfilled {
-    Context context;
+    private final Context context;
 
     public CheckFulfilled(Context context) {
         this.context = context;

@@ -6,7 +6,7 @@ import android.widget.Toast;
 import com.example.restaurantmanagement.manager.Entity.FoodMenuEntity;
 
 public class DeleteFoodMenu {
-    Context context;
+    private final Context context;
 
     public DeleteFoodMenu(Context context) {
         this.context = context;

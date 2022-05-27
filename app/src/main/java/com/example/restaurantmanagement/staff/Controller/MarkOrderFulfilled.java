@@ -7,7 +7,7 @@ import com.example.restaurantmanagement.staff.Entity.StaffEntity;
 import java.util.ArrayList;
 
 public class MarkOrderFulfilled {
-    Context context;
+    private final Context context;
 
     public MarkOrderFulfilled(Context context) {
         this.context = context;
