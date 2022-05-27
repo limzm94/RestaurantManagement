@@ -3,6 +3,7 @@ package com.example.restaurantmanagement.owner.Boundary;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -68,6 +69,7 @@ public class OwnerView extends AppCompatActivity {
         statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinnerDate.setAdapter(statusAdapter);
+        summaryText.setMovementMethod(new ScrollingMovementMethod());
 
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
