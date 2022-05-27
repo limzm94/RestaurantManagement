@@ -23,8 +23,7 @@ public class AdminPageView extends AppCompatActivity {
     // Arraylist for storing data
      private final ArrayList<UserObject> userAccList = new ArrayList<>();
      private String searchRequirement = "";
-
-
+     
     @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
